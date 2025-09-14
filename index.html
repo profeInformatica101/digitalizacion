@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IES Camas · Digitalización (DAW1) · 12 Temas RA–CE con Tareas</title>
+  <title>IES Camas · Digitalización (1º DAW) · Programación Oficial 2025/26</title>
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
@@ -13,7 +13,7 @@
       --bg:#0b1220; --card:#121a2b; --card-2:#0f1626; --soft:rgba(255,255,255,.08);
       --text:#e6edf7; --muted:#cbd5e1; --muted-2:#9aa6b2; --accent1:#0ea5e9; --accent2:#22c55e;
     }
-    body{background:var(--bg);}
+    body{background:var(--bg); color:var(--text)}
     .navbar{background:linear-gradient(90deg,var(--accent1),var(--accent2));}
     .topic-card{background:var(--card);border:1px solid var(--soft)}
     .topic-card h5, .topic-card h6, .topic-card p{color:var(--text)}
@@ -26,17 +26,27 @@
     .sticky-top .form-select{max-width:260px}
     .hero{background:radial-gradient(1000px 350px at 10% -20%, rgba(34,197,94,.15),transparent),
            radial-gradient(1000px 350px at 90% -20%, rgba(14,165,233,.15),transparent);}
-    .small-note{font-size:.85rem;color:#cbd5e1}
+    .small-note{font-size:.9rem;color:#cbd5e1}
     .center-tag{background:rgba(34,197,94,.15);border:1px dashed rgba(34,197,94,.5);color:#86efac}
+    .info-official{background:#09101d;border:1px solid var(--soft);border-radius:16px}
+    .kpi{background:var(--soft); color:var(--text); border-radius:12px; padding:.5rem .75rem; display:inline-flex; align-items:center; gap:.5rem}
+    .kpi i{opacity:.8}
+    .table-sm td,.table-sm th{color:#cbd5e1; border-color:rgba(255,255,255,.08)}
+    .accordion-button{background:#0b1323;color:#e6edf7}
+    .accordion-item{border:1px solid rgba(255,255,255,.08)}
+    .accordion-body{color:#cbd5e1}
+    .rubrica small{color:#cbd5e1}
+    details summary{cursor:pointer}
+    a { color:#38bdf8; }
   </style>
 </head>
 <body>
   <nav class="navbar navbar-dark">
     <div class="container">
       <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
-        <i class="bi bi-cpu"></i> IES Camas · Digitalización · RA–CE
+        <i class="bi bi-cpu"></i> IES Camas · Digitalización (1º DAW)
       </a>
-      <span class="text-white-50 small">Bootstrap 5 · DAW1</span>
+      <span class="text-white-50 small">Programación Oficial 2025/26</span>
     </div>
   </nav>
 
@@ -44,26 +54,71 @@
     <div class="container">
       <div class="row align-items-center g-4">
         <div class="col-lg-8">
-          <h1 class="text-white fw-bold mb-2">Secuencia de 12 temas con Criterios y Tareas</h1>
+          <h1 class="text-white fw-bold mb-2">Secuencia de UT (RA–CE) con Evidencias</h1>
           <p class="text-white-50 lead mb-3">
-            Cada tema agrupa Resultados de Aprendizaje (RA) y sus Criterios de Evaluación (CE),
-            con una <span class="text-white">tarea práctica concreta</span> por CE para evidenciar el aprendizaje.
+            Página alineada con la <span class="text-white">Programación Didáctica oficial</span> (RA y CE completos, contenidos y unidades).
+            Cada CE tiene una <span class="text-white">evidencia/tarea</span> para demostrar el aprendizaje.
           </p>
           <p class="small-note mb-0">
-            Envío de evidencias por Moodle Centros (PDF/MD) y repositorio individual en GitHub (<code>digitalizacion-daw1</code>).
-            Usa rúbrica por CE (0–10). Entregas semanales.
+            Entrega por Moodle (PDF/MD) y repositorio individual en GitHub (<code>digitalizacion-daw1</code>).
+            Rúbrica por CE (0–10). Evaluación continua.
           </p>
         </div>
         <div class="col-lg-4">
           <div class="p-3 rounded-4 topic-card">
             <h6 class="mb-2"><i class="bi bi-info-circle"></i> Sugerencia de uso</h6>
             <ul class="mb-0 small text-white-50">
-              <li>Una evidencia por CE (informe breve + capturas/diagramas).</li>
-              <li>Plantilla de informe: objetivo → pasos → resultado → reflexión.</li>
-              <li>Incluye referencias y enlaces utilizados.</li>
+              <li>Una evidencia por CE (objetivo → pasos → resultado → reflexión).</li>
+              <li>Incluye referencias, capturas y/o diagramas.</li>
+              <li>Versiona en Git: un commit por CE con mensaje claro.</li>
             </ul>
           </div>
         </div>
+      </div>
+
+      <!-- Barra de info oficial -->
+      <div class="info-official mt-4 p-3">
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+          <span class="kpi"><i class="bi bi-hash"></i> Código: <strong>1665</strong></span>
+          <span class="kpi"><i class="bi bi-mortarboard"></i> ECTS: <strong>3</strong></span>
+          <span class="kpi"><i class="bi bi-clock-history"></i> Duración: <strong>32 h</strong> <span class="text-white-50">(1 h/semana)</span></span>
+          <span class="kpi"><i class="bi bi-diagram-3"></i> RA: <strong>1–6</strong></span>
+          <span class="kpi"><i class="bi bi-building"></i> Dep.: <strong>FOL</strong></span>
+          <span class="kpi"><i class="bi bi-diagram-2"></i> Impartición: <strong>89% centro · 11% empresa (RA4)</strong></span>
+          <span class="kpi"><i class="bi bi-geo"></i> Centro: <strong>IES Camas</strong></span>
+        </div>
+
+        <div class="row g-3 mt-2">
+          <div class="col-lg-6">
+            <div class="p-3 rounded-3" style="background:#0b1323">
+              <h6 class="text-white-50 mb-2">Temporalización (resumen)</h6>
+              <ul class="small mb-0 text-white-50">
+                <li><strong>1.ª Eval. (10 h):</strong> UT1 (RA1 · 3 h) + UT2 (RA2 · 4 h) + margen/recuperación (3 h)</li>
+                <li><strong>2.ª Eval. (10 h):</strong> UT3 (RA3 · 3 h) + UT4 (RA4 · 5 h) + margen (2 h)</li>
+                <li><strong>3.ª Eval. (12 h):</strong> UT5 (RA5 · 5 h) + UT6 (RA6 · 12 h en paralelo con defensa) · solape y defensa final</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="p-3 rounded-3" style="background:#0b1323">
+              <h6 class="text-white-50 mb-2">Ponderación RA (orientativa de centro)</h6>
+              <table class="table table-sm mb-2">
+                <thead><tr><th>RA</th><th>%</th><th class="text-white-50">CE</th></tr></thead>
+                <tbody>
+                  <tr><td>RA1</td><td>16,66%</td><td class="text-white-50 small">a–g</td></tr>
+                  <tr><td>RA2</td><td>16,66%</td><td class="text-white-50 small">a–g</td></tr>
+                  <tr><td>RA3</td><td>16,66%</td><td class="text-white-50 small">a–e</td></tr>
+                  <tr><td>RA4</td><td>5,66% + 11% empresa</td><td class="text-white-50 small">a–f</td></tr>
+                  <tr><td>RA5</td><td>16,66%</td><td class="text-white-50 small">a–i</td></tr>
+                  <tr><td>RA6</td><td>16,66%</td><td class="text-white-50 small">a–k</td></tr>
+                </tbody>
+              </table>
+              <p class="small-note mb-0">Evaluación continua · ≥5/10 por RA (suma ponderada de sus CE).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="small-note mt-2">Módulo Profesional: <em>Digitalización aplicada a los sectores productivos (GS)</em>. Alineado con RA–CE oficiales y el índice del libro (UT1–UT6).</div>
       </div>
     </div>
   </header>
@@ -72,16 +127,16 @@
   <div class="sticky-top py-2" style="background:#0b1220;border-bottom:1px solid rgba(255,255,255,.06)">
     <div class="container d-flex gap-2 align-items-center flex-wrap">
       <span class="text-white-50 small"><i class="bi bi-funnel"></i> Filtrar por RA:</span>
-      <select id="filterRA" class="form-select form-select-sm bg-dark text-light">
+      <select id="filterRA" class="form-select form-select-sm bg-dark text-light" aria-label="Filtro por Resultado de Aprendizaje">
         <option value="all">Todos</option>
         <option value="RA1">RA1 · Digitalización e IT/OT</option>
         <option value="RA2">RA2 · Tecnologías habilitadoras</option>
         <option value="RA3">RA3 · Cloud / Edge / Fog</option>
         <option value="RA4">RA4 · Inteligencia Artificial</option>
-        <option value="RA5">RA5 · Datos · Big Data · Seguridad</option>
-        <option value="RA6">RA6 · Proyecto de Transformación</option>
+        <option value="RA5">RA5 · Datos y Seguridad</option>
+        <option value="RA6">RA6 · Plan de Transformación</option>
       </select>
-      <span class="ms-auto badge center-tag">Centro: IES Camas · Grupo: 1º DAW</span>
+      <span class="ms-auto badge center-tag">Módulo 1665 · 1º DAW</span>
     </div>
   </div>
 
@@ -89,609 +144,405 @@
     <div class="container">
       <div class="row g-4" id="topics">
 
-        <!-- ========================== TEMA 1 ========================== -->
-        <section class="col-12 topic RA1">
+        <!-- ========================== UT1 ========================== -->
+        <section class="col-12 topic RA1" id="ut1">
           <div class="p-4 rounded-4 topic-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 1</span> Digitalización e impacto en IT/OT</h5>
-              <span class="pill badge-soft">RA1 · CE1–CE3</span>
+              <h5 class="mb-0"><span class="badge badge-soft pill me-2">UT1</span> El reto de la digitalización</h5>
+              <span class="pill badge-soft">RA1 · CE a–g</span>
             </div>
-            <p class="text-white-50 mb-3">Conceptos base y efectos organizativos de la digitalización.</p>
-            <div class="row g-3">
-              <!-- CE1 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title mb-1">CE1 · Definir digitalización</h6>
-                  <p class="small text-white-50 mb-2">Descripción del concepto y alcance.</p>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Microensayo (150–200 palabras) “¿Qué es la digitalización?” + 3 ejemplos en IES Camas o tu entorno.
+            <p class="text-white-50 mb-3">Digitalización en la vida y sectores productivos, empresa digital, IT/OT y beneficios E2E.</p>
+
+            <!-- RA y CE oficiales -->
+            <div class="accordion" id="accUT1">
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut1ra">
+                    RA1 · Analiza el concepto de digitalización y su repercusión…
+                  </button>
+                </h2>
+                <div id="ut1ra" class="accordion-collapse collapse" data-bs-parent="#accUT1">
+                  <div class="accordion-body">
+                    1) Analiza el concepto de digitalización y su repercusión en los sectores productivos teniendo en cuenta la actividad de la empresa e identificando entornos IT y OT característicos.
                   </div>
                 </div>
               </div>
-              <!-- CE2 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title mb-1">CE2 · Relación con la organización</h6>
-                  <p class="small text-white-50 mb-2">Impacto en procesos y estructura.</p>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Mapa de procesos “AS-IS vs TO-BE” (diagrama + texto breve) para un centro/pyme local.
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut1ce">
+                    Criterios de evaluación (a–g)
+                  </button>
+                </h2>
+                <div id="ut1ce" class="accordion-collapse collapse" data-bs-parent="#accUT1">
+                  <div class="accordion-body">
+                    a) Definir digitalización. · b) Relación con la organización. · c) Diferencias/similitudes IT–OT. ·
+                    d) Departamentos IT. · e) Tecnologías típicas en planta/negocio. · f) Conexión IT–OT. · g) Ventajas E2E.
                   </div>
                 </div>
               </div>
-              <!-- CE3 -->
-              <div class="col-md-12">
-                <div class="p-3 rounded-3 ce-card">
-                  <h6 class="ce-title mb-1">CE3 · Diferencias IT vs OT</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Cuadro comparativo IT/OT (objetivos, redes, dispositivos, riesgos) + 1 caso donde colaboren.
-                  </div>
-                </div>
-              </div>
+            </div>
+
+            <!-- Contenidos del índice -->
+            <div class="p-3 rounded-3 ce-card mt-3">
+              <h6 class="ce-title mb-1">Índice (libro)</h6>
+              <ul class="small text-white-50 mb-2">
+                <li>1.1 ¿Qué es la digitalización? · 1.1.1 Vida cotidiana · 1.1.2 Sectores productivos</li>
+                <li>1.2 Empresa digital · Cultura y estructura</li>
+                <li>1.3 Digitalización de extremo a extremo · 1.3.1 IT · 1.3.2 OT · 1.3.3 Convergencia IT/OT</li>
+                <li>1.4 Adaptación: actitud, formación a lo largo de la vida y competencias digitales</li>
+              </ul>
+            </div>
+
+            <!-- Evidencia integradora -->
+            <div class="p-3 rounded-3 ce-card mt-2 rubrica">
+              <h6 class="ce-title mb-1">Evidencia · Reto 1.1 “AS-IS → TO-BE”</h6>
+              <p class="small text-white-50 mb-2"><strong>RA1</strong> · CE a–g · Informe visual 2–3 págs + diagrama.</p>
+              <ul class="small text-white-50 mb-2">
+                <li><strong>Producto:</strong> definición (a); organización y digitalización (b); IT vs OT (c);
+                    departamentos IT (d); THD en planta/negocio (e); conexión IT–OT con riesgos/controles (f);
+                    5 KPI E2E antes/después (g).</li>
+                <li><strong>Entregables:</strong> PDF/MD + diagrama (draw.io) · repo <code>digitalizacion-daw1/ut1/</code>.</li>
+                <li><strong>Checklist CE:</strong> ✓a ✓b ✓c ✓d ✓e ✓f ✓g</li>
+              </ul>
+              <details class="small"><summary class="text-white-50">Rúbrica (resumen)</summary>
+                <p class="small text-white-50 mb-0">Exactitud 30% · Alineación CE 20% · Aplicación 20% · Documentación 20% · Reflexión 10%.</p>
+              </details>
             </div>
           </div>
         </section>
 
-        <!-- ========================== TEMA 2 ========================== -->
-        <section class="col-12 topic RA1">
+        <!-- ========================== UT2 ========================== -->
+        <section class="col-12 topic RA2" id="ut2">
           <div class="p-4 rounded-4 topic-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 2</span> Mapeo de procesos y ventajas de la digitalización</h5>
-              <span class="pill badge-soft">RA1 · CE4–CE7</span>
+              <h5 class="mb-0"><span class="badge badge-soft pill me-2">UT2</span> Las tecnologías habilitadoras digitales</h5>
+              <span class="pill badge-soft">RA2 · CE a–g</span>
             </div>
-            <p class="text-white-50 mb-3">Departamentos IT, tecnologías en negocio/planta y beneficios E2E.</p>
+            <p class="text-white-50 mb-3">THD, características, mercados, impacto negocio/planta e informe final.</p>
 
-            <div class="row g-3">
-              <!-- CE4 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE4 · Departamentos IT típicos</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Inventario de departamentos IT con funciones (Service Desk, Sistemas, Desarrollo, Seguridad) en una pyme.
+            <div class="accordion" id="accUT2">
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut2ra">
+                    RA2 · Caracteriza las tecnologías habilitadoras digitales…
+                  </button>
+                </h2>
+                <div id="ut2ra" class="accordion-collapse collapse" data-bs-parent="#accUT2">
+                  <div class="accordion-body">
+                    2) Caracteriza las tecnologías habilitadoras digitales necesarias para la adecuación/transformación de las empresas a entornos digitales describiendo sus características y aplicaciones.
                   </div>
                 </div>
               </div>
-              <!-- CE5 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE5 · Tecnologías en negocio y planta</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Lista de 10 tecnologías (ERP, MES, SCADA, RPA, IoT…) clasificadas por “negocio/planta” con ejemplo.
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut2ce">
+                    Criterios de evaluación (a–g)
+                  </button>
+                </h2>
+                <div id="ut2ce" class="accordion-collapse collapse" data-bs-parent="#accUT2">
+                  <div class="accordion-body">
+                    a) Identificación de THD. · b) THD y productos/servicios. · c) THD y sostenibilidad. ·
+                    d) Nuevos mercados. · e) Implicación en negocio y planta. ·
+                    f) Mejoras por implantación (IT/OT). · g) Informe tecnologías–características–áreas.
                   </div>
                 </div>
               </div>
-              <!-- CE6 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE6 · Conexión IT–OT</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Diagrama de integración (redes, DMZ, pasarelas) + 3 riesgos y 3 mitigaciones.
-                  </div>
-                </div>
-              </div>
-              <!-- CE7 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE7 · Ventajas E2E en industria</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Caso de estudio: beneficios medibles al digitalizar de extremo a extremo (KPIs antes/después).
-                  </div>
-                </div>
-              </div>
+            </div>
+
+            <div class="p-3 rounded-3 ce-card mt-2">
+              <h6 class="ce-title mb-1">Índice (libro)</h6>
+              <ul class="small text-white-50 mb-2">
+                <li>2.1 ¿Qué son las THD? · Características fundamentales · Papel en la transformación</li>
+                <li>2.2 Conectividad y comunicación inteligente · Gestión avanzada de datos · Fabricación avanzada · Tecnologías inmersivas</li>
+                <li>2.3 THD e innovación · Productos · Servicios · Mercados</li>
+                <li>2.4 THD y sostenibilidad</li>
+              </ul>
+            </div>
+
+            <div class="p-3 rounded-3 ce-card mt-2 rubrica">
+              <h6 class="ce-title mb-1">Evidencia · Reto 2.1 “Radar THD + Informe de impacto”</h6>
+              <p class="small text-white-50 mb-2"><strong>RA2</strong> · CE a–g · 6 fichas + backlog + informe 2–3 págs.</p>
+              <ul class="small text-white-50 mb-2">
+                <li><strong>Producto:</strong> 6 fichas (a); canvas producto/servicio (b); vínculos con ODS (c); 2 mercados (d);
+                matriz negocio/planta (e); backlog 8 mejoras valor/esfuerzo (f); informe integrador (g).</li>
+                <li><strong>Entregables:</strong> PDF/MD + hoja de cálculo del backlog · repo <code>ut2/</code>.</li>
+                <li><strong>Checklist CE:</strong> ✓a ✓b ✓c ✓d ✓e ✓f ✓g</li>
+              </ul>
+              <details class="small"><summary class="text-white-50">Rúbrica (resumen)</summary>
+                <p class="small text-white-50 mb-0">Exactitud 30% · Alineación CE 20% · Aplicación 20% · Documentación 20% · Reflexión 10%.</p>
+              </details>
             </div>
           </div>
         </section>
 
-        <!-- ========================== TEMA 3 ========================== -->
-        <section class="col-12 topic RA2">
+        <!-- ========================== UT3 ========================== -->
+        <section class="col-12 topic RA3" id="ut3">
           <div class="p-4 rounded-4 topic-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 3</span> Tecnologías habilitadoras: panorama</h5>
-              <span class="pill badge-soft">RA2 · CE1–CE3</span>
+              <h5 class="mb-0"><span class="badge badge-soft pill me-2">UT3</span> La computación en la nube</h5>
+              <span class="pill badge-soft">RA3 · CE a–e</span>
             </div>
-            <p class="text-white-50 mb-3">TDH y su impacto inicial en productos y economía.</p>
+            <p class="text-white-50 mb-3">Modelos cloud, funciones, edge/fog/mist y ventajas en sistemas conectados.</p>
 
-            <div class="row g-3">
-              <!-- CE1 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE1 · Identificar TDH</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Fichas de 6 TDH (IA, IoT, Big Data, Blockchain, Ciberseguridad, Robótica): qué es + ejemplo.
+            <div class="accordion" id="accUT3">
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut3ra">
+                    RA3 · Identifica sistemas basados en cloud/nube…
+                  </button>
+                </h2>
+                <div id="ut3ra" class="accordion-collapse collapse" data-bs-parent="#accUT3">
+                  <div class="accordion-body">
+                    3) Identifica sistemas basados en cloud/nube y su influencia en el desarrollo de los sistemas digitales.
                   </div>
                 </div>
               </div>
-              <!-- CE2 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE2 · TDH ↔ productos/servicios</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Canvas corto: cómo una TDH mejora un producto/servicio existente (valor, coste, riesgo).
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut3ce">
+                    Criterios de evaluación (a–e)
+                  </button>
+                </h2>
+                <div id="ut3ce" class="accordion-collapse collapse" data-bs-parent="#accUT3">
+                  <div class="accordion-body">
+                    a) Niveles cloud. · b) Funciones (procesamiento, intercambio, ejecución). ·
+                    c) Edge computing y relación con cloud. · d) Fog y Mist. · e) Ventajas en sistemas conectados.
                   </div>
                 </div>
               </div>
-              <!-- CE3 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE3 · TDH y economía sostenible</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Miniensayo: vínculo TDH–ODS (energía, residuos, movilidad) con 2 ejemplos locales.
-                  </div>
-                </div>
-              </div>
+            </div>
+
+            <div class="p-3 rounded-3 ce-card mt-2">
+              <h6 class="ce-title mb-1">Índice (libro)</h6>
+              <ul class="small text-white-50 mb-2">
+                <li>3.1 Esenciales de la nube · funciones · funcionamiento · beneficios y desafíos</li>
+                <li>3.2 Modelos de servicio: IaaS, PaaS, SaaS</li>
+                <li>3.3 Computación en el borde</li>
+              </ul>
+            </div>
+
+            <div class="p-3 rounded-3 ce-card mt-2 rubrica">
+              <h6 class="ce-title mb-1">Evidencia · Reto 3.1 “Mini-landing en objeto cloud”</h6>
+              <p class="small text-white-50 mb-2"><strong>RA3</strong> · CE a–e · Infografía + práctica de bucket + diagrama.</p>
+              <ul class="small text-white-50 mb-2">
+                <li><strong>Producto:</strong> infografía IaaS/PaaS/SaaS/FaaS (a);
+                práctica de bucket con capturas (b); diagrama sensor→edge→cloud con latencias (c);
+                tabla Edge–Fog–Mist (d); 5 ventajas aplicadas a un caso IoT escolar (e).</li>
+                <li><strong>Entregables:</strong> PDF/MD + enlace al objeto si procede · repo <code>ut3/</code>.</li>
+                <li><strong>Checklist CE:</strong> ✓a ✓b ✓c ✓d ✓e</li>
+              </ul>
+              <details class="small"><summary class="text-white-50">Rúbrica (resumen)</summary>
+                <p class="small text-white-50 mb-0">Exactitud 30% · Alineación CE 20% · Aplicación 20% · Documentación 20% · Reflexión 10%.</p>
+              </details>
             </div>
           </div>
         </section>
 
-        <!-- ========================== TEMA 4 ========================== -->
-        <section class="col-12 topic RA2">
+        <!-- ========================== UT4 ========================== -->
+        <section class="col-12 topic RA4" id="ut4">
           <div class="p-4 rounded-4 topic-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 4</span> TDH aplicadas en sectores</h5>
-            <span class="pill badge-soft">RA2 · CE4–CE7</span>
+              <h5 class="mb-0"><span class="badge badge-soft pill me-2">UT4</span> La inteligencia artificial</h5>
+              <span class="pill badge-soft">RA4 · CE a–f</span>
             </div>
-            <p class="text-white-50 mb-3">Mercados, mejoras IT/OT e informe técnico.</p>
+            <p class="text-white-50 mb-3">IA: impacto, tipos, aplicaciones, lenguajes y efecto en el sector.</p>
 
-            <div class="row g-3">
-              <!-- CE4 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE4 · Nuevos mercados por TDH</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Brief de 1 página: 2 mercados emergentes generados por una TDH (tamaño, caso de uso).
+            <div class="accordion" id="accUT4">
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut4ra">
+                    RA4 · Identifica aplicaciones de la IA en el sector…
+                  </button>
+                </h2>
+                <div id="ut4ra" class="accordion-collapse collapse" data-bs-parent="#accUT4">
+                  <div class="accordion-body">
+                    4) Identifica aplicaciones de la IA en entornos del sector describiendo las mejoras implícitas en su implementación.
                   </div>
                 </div>
               </div>
-              <!-- CE5 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE5 · TDH en negocio y planta</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Matriz: impacto de una TDH en front-office (negocio) y shop-floor (planta).
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut4ce">
+                    Criterios de evaluación (a–f)
+                  </button>
+                </h2>
+                <div id="ut4ce" class="accordion-collapse collapse" data-bs-parent="#accUT4">
+                  <div class="accordion-body">
+                    a) IA en automatización/optimización. · b) IA + Big Data y rentabilidad. ·
+                    c) Importancia presente y futura. · d) Sectores con mayor implantación. ·
+                    e) Lenguajes de programación en IA. · f) Influencia de la IA en el sector del título.
                   </div>
                 </div>
               </div>
-              <!-- CE6 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE6 · Mejoras en IT/OT</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Backlog de 8 mejoras priorizadas (valor/esfuerzo) con criterios de aceptación.
-                  </div>
-                </div>
-              </div>
-              <!-- CE7 -->
-              <div class="col-12">
-                <div class="p-3 rounded-3 ce-card">
-                  <h6 class="ce-title">CE7 · Informe tecnologías ↔ áreas</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Informe 2–3 páginas: relaciona TDH, características y áreas de aplicación con ejemplos reales.
-                  </div>
-                </div>
-              </div>
+            </div>
+
+            <div class="p-3 rounded-3 ce-card mt-2">
+              <h6 class="ce-title mb-1">Índice (libro)</h6>
+              <ul class="small text-white-50 mb-2">
+                <li>4.1 Irrupción de la IA · evolución e impacto</li>
+                <li>4.2 Entender la IA · cómo aprende · tipos · generativa</li>
+                <li>4.3 Aplicar la IA · empresa · aplicación personal</li>
+                <li>4.4 Implicaciones éticas · riesgos · empleo · medio ambiente</li>
+              </ul>
+            </div>
+
+            <div class="p-3 rounded-3 ce-card mt-2 rubrica">
+              <h6 class="ce-title mb-1">Evidencia · Reto 4.1 “Hello AI + impacto en mi sector”</h6>
+              <p class="small text-white-50 mb-2"><strong>RA4</strong> · CE a–f · mini-estudio + script/pseudocódigo + nota técnica.</p>
+              <ul class="small text-white-50 mb-2">
+                <li><strong>Producto:</strong> 3 sectores con fuentes (d); IA–Big Data–rentabilidad (b);
+                “Hello AI” en Python/pseudocódigo (e); nota técnica 2 págs con mejoras para el sector del ciclo (a, c, f).</li>
+                <li><strong>Entregables:</strong> PDF/MD + script o pseudocódigo · repo <code>ut4/</code>.</li>
+                <li><strong>Checklist CE:</strong> ✓a ✓b ✓c ✓d ✓e ✓f</li>
+              </ul>
+              <details class="small"><summary class="text-white-50">Rúbrica (resumen)</summary>
+                <p class="small text-white-50 mb-0">Exactitud 30% · Alineación CE 20% · Aplicación 20% · Documentación 20% · Reflexión 10%.</p>
+              </details>
             </div>
           </div>
         </section>
 
-        <!-- ========================== TEMA 5 ========================== -->
-        <section class="col-12 topic RA3">
+        <!-- ========================== UT5 ========================== -->
+        <section class="col-12 topic RA5" id="ut5">
           <div class="p-4 rounded-4 topic-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 5</span> Cloud Computing: niveles y servicios</h5>
-              <span class="pill badge-soft">RA3 · CE1–CE2</span>
+              <h5 class="mb-0"><span class="badge badge-soft pill me-2">UT5</span> Los datos y su protección</h5>
+              <span class="pill badge-soft">RA5 · CE a–i</span>
             </div>
-            <p class="text-white-50 mb-3">IaaS, PaaS, SaaS, FaaS y funciones típicas.</p>
+            <p class="text-white-50 mb-3">Dato vs información, ciclo de vida, Big Data, cloud y ciberseguridad.</p>
 
-            <div class="row g-3">
-              <!-- CE1 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE1 · Niveles de la cloud</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Infografía propia IaaS/PaaS/SaaS/FaaS + 1 ejemplo gratuito de cada nivel.
+            <div class="accordion" id="accUT5">
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut5ra">
+                    RA5 · Evalúa la importancia de los datos y su protección…
+                  </button>
+                </h2>
+                <div id="ut5ra" class="accordion-collapse collapse" data-bs-parent="#accUT5">
+                  <div class="accordion-body">
+                    5) Evalúa la importancia de los datos, así como su protección en una economía digital globalizada, definiendo sistemas de seguridad y ciberseguridad a nivel equipo/sistema y globales.
                   </div>
                 </div>
               </div>
-              <!-- CE2 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE2 · Funciones principales</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Práctica guiada: almacenamiento de objetos gratuito (p. ej., Cloudflare R2/Drive) + subir/leer archivo.
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut5ce">
+                    Criterios de evaluación (a–i)
+                  </button>
+                </h2>
+                <div id="ut5ce" class="accordion-collapse collapse" data-bs-parent="#accUT5">
+                  <div class="accordion-body">
+                    a) Dato vs información. · b) Ciclo de vida del dato. · c) Big Data–análisis–ML/DL–IA. ·
+                    d) Características Big Data. · e) Etapas de ciencia/ingeniería de datos. ·
+                    f) Procedimientos de almacenaje cloud. · g) Importancia del cloud. ·
+                    h) Objetivos de la ciencia de datos en las empresas. · i) Seguridad y regulación de datos.
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div class="p-3 rounded-3 ce-card mt-2">
+              <h6 class="ce-title mb-1">Índice (libro)</h6>
+              <ul class="small text-white-50 mb-2">
+                <li>5.1 ¿Qué son los datos? · del dato al conocimiento · beneficios</li>
+                <li>5.2 Ciclo de vida: generación, almacenamiento, tratamiento, análisis, visualización, uso, eliminación</li>
+                <li>5.3 Seguridad de los datos: riesgos · ciberseguridad en las organizaciones</li>
+              </ul>
+            </div>
+
+            <div class="p-3 rounded-3 ce-card mt-2 rubrica">
+              <h6 class="ce-title mb-1">Evidencia · Reto 5.1 “Del dato al insight seguro”</h6>
+              <p class="small text-white-50 mb-2"><strong>RA5</strong> · CE a–i · pipeline + procedimiento cloud + nota RGPD/ENS.</p>
+              <ul class="small text-white-50 mb-2">
+                <li><strong>Producto:</strong> cuadro dato/información (a); diagrama ciclo de vida (b);
+                pipeline simple con gráfico e insight (c–e); procedimiento de almacenamiento/compartición (f–g);
+                objetivos DS por áreas (h); nota RGPD/ENS con 3 obligaciones + 3 medidas técnicas (i).</li>
+                <li><strong>Entregables:</strong> notebook o capturas + PDF/MD · repo <code>ut5/</code>.</li>
+                <li><strong>Checklist CE:</strong> ✓a ✓b ✓c ✓d ✓e ✓f ✓g ✓h ✓i</li>
+              </ul>
+              <details class="small"><summary class="text-white-50">Rúbrica (resumen)</summary>
+                <p class="small text-white-50 mb-0">Exactitud 30% · Alineación CE 20% · Aplicación 20% · Documentación 20% · Reflexión 10%.</p>
+              </details>
             </div>
           </div>
         </section>
 
-        <!-- ========================== TEMA 6 ========================== -->
-        <section class="col-12 topic RA3">
+        <!-- ========================== UT6 ========================== -->
+        <section class="col-12 topic RA6" id="ut6">
           <div class="p-4 rounded-4 topic-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 6</span> Edge, Fog y ventajas de Cloud</h5>
-              <span class="pill badge-soft">RA3 · CE3–CE5</span>
+              <h5 class="mb-0"><span class="badge badge-soft pill me-2">UT6</span> El plan de transformación digital</h5>
+              <span class="pill badge-soft">RA6 · CE a–k</span>
             </div>
-            <p class="text-white-50 mb-3">Computación cercana al dato y beneficios en sistemas conectados.</p>
+            <p class="text-white-50 mb-3">Objetivos, áreas, tecnologías, seguridad, datos, integración, documentación y RR. HH.</p>
 
-            <div class="row g-3">
-              <!-- CE3 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE3 · Edge computing</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Diagrama de red: sensor → edge (Raspberry/PC) → cloud, con latencias estimadas.
+            <div class="accordion" id="accUT6">
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut6ra">
+                    RA6 · Desarrolla un proyecto de transformación digital…
+                  </button>
+                </h2>
+                <div id="ut6ra" class="accordion-collapse collapse" data-bs-parent="#accUT6">
+                  <div class="accordion-body">
+                    6) Desarrolla un proyecto de transformación digital de una empresa del sector, teniendo en cuenta los cambios según los objetivos de la empresa.
                   </div>
                 </div>
               </div>
-              <!-- CE4 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE4 · Fog y Mist</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Tabla comparativa Edge–Fog–Mist (ubicación, casos, limitaciones) + ejemplo local.
-                  </div>
-                </div>
-              </div>
-              <!-- CE5 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE5 · Ventajas en conectados</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Lista priorizada de ventajas (escalado, resiliencia, costes) aplicada a un proyecto IoT escolar.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ========================== TEMA 7 ========================== -->
-        <section class="col-12 topic RA4">
-          <div class="p-4 rounded-4 topic-card">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 7</span> Fundamentos de Inteligencia Artificial</h5>
-              <span class="pill badge-soft">RA4 · CE1–CE3</span>
-            </div>
-            <p class="text-white-50 mb-3">Conceptos y áreas de aplicación principales.</p>
-
-            <div class="row g-3">
-              <!-- CE1 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE1 · Concepto de IA</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Definición propia (≤180 palabras) + 5 términos clave explicados en una línea cada uno.
-                  </div>
-                </div>
-              </div>
-              <!-- CE2 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE2 · Tipos de IA</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Mapa: simbólica, ML (sup./no sup./refuerzo), generativa; con 1 ejemplo por tipo.
-                  </div>
-                </div>
-              </div>
-              <!-- CE3 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE3 · Áreas de aplicación</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Cuadro de 6 áreas (visión, NLP, recomendación, mantenimiento predictivo, salud, educación) con caso.
+              <div class="accordion-item bg-transparent">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ut6ce">
+                    Criterios de evaluación (a–k)
+                  </button>
+                </h2>
+                <div id="ut6ce" class="accordion-collapse collapse" data-bs-parent="#accUT6">
+                  <div class="accordion-body">
+                    a) Objetivos estratégicos. · b) Alineación producción/negocio y comunicaciones. · c) Áreas digitalizables. ·
+                    d) Encaje entre áreas. · e) Necesidades presentes y futuras. · f) Áreas ↔ tecnologías. ·
+                    g) Brechas de seguridad. · h) Tratamiento y análisis de datos. ·
+                    i) Integración entre datos, apps y plataformas. · j) Documentación de cambios. · k) Idoneidad de RR. HH.
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        <!-- ========================== TEMA 8 ========================== -->
-        <section class="col-12 topic RA4">
-          <div class="p-4 rounded-4 topic-card">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 8</span> IA aplicada en la empresa</h5>
-              <span class="pill badge-soft">RA4 · CE4–CE7</span>
+            <div class="p-3 rounded-3 ce-card mt-2">
+              <h6 class="ce-title mb-1">Índice (libro)</h6>
+              <ul class="small text-white-50 mb-2">
+                <li>6.1 Plan de transformación digital · porqué y objetivos</li>
+                <li>6.2 Hoja de ruta: diagnóstico, objetivos estratégicos, planificación, implementación, gestión del cambio, evaluación/mejora</li>
+              </ul>
             </div>
-            <p class="text-white-50 mb-3">Datos masivos, sectores, lenguajes y caso propio.</p>
 
-            <div class="row g-3">
-              <!-- CE4 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE4 · Importancia de Big Data</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Mini-experimento: dataset pequeño → consulta/visualización simple → insight útil (capturas).
-                  </div>
-                </div>
-              </div>
-              <!-- CE5 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE5 · Sectores con IA</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Top-3 sectores con mayor adopción (con 2–3 referencias) y un caso español.
-                  </div>
-                </div>
-              </div>
-              <!-- CE6 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE6 · Lenguajes en IA</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> “Hello AI” en Python (scikit/transformers) o pseudocódigo comentado si no puedes ejecutar.
-                  </div>
-                </div>
-              </div>
-              <!-- CE7 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE7 · Influencia de la IA en el sector</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea (práctica estrella):</strong> Instala localmente <em>Llama</em> o <em>DeepSeek</em> y ejecuta 3 prompts con tiempos/uso observados. Conclusión para tu sector.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ========================== TEMA 9 ========================== -->
-        <section class="col-12 topic RA5">
-          <div class="p-4 rounded-4 topic-card">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 9</span> Economía del dato y ciclo de vida</h5>
-              <span class="pill badge-soft">RA5 · CE1–CE4</span>
-            </div>
-            <p class="text-white-50 mb-3">De dato a información, Big Data y sus características.</p>
-
-            <div class="row g-3">
-              <!-- CE1 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE1 · Dato vs Información</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> 6 ejemplos; clasifica qué es dato y qué es información, explicando la diferencia.
-                  </div>
-                </div>
-              </div>
-              <!-- CE2 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE2 · Ciclo de vida del dato</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Diagrama (captación→almacenamiento→procesado→análisis→archivado→borrado seguro) con herramientas.
-                  </div>
-                </div>
-              </div>
-              <!-- CE3 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE3 · Big Data, análisis, minería e IA</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Mapa conceptual conectando términos + ejemplo de pipeline sencillo.
-                  </div>
-                </div>
-              </div>
-              <!-- CE4 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE4 · Características de Big Data</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Explica las “V” (Volumen, Velocidad, Variedad, Veracidad, Valor) con 1 ejemplo cada una.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ========================== TEMA 10 ========================== -->
-        <section class="col-12 topic RA5">
-          <div class="p-4 rounded-4 topic-card">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 10</span> Datos en la nube y seguridad</h5>
-              <span class="pill badge-soft">RA5 · CE5–CE9</span>
-            </div>
-            <p class="text-white-50 mb-3">Ciencia de datos, almacenamiento cloud y protección.</p>
-
-            <div class="row g-3">
-              <!-- CE5 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE5 · Etapas de Data Science</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Notebook corto (o capturas) con limpieza→gráfico→conclusión usando un dataset abierto.
-                  </div>
-                </div>
-              </div>
-              <!-- CE6 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE6 · Almacenamiento en la nube</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Procedimiento ilustrado para crear un bucket/drive y subir/compartir de forma segura.
-                  </div>
-                </div>
-              </div>
-              <!-- CE7 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE7 · Importancia del cloud</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Ensayo de una página: beneficios y riesgos de usar cloud para datos críticos.
-                  </div>
-                </div>
-              </div>
-              <!-- CE8 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE8 · Enfoques de ciberseguridad</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Checklist aplicable (cifrado, copias, control de acceso, MFA, registro de auditoría) a 2 entornos.
-                  </div>
-                </div>
-              </div>
-              <!-- CE9 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE9 · Seguridad y regulación</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Resumen comparado RGPD/ENS (3 obligaciones + 3 medidas técnicas) con referencias.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ========================== TEMA 11 ========================== -->
-        <section class="col-12 topic RA6">
-          <div class="p-4 rounded-4 topic-card">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 11</span> Plan estratégico de transformación</h5>
-              <span class="pill badge-soft">RA6 · CE1–CE5</span>
-            </div>
-            <p class="text-white-50 mb-3">Objetivos, áreas y necesidades de la empresa.</p>
-
-            <div class="row g-3">
-              <!-- CE1 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE1 · Objetivos estratégicos</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Define 5 objetivos SMART y 5 KPIs para una empresa seleccionada.
-                  </div>
-                </div>
-              </div>
-              <!-- CE2 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE2 · Áreas de producción/negocio</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Organigrama funcional con descripción de 6 áreas clave y responsables.
-                  </div>
-                </div>
-              </div>
-              <!-- CE3 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE3 · Áreas digitalizables</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Radar de madurez digital por área (0–5) con justificación breve.
-                  </div>
-                </div>
-              </div>
-              <!-- CE4 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE4 · Encaje entre áreas</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Diagrama de dependencias entre áreas digitalizadas y no digitalizadas (BPMN/UML simple).
-                  </div>
-                </div>
-              </div>
-              <!-- CE5 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE5 · Necesidades presentes y futuras</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Lista priorizada de necesidades (1 año / 3 años) en forma de historias de usuario.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ========================== TEMA 12 ========================== -->
-        <section class="col-12 topic RA6">
-          <div class="p-4 rounded-4 topic-card">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0"><span class="badge badge-soft pill me-2">Tema 12</span> Proyecto final de digitalización</h5>
-              <span class="pill badge-soft">RA6 · CE6–CE11</span>
-            </div>
-            <p class="text-white-50 mb-3">Tecnologías, seguridad, datos, plataformas, documentación y RR. HH.</p>
-
-            <div class="row g-3">
-              <!-- CE6 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE6 · Áreas ↔ Tecnologías</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Matriz área–tecnología (ERP, CRM, CMS, IoT, BI, RPA, IA) con objetivo y coste estimado.
-                  </div>
-                </div>
-              </div>
-              <!-- CE7 -->
-              <div class="col-md-6">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE7 · Brechas de seguridad</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Análisis de riesgos por área (amenaza, probabilidad, impacto, control propuesto).
-                  </div>
-                </div>
-              </div>
-              <!-- CE8 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE8 · Tratamiento y análisis de datos</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Plan de datos: origen, calidad, almacenamiento, analítica y métricas clave (1 página).
-                  </div>
-                </div>
-              </div>
-              <!-- CE9 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE9 · Infraestructuras y plataformas</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Arquitectura objetivo (diagrama): red, cloud, apps y plataformas de soporte.
-                  </div>
-                </div>
-              </div>
-              <!-- CE10 -->
-              <div class="col-md-4">
-                <div class="p-3 rounded-3 ce-card h-100">
-                  <h6 class="ce-title">CE10 · Documentar los cambios</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Registro de cambios (changelog) vinculado a la estrategia, con fechas y responsables.
-                  </div>
-                </div>
-              </div>
-              <!-- CE11 -->
-              <div class="col-12">
-                <div class="p-3 rounded-3 ce-card">
-                  <h6 class="ce-title">CE11 · Recursos humanos adecuados</h6>
-                  <div class="task p-3 rounded-3 small">
-                    <strong>Tarea:</strong> Plan de RR. HH.: roles, competencias, plan de formación y cronograma de incorporación.
-                  </div>
-                </div>
-              </div>
+            <div class="p-3 rounded-3 ce-card mt-2 rubrica">
+              <h6 class="ce-title mb-1">Evidencia · Reto 6.1 “Plan de Transformación Digital”</h6>
+              <p class="small text-white-50 mb-2"><strong>RA6</strong> · CE a–k · portafolio 6–8 págs + anexos.</p>
+              <ul class="small text-white-50 mb-2">
+                <li><strong>Producto:</strong> visión y objetivos SMART + KPIs (a, e); organigrama, áreas y radar 0–5 + dependencias (b, c, d);
+                matriz área–tecnología (f); análisis de riesgos (g); plan de datos (h); arquitectura objetivo (i);
+                changelog (j) y plan de RR. HH. (k).</li>
+                <li><strong>Entregables:</strong> PDF/MD + diagramas · repo <code>ut6/</code> · defensa 3–5 min.</li>
+                <li><strong>Checklist CE:</strong> ✓a ✓b ✓c ✓d ✓e ✓f ✓g ✓h ✓i ✓j ✓k</li>
+              </ul>
+              <details class="small"><summary class="text-white-50">Rúbrica (resumen)</summary>
+                <p class="small text-white-50 mb-0">Exactitud 30% · Alineación CE 20% · Aplicación 20% · Documentación 20% · Reflexión 10%.</p>
+              </details>
             </div>
           </div>
         </section>
 
       </div>
-  <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.5)">
-  <iframe src="juegoVida.html" 
-          style="position:absolute; top:0; left:0; width:100%; height:100%; border:0; border-radius:16px;" 
-          loading="lazy"
-          allowfullscreen>
-  </iframe>
-</div>
-<p style="text-align:center; margin-top:.5rem;">
-  <a href="juegoVida.html" target="_blank" style="color:#38bdf8; font-weight:600;">Abrir en ventana completa</a>
-</p>
 
       <div class="mt-4 text-center">
-        <p class="footer-note small">Plantilla creada para FP DAW1 · Módulo Digitalización (Código 1665, 30h, 3 ECTS). Personaliza tareas y rúbricas según tu centro.</p>
+        <p class="footer-note small">
+          Página alineada con RA y CE oficiales. Unidades y epígrafes adaptados al índice del libro UT1–UT6.
+        </p>
       </div>
     </div>
   </main>
 
   <script>
-    // Filtro simple por RA (muestra/oculta secciones)
+    // Filtro por RA (mostrar/ocultar secciones)
     const select = document.getElementById('filterRA');
     const topics = document.querySelectorAll('#topics .topic');
     select.addEventListener('change', e=>{
