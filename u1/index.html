@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="es" data-bs-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <title>UD1 · El reto de la digitalización</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Accesibilidad y estilo */
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;padding:.5rem .75rem;background:#0d6efd;color:#fff;z-index:10000;border-radius:.5rem}
+    .key-term{font-weight:600}
+    .tag{font-size:.75rem}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .checklist li{margin-bottom:.35rem}
+    .toc-sticky{position:sticky;top:1rem}
+    .accordion-button:focus{box-shadow:0 0 0 .2rem rgba(13,110,253,.25)}
+    .kpi-sample{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:.95rem}
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}
+    }
+    @media print{
+      .no-print{display:none !important}
+      .accordion-button::after{display:none !important}
+      .accordion-collapse{display:block !important}
+      .accordion-button{pointer-events:none}
+      body{background:#fff}
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <a href="#contenido" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Cabecera -->
+  <header class="bg-dark text-white py-4" role="banner">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div>
+        <h1 class="h3 mb-1">UD1 · El reto de la digitalización</h1>
+        <p class="mb-0">Digitalización aplicada a los sectores productivos (GS) · RA1</p>
+      </div>
+      <button class="btn btn-outline-light no-print" data-bs-toggle="offcanvas" data-bs-target="#toc" aria-controls="toc" aria-label="Abrir tabla de contenidos">Índice</button>
+    </div>
+  </header>
+
+  <!-- Offcanvas TOC (móvil) -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="toc" aria-labelledby="tocLabel">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title h5" id="tocLabel">Tabla de contenidos</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body">
+      <nav aria-label="Tabla de contenidos">
+        <ol class="list-group list-group-numbered">
+          <li class="list-group-item"><a href="#objetivos" class="link-underline link-underline-opacity-0">Objetivos de la unidad</a></li>
+          <li class="list-group-item"><a href="#h-11" class="link-underline link-underline-opacity-0">1.1 ¿Qué es la digitalización?</a></li>
+          <li class="list-group-item"><a href="#h-12" class="link-underline link-underline-opacity-0">1.2 Empresa digital: cultura y estructura</a></li>
+          <li class="list-group-item"><a href="#h-13" class="link-underline link-underline-opacity-0">1.3 E2E · IT · OT · Convergencia</a></li>
+          <li class="list-group-item"><a href="#h-14" class="link-underline link-underline-opacity-0">1.4 Adaptación y competencias</a></li>
+          <li class="list-group-item"><a href="#check" class="link-underline link-underline-opacity-0">Comprobación rápida</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <main class="container my-4" id="contenido" role="main">
+    <nav class="mb-3" aria-label="miga de pan">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><span class="text-muted">Módulo</span></li>
+        <li class="breadcrumb-item active" aria-current="page">UD1 · Digitalización</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4">
+      <!-- Columna principal -->
+      <div class="col-lg-9">
+        <!-- Objetivos -->
+        <section class="mb-4" id="objetivos" aria-labelledby="titulo-objetivos">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h2 class="h5" id="titulo-objetivos">Objetivos de la unidad</h2>
+              <ul class="mb-0">
+                <li>Distinguir <span class="key-term">digitalización</span> y <span class="key-term">transformación digital</span> con ejemplos.</li>
+                <li>Reconocer la <span class="key-term">empresa digital</span> (cultura y estructura) frente a la tradicional.</li>
+                <li>Explicar <button class="btn btn-link p-0 align-baseline" data-bs-toggle="popover" data-bs-title="IT" data-bs-content="Information Technology: sistemas de negocio (ERP, CRM, BI), redes, cloud e identidades.">IT</button>, <button class="btn btn-link p-0 align-baseline" data-bs-toggle="popover" data-bs-title="OT" data-bs-content="Operational Technology: máquinas, PLC/SCADA, robots y sensores en planta.">OT</button> y su <span class="key-term">convergencia</span> con un mapa simple de procesos.</li>
+                <li>Valorar la <span class="key-term">adaptación</span> (actitud, formación continua y competencias digitales).</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Acordeón -->
+        <div class="accordion" id="ud1-accordion">
+          <!-- 1.1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="h-11">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c-11" aria-expanded="true" aria-controls="c-11">
+                1.1 ¿Qué es la digitalización?
+              </button>
+            </h2>
+            <div id="c-11" class="accordion-collapse collapse show" aria-labelledby="h-11" data-bs-parent="#ud1-accordion">
+              <div class="accordion-body">
+                <p><span class="key-term">Digitalización</span> significa usar <strong>tecnología y datos</strong> para <strong>mejorar</strong> cómo hacemos las cosas: automatizar tareas, conectar áreas y <em>decidir con pruebas</em> (no solo con intuición). Funciona cuando se combinan <strong>personas</strong> + <strong>procesos</strong> + <strong>tecnología</strong> + <strong>cultura</strong>.</p>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                      <div class="card-body">
+                        <h3 class="h6">1.1.1 Vida cotidiana</h3>
+                        <ul class="mb-3">
+                          <li><strong>Pagos sencillos:</strong> wallet/Bizum/QR → menos colas y errores.</li>
+                          <li><strong>Servicios bajo demanda:</strong> ver series, pedir transporte o comida con 2 toques.</li>
+                          <li><strong>Salud conectada:</strong> cita online, receta electrónica, pulseras que miden tu pulso.</li>
+                          <li><strong>Administración electrónica:</strong> trámites desde casa con firma digital.</li>
+                        </ul>
+                        <div class="alert alert-primary mb-0" role="note">
+                          <strong>Idea:</strong> donde hay <em>datos + conectividad</em>, hay mejora posible.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                      <div class="card-body">
+                        <h3 class="h6">1.1.2 Sectores productivos</h3>
+                        <ul class="mb-3">
+                          <li><strong>Industria:</strong> sensores (IoT), robots y <em>mantenimiento predictivo</em> para evitar paradas.</li>
+                          <li><strong>Comercio/retail:</strong> tienda online, CRM para conocer al cliente y stock en tiempo real.</li>
+                          <li><strong>Turismo:</strong> reservas en web, gestión de reseñas y previsión de demanda con IA.</li>
+                          <li><strong>Agro:</strong> riego inteligente y trazabilidad del producto del campo a la mesa.</li>
+                          <li><strong>Salud:</strong> historia clínica interoperable y telemedicina.</li>
+                        </ul>
+                        <p class="mb-0">
+                          <span class="badge text-bg-success tag">Más eficiencia</span>
+                          <span class="badge text-bg-info tag">Mejor calidad</span>
+                          <span class="badge text-bg-warning tag">Nuevos modelos de negocio</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bloque KPI -->
+                <div class="alert alert-info mt-3" role="note">
+                  <h4 class="h6 mb-2">¿Qué es un KPI?</h4>
+                  <p class="mb-2"><strong>KPI</strong> (<em>Indicador Clave de Desempeño</em>) = número que nos dice si vamos bien o mal respecto a un <strong>objetivo</strong>. Debe ser claro, medible y con fecha.</p>
+                  <ul class="mb-2">
+                    <li><strong>Vida cotidiana:</strong> “Tiempo medio para conseguir cita ≤ 48 h este mes”.</li>
+                    <li><strong>Retail (IT):</strong> “Tasa de conversión en la web ≥ 3% este trimestre”.</li>
+                    <li><strong>Industria (OT):</strong> “Paradas no planificadas ≤ 30 min/semana”.</li>
+                  </ul>
+                  <div class="d-flex align-items-center gap-2">
+                    <code id="kpiEjemplo" class="kpi-sample">KPI: % de citas gestionadas online ≥ 90% este trimestre</code>
+                    <button class="btn btn-sm btn-outline-primary no-print" id="btnCopiarKPI" aria-label="Copiar KPI de ejemplo">Copiar KPI</button>
+                  </div>
+                  <p class="mb-0 mt-2"><span class="badge text-bg-primary">Tip</span> KPI = <em>métrica</em> + <em>objetivo</em> + <em>periodo</em>.</p>
+                </div>
+
+                <hr>
+                <details>
+                  <summary class="fw-semibold">Mini-actividad (5’): de la fricción al dato</summary>
+                  <p class="mb-2">Elige un proceso cotidiano (ej.: pedir cita médica) y sigue 3 pasos:</p>
+                  <ol class="mb-2">
+                    <li><strong>Describe</strong> el proceso actual en 2 líneas.</li>
+                    <li><strong>Detecta 3 fricciones</strong> (tiempo de espera, errores, desplazamientos...).</li>
+                    <li><strong>Propón 1 mejora</strong> y un <abbr title="Indicador Clave de Desempeño">KPI</abbr> para medirla.</li>
+                  </ol>
+                  <div class="alert alert-light border">
+                    <strong>Ejemplo:</strong> Cita médica → fricción: llamadas saturadas. <br>
+                    <em>Mejora:</em> formulario web 24/7. <br>
+                    <em>KPI:</em> “% de citas gestionadas online ≥ 90% este trimestre”.
+                  </div>
+                  <ul class="checklist mb-0">
+                    <li><input type="checkbox" aria-label="He descrito el proceso actual"> Proceso actual descrito</li>
+                    <li><input type="checkbox" aria-label="He identificado datos disponibles"> Fricciones identificadas</li>
+                    <li><input type="checkbox" aria-label="He propuesto mejora y KPI"> Mejora y KPI definidos</li>
+                  </ul>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1.2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="h-12">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-12" aria-expanded="false" aria-controls="c-12">
+                1.2 Empresa digital · Cultura y estructura
+              </button>
+            </h2>
+            <div id="c-12" class="accordion-collapse collapse" aria-labelledby="h-12" data-bs-parent="#ud1-accordion">
+              <div class="accordion-body">
+                <p>La <strong>empresa digital</strong> no “informatiza trozos”; <em>rediseña</em> el modelo para crear valor (producto, experiencia y operaciones).</p>
+
+                <div class="row g-3">
+                  <div class="col-lg-6">
+                    <div class="card h-100 shadow-sm border-0">
+                      <div class="card-body">
+                        <h3 class="h6">Cultura</h3>
+                        <ul>
+                          <li><strong>Decidir con datos</strong> (KPI &gt; intuición).</li>
+                          <li><strong>Cliente en el centro</strong> (diseño pensado para personas).</li>
+                          <li><strong>Mejora continua</strong> (probar, aprender y ajustar).</li>
+                          <li><strong>Trabajo en equipo</strong> y responsabilidad compartida.</li>
+                          <li><strong>Ética y seguridad</strong> desde el inicio.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="card h-100 shadow-sm border-0">
+                      <div class="card-body">
+                        <h3 class="h6">Estructura</h3>
+                        <ul>
+                          <li><strong>Procesos conectados</strong> de punta a punta (ERP/CRM/BPM).</li>
+                          <li><strong>Equipos mixtos</strong> (Negocio · IT · Datos · Operaciones).</li>
+                          <li><strong>Plataforma</strong> (cloud, APIs, integración, ciberseguridad).</li>
+                          <li><strong>Gobernanza del dato</strong> (calidad, roles, cumplimiento).</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alert alert-warning mt-3" role="note">
+                  <strong>Distinción clave:</strong> “digitalizada” automatiza partes; “digital” replantea el modelo.
+                </div>
+
+                <details>
+                  <summary class="fw-semibold">Actividad (10’): Mini-Kanban</summary>
+                  <p>Crea un tablero Trello con columnas <strong>Pendiente · En curso · Hecho</strong> y 5 tarjetas de mejora digital del centro. Define <strong>1 KPI</strong> por tarjeta.</p>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1.3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="h-13">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-13" aria-expanded="false" aria-controls="c-13">
+                1.3 Digitalización de extremo a extremo · IT · OT · Convergencia
+              </button>
+            </h2>
+            <div id="c-13" class="accordion-collapse collapse" aria-labelledby="h-13" data-bs-parent="#ud1-accordion">
+              <div class="accordion-body">
+                <p><strong>Extremo a extremo (E2E)</strong> = enlazar <em>pedido → producción → envío → posventa</em> con datos útiles y decisiones en tiempo real.</p>
+
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                      <div class="card-body">
+                        <h3 class="h6">1.3.1 IT</h3>
+                        <ul>
+                          <li><strong>IT (Information Technology):</strong> sistemas de negocio (ERP, CRM, BI), redes, cloud e identidades.</li>
+                          <li>Se centra en <strong>información corporativa</strong> y aplicaciones.</li>
+                        </ul>
+                        <span class="badge text-bg-secondary tag">Back-office / Negocio</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                      <div class="card-body">
+                        <h3 class="h6">1.3.2 OT</h3>
+                        <ul>
+                          <li><strong>OT (Operational Technology):</strong> máquinas, PLC/SCADA, robots/cobots y sensores en planta.</li>
+                          <li>Se centra en <strong>procesos físicos</strong> y tiempo real.</li>
+                        </ul>
+                        <span class="badge text-bg-secondary tag">Operaciones / Planta</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                      <div class="card-body">
+                        <h3 class="h6">1.3.3 Convergencia IT/OT</h3>
+                        <ul>
+                          <li>Integración de datos y procesos (<strong>MES↔ERP</strong>, <strong>SCADA↔BI</strong>) para ver “todo” y decidir antes.</li>
+                          <li>Apoyos: <strong>Edge / Fog / Cloud</strong>, segmentación y seguridad integral.</li>
+                          <li>Roles mixtos (OT-Security, DataOps) y KPIs compartidos.</li>
+                        </ul>
+                        <div class="alert alert-success small mb-0"><strong>Beneficios:</strong> menos paradas, calidad estable, entrega más rápida, decisiones informadas.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+                <details>
+                  <summary class="fw-semibold">Ejercicio (10–12’): Mapa E2E con datos</summary>
+                  <ol class="mb-2">
+                    <li>Dibuja <strong>pedido → producción → envío → posventa</strong>.</li>
+                    <li>Marca qué tramo es <strong>IT</strong> y cuál es <strong>OT</strong>.</li>
+                    <li>Elige 2 puntos de integración y define <strong>1 KPI</strong> por punto (ej.: “% órdenes de planta en ERP &lt; 15 min”).</li>
+                  </ol>
+                  <p class="small text-muted mb-0">Extra: anota 1 riesgo y 1 control de ciberseguridad por tramo.</p>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1.4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="h-14">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c-14" aria-expanded="false" aria-controls="c-14">
+                1.4 Adaptación: actitud, formación a lo largo de la vida y competencias digitales
+              </button>
+            </h2>
+            <div id="c-14" class="accordion-collapse collapse" aria-labelledby="h-14" data-bs-parent="#ud1-accordion">
+              <div class="accordion-body">
+                <div class="row g-3">
+                  <div class="col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                      <div class="card-body">
+                        <h3 class="h6">Actitud</h3>
+                        <ul>
+                          <li><strong>Mentalidad de crecimiento</strong>: aprender-desaprender.</li>
+                          <li><strong>Curiosidad</strong> + pensamiento crítico.</li>
+                          <li><strong>Ética digital</strong> (sesgos, deepfakes, IA responsable).</li>
+                          <li><strong>Trabajo en equipo</strong> y comunicación.</li>
+                        </ul>
+                        <div class="alert alert-secondary small mb-0">Debate (7’): ¿Qué sesgos detectas en imágenes de IA sobre profesiones?</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                      <div class="card-body">
+                        <h3 class="h6">Formación continua</h3>
+                        <ul>
+                          <li>Micro-credenciales y rutas modulares.</li>
+                          <li>Labs y retos aplicados (mini-proyectos).</li>
+                          <li>Actualización prioritaria en <strong>datos</strong> y <strong>ciberseguridad</strong>.</li>
+                          <li>Comunidades y aprendizaje entre pares.</li>
+                        </ul>
+                        <p class="small text-muted mb-0">Plan express: objetivo, recurso y evidencia (badge/demo).</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                      <div class="card-body">
+                        <h3 class="h6">Competencias (DigComp)</h3>
+                        <ul>
+                          <li><strong>Información y datos</strong>: buscar, evaluar, gestionar.</li>
+                          <li><strong>Comunicación</strong> y colaboración.</li>
+                          <li><strong>Creación</strong> (incl. IA responsable).</li>
+                          <li><strong>Seguridad</strong>: dispositivos, identidad, datos.</li>
+                          <li><strong>Resolución de problemas</strong>: automatización básica.</li>
+                        </ul>
+                        <p class="mb-0"><span class="badge text-bg-primary tag">AI-proofed skills</span> presentación, negociación, empatía, creatividad.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+                <details>
+                  <summary class="fw-semibold">Plan personal (5’): Siguiente paso</summary>
+                  <ol class="mb-2">
+                    <li>Objetivo: p. ej., “visualización de datos”.</li>
+                    <li>Recurso: curso/lab específico.</li>
+                    <li>Evidencia: mini-proyecto o badge con fecha.</li>
+                  </ol>
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cierre -->
+        <section class="mt-4" id="check" aria-labelledby="titulo-check">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <h2 class="h5" id="titulo-check">Comprobación rápida</h2>
+              <ul class="checklist">
+                <li><input type="checkbox" aria-label="Diferenciar digitalización y transformación"> Sé explicar con ejemplos la diferencia entre <strong>digitalización</strong> y <strong>transformación</strong>.</li>
+                <li><input type="checkbox" aria-label="Identificar IT y OT"> Sé ubicar <strong>IT</strong> y <strong>OT</strong> en un proceso y 2 puntos de convergencia.</li>
+                <li><input type="checkbox" aria-label="Proponer mejora con datos"> Propongo 1 mejora con <strong>dato + KPI + periodo</strong>.</li>
+                <li><input type="checkbox" aria-label="Definir plan personal"> Tengo un mini-plan de aprendizaje (objetivo, recurso y evidencia).</li>
+              </ul>
+              <p class="text-muted small mb-0">Exporta a PDF: <span class="kbd">Ctrl/Cmd</span>+<span class="kbd">P</span> → “Guardar como PDF”.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TOC lateral (escritorio) -->
+      <aside class="col-lg-3 d-none d-lg-block no-print" aria-label="Tabla de contenidos">
+        <div class="card shadow-sm toc-sticky">
+          <div class="card-body">
+            <h2 class="h6">Tabla de contenidos</h2>
+            <nav>
+              <ol class="list-unstyled">
+                <li><a href="#objetivos" class="link-dark link-opacity-75-hover">Objetivos de la unidad</a></li>
+                <li><a href="#h-11" class="link-dark link-opacity-75-hover">1.1 Digitalización</a></li>
+                <li><a href="#h-12" class="link-dark link-opacity-75-hover">1.2 Empresa digital</a></li>
+                <li><a href="#h-13" class="link-dark link-opacity-75-hover">1.3 IT · OT · Convergencia</a></li>
+                <li><a href="#h-14" class="link-dark link-opacity-75-hover">1.4 Adaptación</a></li>
+                <li><a href="#check" class="link-dark link-opacity-75-hover">Comprobación</a></li>
+              </ol>
+            </nav>
+            <hr>
+            <button class="btn btn-sm btn-outline-primary" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑ Arriba</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="py-4 text-center text-muted" role="contentinfo">
+    <small>© 2025 · UD1 Digitalización · Material docente</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Tema automático según el sistema (opcional)
+    (() => {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-bs-theme', prefersDark ? 'dark' : 'light');
+    })();
+
+    // Popovers del glosario
+    document.addEventListener('DOMContentLoaded', () => {
+      const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+      popoverTriggerList.map(el => new bootstrap.Popover(el, {trigger:'focus', container:'body'}));
+    });
+
+    // Copiar KPI de ejemplo
+    const btn = document.getElementById('btnCopiarKPI');
+    const code = document.getElementById('kpiEjemplo');
+    if(btn && code){
+      btn.addEventListener('click', async () => {
+        try{
+          await navigator.clipboard.writeText(code.textContent);
+          btn.textContent = '¡Copiado!';
+          setTimeout(()=> btn.textContent = 'Copiar KPI', 1200);
+        }catch(e){
+          alert('No se pudo copiar. Selecciona y usa Ctrl/Cmd+C.');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
