@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rúbrica Exposición – RA1 Digitalización (Desarrollo de Aplicaciones Web)</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#0d6efd;
+    }
+    .rubric th, .rubric td{vertical-align: top;}
+    .sticky-actions{position: sticky; bottom: 0; background: #fff; border-top: 1px solid #e9ecef;}
+    .cell-note{font-size:.9rem;color:#6c757d}
+    @media print{
+      .no-print{display:none !important;}
+      .card{box-shadow:none;border:1px solid #dee2e6}
+      .container{max-width:100%}
+      .form-select, .form-control{border:none}
+      .sticky-actions{position: static; border:0}
+      a[href]:after{content:""}
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <header class="mb-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-md">
+          <h1 class="h4 mb-1">Rúbrica de Exposición – RA1: Digitalización aplicada a los sectores productivos</h1>
+          <p class="mb-0 text-muted">Módulo: <strong>Desarrollo de Aplicaciones Web</strong> · UD: “Mapa digital de una empresa web” · Duración de la exposición: 2–3 min por grupo</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <button class="btn btn-outline-secondary no-print" onclick="window.print()">Imprimir / PDF</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Datos cabecera -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <label class="form-label">Centro</label>
+            <input class="form-control" value="IES CAMAS" />
+          </div>
+          <div class="col-6 col-md-3">
+            <label class="form-label">Curso</label>
+            <input class="form-control" placeholder="2025/2026">
+          </div>
+          <div class="col-6 col-md-3">
+            <label class="form-label">Fecha</label>
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-6 col-md-3">
+            <label class="form-label">Grupo / Módulo</label>
+            <input class="form-control" value="DAW · Des. de Aplicaciones Web">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Integrantes del grupo</label>
+            <input class="form-control" placeholder="Nombre y apellidos (3) – Separados por comas">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Descripción actividad -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="h5">Actividad evaluada</h2>
+        <p class="mb-2">
+          <strong>“Mapa digital de una empresa web”</strong>: esquema en <em>Slides/Drawings/diagrams.net</em> que represente
+          <strong>IT</strong> (negocio), <strong>OT</strong> (infraestructura operativa web), su <strong>convergencia</strong>, tecnologías clave y
+          <strong>ventajas</strong> de la digitalización de extremo a extremo.
+        </p>
+        <ul class="mb-0">
+          <li>Formato de entrega: 1 diapositiva/mapa + exposición oral 2–3 min.</li>
+          <li>Herramienta sencilla recomendada: <em>Google Slides</em> (alternativas: Drawings o diagrams.net integrado en Drive).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Rúbrica -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="h5 mb-3">Rúbrica (máx. 10 puntos)</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle rubric">
+            <thead class="table-light">
+              <tr>
+                <th style="min-width:280px">Aspecto</th>
+                <th class="text-center">Excelente</th>
+                <th class="text-center">Bien</th>
+                <th class="text-center">Aceptable</th>
+                <th class="text-center">Mejorable</th>
+                <th class="text-center" style="min-width:120px">Puntuación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Contenido -->
+              <tr>
+                <th>
+                  Contenido de la exposición<br>
+                  <span class="cell-note">Claridad, organización y precisión técnica</span>
+                  <div class="cell-note mt-2">Criterios RA1: a, b, c, g</div>
+                </th>
+                <td>
+                  Explican con rigor el <strong>concepto de digitalización</strong> aplicado al caso; relacionan su impacto en la <strong>organización</strong>;
+                  comparan <strong>IT/OT</strong> con ejemplos claros; destacan <strong>ventajas de extremo a extremo</strong>.
+                  <div class="mt-2 badge text-bg-success">3 pts</div>
+                </td>
+                <td>
+                  Concepto correcto y relación con la organización suficiente; diferencias IT/OT presentes, alguna imprecisión; ventajas razonadas.
+                  <div class="mt-2 badge text-bg-primary">2 pts</div>
+                </td>
+                <td>
+                  Definición parcial; relación con la organización superficial; IT/OT listados sin ejemplos; ventajas genéricas.
+                  <div class="mt-2 badge text-bg-secondary">1.5 pts</div>
+                </td>
+                <td>
+                  Concepto confuso; sin relación organizativa; no distinguen IT/OT; no argumentan ventajas.
+                  <div class="mt-2 badge text-bg-light border">1 pt</div>
+                </td>
+                <td class="text-center">
+                  <select class="form-select score" data-max="3">
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1.5">1.5</option>
+                    <option value="1">1</option>
+                    <option value="0">0</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- Presentación digital -->
+              <tr>
+                <th>
+                  Presentación digital (mapa)<br>
+                  <span class="cell-note">Fidelidad al contenido, orden visual y uso de iconos/flechas</span>
+                  <div class="cell-note mt-2">Criterios RA1: d, e, f</div>
+                </th>
+                <td>
+                  Mapa claro y atractivo; se distinguen <strong>IT</strong> (departamentos y herramientas) y <strong>OT</strong> (infraestructura web)
+                  con <strong>conexiones</strong> bien señalizadas; tipografías y proporciones correctas.
+                  <div class="mt-2 badge text-bg-success">2.25 pts</div>
+                </td>
+                <td>
+                  Mapa ordenado; IT/OT identificados con alguna conexión; leves problemas de jerarquía visual.
+                  <div class="mt-2 badge text-bg-primary">1.5 pts</div>
+                </td>
+                <td>
+                  Mapa con sobrecarga o vacíos; IT/OT aparecen pero sin conexiones claras.
+                  <div class="mt-2 badge text-bg-secondary">1.25 pts</div>
+                </td>
+                <td>
+                  Mapa confuso; no diferencia IT/OT ni sus conexiones.
+                  <div class="mt-2 badge text-bg-light border">0.5 pts</div>
+                </td>
+                <td class="text-center">
+                  <select class="form-select score" data-max="2.25">
+                    <option value="2.25">2.25</option>
+                    <option value="1.5">1.5</option>
+                    <option value="1.25">1.25</option>
+                    <option value="0.5">0.5</option>
+                    <option value="0">0</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- Elementos paralingüísticos -->
+              <tr>
+                <th>
+                  Elementos paralingüísticos<br>
+                  <span class="cell-note">Voz, ritmo, postura, contacto visual, interacción</span>
+                </th>
+                <td>
+                  Voz y ritmo adecuados; postura segura; contacto visual; gestiona el tiempo e interactúa con el público.
+                  <div class="mt-2 badge text-bg-success">2 pts</div>
+                </td>
+                <td>
+                  Algún aspecto mejorable (p. ej., ritmo o volumen) pero la exposición es clara y comprensible.
+                  <div class="mt-2 badge text-bg-primary">1.5 pts</div>
+                </td>
+                <td>
+                  Varios aspectos deficientes; comprensión irregular; dependencia excesiva de la diapositiva.
+                  <div class="mt-2 badge text-bg-secondary">0.75 pts</div>
+                </td>
+                <td>
+                  Difícil de seguir por voz/ritmo; lectura completa; sin interacción.
+                  <div class="mt-2 badge text-bg-light border">0.25 pts</div>
+                </td>
+                <td class="text-center">
+                  <select class="form-select score" data-max="2">
+                    <option value="2">2</option>
+                    <option value="1.5">1.5</option>
+                    <option value="0.75">0.75</option>
+                    <option value="0.25">0.25</option>
+                    <option value="0">0</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- Corrección lingüística -->
+              <tr>
+                <th>
+                  Corrección lingüística<br>
+                  <span class="cell-note">Gramática, léxico técnico y terminología (IT, OT, ERP, CI/CD, etc.)</span>
+                </th>
+                <td>
+                  Léxico técnico adecuado y preciso; oraciones claras; sin errores ortográficos.
+                  <div class="mt-2 badge text-bg-success">2 pts</div>
+                </td>
+                <td>
+                  Léxico correcto con alguna imprecisión; pocos errores menores.
+                  <div class="mt-2 badge text-bg-primary">1.5 pts</div>
+                </td>
+                <td>
+                  Vocabulario limitado; errores que no impiden entender.
+                  <div class="mt-2 badge text-bg-secondary">0.75 pts</div>
+                </td>
+                <td>
+                  Muchos errores; terminología incorrecta.
+                  <div class="mt-2 badge text-bg-light border">0.25 pts</div>
+                </td>
+                <td class="text-center">
+                  <select class="form-select score" data-max="2">
+                    <option value="2">2</option>
+                    <option value="1.5">1.5</option>
+                    <option value="0.75">0.75</option>
+                    <option value="0.25">0.25</option>
+                    <option value="0">0</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot class="table-light">
+              <tr>
+                <th colspan="5" class="text-end">Subtotal rúbrica</th>
+                <th class="text-center"><span id="subtotal">0</span> / 9.25</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <!-- Checklist RA1 -->
+        <div class="mt-4">
+          <h3 class="h6 mb-2">Checklist de evidencias RA1 (marcar cumplidas)</h3>
+          <div class="row g-2">
+            <div class="col-md-6">
+              <div class="form-check">
+                <input class="form-check-input evidence" type="checkbox" id="ra1a">
+                <label class="form-check-label" for="ra1a">a) Describe con claridad en qué consiste la digitalización.</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input evidence" type="checkbox" id="ra1b">
+                <label class="form-check-label" for="ra1b">b) Relaciona la implantación digital con la organización de la empresa.</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input evidence" type="checkbox" id="ra1c">
+                <label class="form-check-label" for="ra1c">c) Establece diferencias y similitudes entre IT y OT.</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input evidence" type="checkbox" id="ra1d">
+                <label class="form-check-label" for="ra1d">d) Identifica departamentos típicos que constituyen entornos IT.</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-check">
+                <input class="form-check-input evidence" type="checkbox" id="ra1e">
+                <label class="form-check-label" for="ra1e">e) Selecciona tecnologías típicas en planta (OT) y negocio (IT).</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input evidence" type="checkbox" id="ra1f">
+                <label class="form-check-label" for="ra1f">f) Analiza la importancia de la conexión IT–OT (convergencia).</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input evidence" type="checkbox" id="ra1g">
+                <label class="form-check-label" for="ra1g">g) Expone ventajas de digitalizar una empresa industrial end-to-end.</label>
+              </div>
+            </div>
+          </div>
+          <p class="small text-muted mt-2">Nota: el checklist no suma puntos por sí mismo; sirve como trazabilidad de evidencias RA1.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Observaciones y calificación final -->
+    <div class="card mb-5">
+      <div class="card-body">
+        <div class="row g-3 align-items-end">
+          <div class="col-md-9">
+            <label class="form-label">Observaciones del profesor</label>
+            <textarea class="form-control" rows="4" placeholder="Fortalezas, mejoras, referencias a RA1 a–g..."></textarea>
+          </div>
+          <div class="col-md-3">
+            <div class="border rounded p-3 h-100">
+              <div class="d-flex justify-content-between">
+                <span class="fw-semibold">Subtotal rúbrica</span>
+                <span id="subtotal2">0</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="fw-semibold">+ Bonus claridad (hasta 0.75)</span>
+                <select class="form-select form-select-sm mt-1" id="bonus">
+                  <option value="0">0.00</option>
+                  <option value="0.25">0.25</option>
+                  <option value="0.5">0.50</option>
+                  <option value="0.75">0.75</option>
+                </select>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between fs-5">
+                <span class="fw-bold">Nota final</span>
+                <span class="fw-bold" id="final">0 / 10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sticky-actions p-3 d-flex gap-2 justify-content-end">
+        <button class="btn btn-outline-secondary no-print" onclick="resetRubric()">Reiniciar</button>
+        <button class="btn btn-primary no-print" onclick="calc()">Calcular nota</button>
+      </div>
+    </div>
+
+    <footer class="text-center text-muted small pb-4">
+      © Departamento de Informática – Desarrollo de Aplicaciones Web · Rúbrica RA1 Digitalización
+    </footer>
+  </div>
+
+  <script>
+    function toNumber(v){ return Number.parseFloat(v)||0; }
+
+    function calc(){
+      const selects = document.querySelectorAll('.score');
+      let sum = 0;
+      selects.forEach(s => sum += toNumber(s.value));
+      document.getElementById('subtotal').textContent = sum.toFixed(2);
+      document.getElementById('subtotal2').textContent = sum.toFixed(2);
+      const bonus = toNumber(document.getElementById('bonus').value);
+      const final = Math.min(10, sum + bonus); // tope 10
+      document.getElementById('final').textContent = final.toFixed(2) + ' / 10';
+    }
+
+    function resetRubric(){
+      document.querySelectorAll('.score').forEach(s => s.selectedIndex = 0);
+      document.querySelectorAll('.evidence').forEach(c => c.checked = false);
+      document.getElementById('bonus').value = "0";
+      document.getElementById('subtotal').textContent = '0';
+      document.getElementById('subtotal2').textContent = '0';
+      document.getElementById('final').textContent = '0 / 10';
+    }
+
+    // cálculo inicial
+    calc();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
