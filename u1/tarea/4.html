@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Práctica 4 · Lectura guiada y cuestionario (IT/OT)</title>
+  <meta name="description" content="Práctica 4: lectura del PDF y respuestas para evaluar ventajas de la digitalización integral e integración IT/OT." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root{
+      --it:#0d6efd; --ot:#198754; --shadow:0 .5rem 1rem rgba(0,0,0,.06); --r:1rem;
+    }
+    .hero{
+      background:
+        radial-gradient(1200px 400px at 25% -5%, rgba(13,110,253,.10), transparent),
+        radial-gradient(1200px 400px at 75% -10%, rgba(25,135,84,.08), transparent);
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .card-elev{ border:1px solid rgba(0,0,0,.06); border-radius:var(--r); box-shadow:var(--shadow); background:#fff; }
+    .badge-it{ background:var(--it); } .badge-ot{ background:var(--ot); }
+    .conn{ height:4px; background:linear-gradient(90deg,var(--it),var(--ot)); opacity:.7; border-radius:999px; }
+    .q-list li{ margin-bottom:.6rem; }
+    @media print{
+      .no-print{ display:none !important; }
+      .card-elev{ box-shadow:none; border-color:#ddd; }
+      .hero{ background:none; }
+      a[href]:after{ content:""; } /* Oculta URLs impresas */
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <!-- Encabezado -->
+  <header class="hero py-5">
+    <div class="container d-flex flex-column gap-3">
+      <div>
+        <span class="badge text-bg-light border">Módulo 1665 · GS · 30 h · ECTS 3</span>
+        <h1 class="display-6 fw-bold mt-2 mb-1">Práctica 4 · Lectura guiada y cuestionario (IT/OT)</h1>
+        <p class="mb-0 text-secondary">Objetivo: Evaluar el criterio <strong>RA1-g</strong> analizando las <em>ventajas de digitalizar una empresa de extremo a extremo</em> e integrar <span class="badge badge-it">IT</span> y <span class="badge badge-ot">OT</span>.</p>
+      </div>
+
+      <!-- Enlace al PDF -->
+      <div class="card-elev p-3">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-filetype-pdf fs-3 text-danger"></i>
+            <div>
+              <div class="fw-semibold">Documento de lectura (10–15 min)</div>
+              <small class="text-secondary">Capgemini (2024) · Convergencia IT/OT – IIoT en la Intelligent Industry</small>
+            </div>
+          </div>
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-primary" target="_blank" rel="noopener"
+               href="https://www.capgemini.com/es-es/wp-content/uploads/sites/16/2024/05/pov_intelligentindustry_vertical_vfinal.pdf">
+              <i class="bi bi-box-arrow-up-right"></i> Abrir PDF (Capgemini 2024)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-5">
+
+    <!-- Instrucciones -->
+    <section class="mb-4">
+      <div class="card-elev p-4">
+        <div class="d-flex align-items-start gap-3">
+          <i class="bi bi-info-circle text-primary fs-3"></i>
+          <div>
+            <h2 class="h4 mb-1">Instrucciones</h2>
+            <ul class="mb-0">
+              <li>Lee el PDF (definición de <em>Intelligent Industry</em>, convergencia IT/OT y bloque de beneficios).</li>
+              <li>Responde con <strong>contenido del texto</strong> (citas breves o paráfrasis fiel) en un <strong>documento aparte</strong>.</li>
+              <li><strong>Entrega:</strong> un <u>PDF</u> con tus respuestas. Nombre de archivo: <code>P4_RA1g_ApellidosNombre.pdf</code></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preguntas (alineadas con RA1 a→g) -->
+    <section class="mb-4">
+      <div class="card-elev p-4">
+        <h3 class="h5 mb-3"><span class="badge text-bg-light border me-2">a</span> Concepto de digitalización</h3>
+        <ol class="q-list">
+          <li>¿Cómo define el documento la <em>digitalización</em> en la industria inteligente?</li>
+          <li>Copia una frase breve del PDF que vincule digitalización con <strong>mejora de procesos/eficiencia</strong>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="conn my-4" aria-hidden="true"></div>
+
+    <section class="mb-4">
+      <div class="card-elev p-4">
+        <h3 class="h5 mb-3"><span class="badge text-bg-light border me-2">b</span> Organización y cambio empresarial</h3>
+        <ol class="q-list" start="3">
+          <li>¿Qué cambio organizativo clave destaca el documento para aprovechar la digitalización?</li>
+          <li>Menciona un <strong>beneficio organizativo</strong> citado (colaboración, decisiones, cliente, etc.).</li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="conn my-4" aria-hidden="true"></div>
+
+    <section class="mb-4">
+      <div class="card-elev p-4">
+        <h3 class="h5 mb-3">
+          <span class="badge text-bg-light border me-2">c–d</span> Entornos IT y OT · Departamentos/tecnologías
+        </h3>
+        <ol class="q-list" start="5">
+          <li>Resume la <strong>diferencia funcional</strong> entre IT y OT (según el documento).</li>
+          <li>Cita un <strong>departamento IT</strong> y una <strong>tecnología OT</strong> mencionados.</li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="conn my-4" aria-hidden="true"></div>
+
+    <section class="mb-4">
+      <div class="card-elev p-4">
+        <h3 class="h5 mb-3"><span class="badge text-bg-light border me-2">e–f</span> Tecnologías y conexión IT–OT</h3>
+        <ol class="q-list" start="7">
+          <li>Indica <strong>dos tecnologías o protocolos</strong> que faciliten la integración IT–OT (según el PDF).</li>
+          <li>Enumera <strong>2–3 beneficios</strong> que el documento atribuye a integrar IT–OT.</li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="conn my-4" aria-hidden="true"></div>
+
+    <section class="mb-4">
+      <div class="card-elev p-4">
+        <h3 class="h5 mb-3"><span class="badge text-bg-light border me-2">g</span> Ventajas de la digitalización integral</h3>
+        <ol class="q-list" start="9">
+          <li>Escribe <strong>tres ventajas concretas</strong> del PDF (p. ej., productividad, trazabilidad, sostenibilidad).</li>
+          <li>¿Qué impacto señala el documento sobre <strong>sostenibilidad/eficiencia energética</strong>?</li>
+          <li><strong>Conclusión personal</strong> (máx. 60 palabras): ¿Por qué es ya un requisito de competitividad?</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Rúbrica breve -->
+<!-- 🧮 Rúbrica (estilo Tarea 3 con colores) -->
+<section class="mb-5">
+  <div class="card-elev p-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-2">
+      <h3 class="h6 text-uppercase text-secondary mb-0">Rúbrica · RA1 (a→g)</h3>
+      <div class="d-flex align-items-center gap-2 small">
+        <span class="badge bg-danger-subtle text-danger border">Básico</span>
+        <span class="badge bg-warning-subtle text-warning-emphasis border">Adecuado</span>
+        <span class="badge bg-info-subtle text-info-emphasis border">Avanzado</span>
+        <span class="badge bg-success-subtle text-success border">Excelente</span>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle text-center mb-0" aria-label="Rúbrica de evaluación RA1 con colores por nivel">
+        <thead class="table-secondary">
+          <tr>
+            <th style="width:28%">Indicador</th>
+            <th style="width:18%">Básico</th>
+            <th style="width:18%">Adecuado</th>
+            <th style="width:18%">Avanzado</th>
+            <th style="width:18%">Excelente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-start"><strong>a–b</strong> Conceptos / Organización</td>
+            <td class="table-danger">Ideas genéricas; definiciones vagas.</td>
+            <td class="table-warning">Citas correctas y relación básica con la organización.</td>
+            <td class="table-info">Síntesis clara; ejemplos coherentes del texto.</td>
+            <td class="table-success">Análisis contextualizado y comparado; conclusiones propias sólidas.</td>
+          </tr>
+          <tr>
+            <td class="text-start"><strong>c–f</strong> IT/OT e integración</td>
+            <td class="table-danger">Diferencias sueltas, sin conexión.</td>
+            <td class="table-warning">Ejemplos del PDF; conexión descrita de forma simple.</td>
+            <td class="table-info">Beneficios y tecnologías bien articulados (IT↔OT).</td>
+            <td class="table-success">Integra seguridad, datos en tiempo real y flujo extremo a extremo.</td>
+          </tr>
+          <tr>
+            <td class="text-start"><strong>g</strong> Ventajas end-to-end</td>
+            <td class="table-danger">Lista de ventajas sin justificar.</td>
+            <td class="table-warning">Ventajas justificadas con el texto.</td>
+            <td class="table-info">Impacto en productividad/energía/calidad explicado.</td>
+            <td class="table-success">Ventajas cuantificadas o trazadas a KPIs (OEE, MTTR, etc.).</td>
+          </tr>
+        </tbody>
+        <tfoot class="table-light">
+          <tr>
+            <td class="text-start"><small class="text-secondary">Ponderación sugerida</small></td>
+            <td colspan="4" class="text-start">
+              <span class="badge bg-secondary-subtle text-secondary border me-1">a–b: 30%</span>
+              <span class="badge bg-secondary-subtle text-secondary border me-1">c–f: 40%</span>
+              <span class="badge bg-secondary-subtle text-secondary border">g: 30%</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-end gap-2 no-print mt-3">
+      <button type="button" class="btn btn-outline-secondary" onclick="window.print()">
+        <i class="bi bi-printer"></i> Imprimir
+      </button>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="py-4 border-top bg-white">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+      <small class="text-secondary">Módulo 1665 · Digitalización aplicada a los sectores productivos</small>
+      <a class="btn btn-outline-secondary btn-sm no-print" href="#top"><i class="bi bi-arrow-up"></i> Arriba</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
