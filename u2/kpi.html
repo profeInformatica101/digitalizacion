@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RA2 · THD — Carousel + Tareas</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#0d6efd;           /* azul Bootstrap */
+      --bg-soft:#0e1622;         /* fondo tarjetas */
+      --text-muted:#b8c4d6;
+      --ok:#1fbf89;
+      --warn:#ffb454;
+      --radius:16px;
+      --shadow:0 12px 28px rgba(0,0,0,.28);
+      --maxw:1100px;
+    }
+
+    body{ background:#0b121b; color:#e9eef6; font-feature-settings:"liga" 1; }
+    .container-lesson{ max-width: var(--maxw); }
+    .lead-soft{ color: var(--text-muted); }
+
+    /* TARJETAS / TAREAS */
+    .card-soft{
+      background: var(--bg-soft);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .task-title{ margin:0; font-size:1.05rem }
+    .task-kicker{ font-weight:600; color:#cfe2ff }
+    .task-meta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.4rem; }
+    .chip{
+      font-size:.8rem; padding:.25rem .55rem; border-radius:999px;
+      background:rgba(255,255,255,.06); border:1px dashed rgba(255,255,255,.18);
+      color:#cdd7e3;
+    }
+    pre{ background:#0a111b; color:#e9eef6; border:1px solid rgba(255,255,255,.1); border-radius:12px; }
+    .kpi{ color:#8bd5ff }
+    .ok{ color: var(--ok) }
+    .muted{ color:var(--text-muted) }
+    .btn-ghost{ border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.04); }
+    .btn-ghost:hover{ background:rgba(255,255,255,.08); }
+
+    /* foco visible */
+    :focus-visible{ outline:2px solid #ffd166; outline-offset:3px }
+  </style>
+</head>
+<body>
+
+<header class="container container-lesson py-4">
+  <h1 class="h3 mb-1">Unidad 2 · Tecnologías Habilitadoras Digitales (THD)</h1>
+  <p class="lead-soft mb-0">
+    RA2. Caracteriza las tecnologías habilitadoras digitales necesarias para la adecuación/transformación de las empresas a entornos digitales describiendo sus características y aplicaciones.
+  </p>
+</header>
+
+<main class="container container-lesson pb-5">
+
+  <!-- 1) CRITERIOS DE EVALUACIÓN · RA2 (texto literal) -->
+  <section class="card-soft p-4 mt-4" aria-labelledby="ra2-criterios-title">
+    <h2 id="ra2-criterios-title" class="h5 mb-2">Criterios de evaluación</h2>
+    <p class="lead-soft mb-3">
+      <strong>2. Caracteriza las tecnologías habilitadoras digitales</strong> necesarias para la adecuación/transformación de las empresas a entornos digitales describiendo sus características y aplicaciones.
+    </p>
+    <ol type="a" aria-label="Criterios de evaluación del RA2 (literal)">
+      <li>Se han identificado las principales <mark>tecnologías habilitadoras digitales</mark>.</li>
+      <li>Se han relacionado las <mark>THD</mark> con el desarrollo de productos y servicios.</li>
+      <li>Se ha relacionado la importancia de las <mark>THD</mark> con la economía sostenible y eficiente.</li>
+      <li>Se han identificado nuevos mercados generados por las <mark>THD</mark>.</li>
+      <li>Se ha analizado la implicación de <mark>THD</mark> tanto en la parte de negocio como en la parte de planta.</li>
+      <li>Se han identificado las mejoras producidas debido a la implantación de las <mark>tecnologías habilitadoras</mark> en relación con los entornos IT y OT.</li>
+      <li>Se ha elaborado un <b style="background-color: aqua;">informe</b> que relacione las tecnologías con sus características y áreas de aplicación.</li>
+    </ol>
+
+
+  </section>
+
+  <!-- ====== TAREAS RELACIONADAS (explicación desarrollada) ====== -->
+  <section class="row g-4 mt-1">
+    <div class="col-lg-7">
+      <div class="card-soft p-4 h-100">
+        <h3 class="h5 mb-3">Tareas relacionadas</h3>
+        <div class="d-flex flex-column gap-3">
+
+          <!-- 1 -->
+          <article>
+            <p class="task-title">
+              <span class="task-kicker">1. Inventario de THD (a)</span> — qué es y cómo hacerlo
+            </p>
+            <p class="muted mb-1">
+              Elabora una lista de <strong>10–12 THD</strong>. Para cada una incluye: <em>definición ≤30 palabras</em>, 3 características y 1 ejemplo real del sector. Cita 1 fuente reciente.
+            </p>
+            <div class="task-meta">
+              <span class="chip">Evidencia: tabla en index.html</span>
+              <span class="chip">Commit: <code>feat: inventario THD</code></span>
+            </div>
+          </article>
+
+          <!-- 2 -->
+          <article>
+            <p class="task-title">
+              <span class="task-kicker">2. Casos de uso (b)</span> — del laboratorio al cliente
+            </p>
+            <p class="muted mb-1">
+              Vincula cada THD con una <strong>función de producto/servicio</strong> (qué mejora exactamente). Añade un mini-roadmap: MVP → beta → versión estable, con 1 riesgo y 1 mitigación.
+            </p>
+            <div class="task-meta">
+              <span class="chip">Evidencia: sección “Casos de uso”</span>
+              <span class="chip">KPI: NPS, tiempo de ciclo</span>
+            </div>
+          </article>
+
+          <!-- 3 -->
+          <article>
+            <p class="task-title">
+              <span class="task-kicker">3. Sostenibilidad (c)</span> — medir impacto
+            </p>
+            <p class="muted mb-1">
+              Define 2 <span class="kpi">KPI</span> (p. ej., <em>kWh/u</em>, <em>CO₂eq</em>) y muestra “antes vs después” en una tabla simple. Explica en 2 frases cómo la THD reduce consumo o residuos.
+            </p>
+            <div class="task-meta">
+              <span class="chip">Evidencia: tabla KPI</span>
+              <span class="chip">Commit: <code>feat: bloque sostenibilidad</code></span>
+            </div>
+          </article>
+
+          <!-- 4 -->
+          <article>
+            <p class="task-title">
+              <span class="task-kicker">4. Nuevos mercados (d)</span> — dónde vender
+            </p>
+            <p class="muted mb-1">
+              Identifica <strong>2 oportunidades</strong> por THD (XaaS, plataforma, datos como producto, etc.). Añade un ejemplo real breve del sector (1–2 líneas).
+            </p>
+            <div class="task-meta">
+              <span class="chip">Evidencia: lista con bullets</span>
+              <span class="chip">KPI: ingresos nuevos %</span>
+            </div>
+          </article>
+
+          <!-- 5 -->
+          <article>
+            <p class="task-title">
+              <span class="task-kicker">5. Negocio vs planta (e)</span> — el dibujo que lo aclara
+            </p>
+            <p class="muted mb-1">
+              Crea un esquema <strong>IT/OT</strong> (negocio ↔ planta) con 4 cajas: ventas, logística, producción, mantenimiento. Pon la THD encima de dónde actúa y qué dato genera.
+            </p>
+            <div class="task-meta">
+              <span class="chip">Evidencia: imagen/diagrama</span>
+              <span class="chip">Commit: <code>feat: esquema it-ot</code></span>
+            </div>
+          </article>
+
+          <!-- 6 -->
+          <article>
+            <p class="task-title">
+              <span class="task-kicker">6. Mejoras IT/OT (f)</span> — números a la vista
+            </p>
+            <p class="muted mb-1">
+              Compara 3 <span class="kpi">KPI</span> técnicos antes/después (p. ej., OEE, MTBF, MTTR). Usa flechas ↑ ↓ y un comentario de una línea por cada mejora.
+            </p>
+            <div class="task-meta">
+              <span class="chip">Evidencia: tabla “antes/después”</span>
+              <span class="chip ok">Meta: OEE +5 p.p.</span>
+            </div>
+          </article>
+
+          <!-- 7 -->
+          <article>
+            <p class="task-title">
+              <span class="task-kicker">7. Informe final (g)</span> — todo en una sola página
+            </p>
+            <p class="muted mb-1">
+              Integra todo en una <strong>matriz THD → características → aplicaciones → KPI</strong> y escribe <strong>3 conclusiones</strong> + <strong>2 próximos pasos</strong>. (Si haces vídeo, solo captura de pantalla).
+            </p>
+            <div class="task-meta">
+              <span class="chip">Evidencia: index.html publicado</span>
+              <span class="chip">Commit final: <code>docs: informe RA2</code></span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Git / Publicación -->
+    <div class="col-lg-5">
+      <div class="card-soft p-4 h-100">
+        <h3 class="h5 mb-2">Repositorio y publicación</h3>
+        <p class="lead-soft small mb-3">Flujo mínimo de control de versiones (Git) + GitHub Pages:</p>
+<pre class="p-3"><code># 1) Clonar
+git clone https://github.com/&lt;usuario&gt;/ejercicio_RA2_THD
+cd ejercicio_RA2_THD
+
+# 2) Trabajo iterativo (a → g)
+git add .
+git commit -m "feat: inventario inicial de THD (a)"
+git push origin main
+
+# 3) Publicar con GitHub Pages
+# Settings → Pages → Branch: main / root
+</code></pre>
+        <p class="small mb-3">
+          <strong>Privacidad:</strong> si incluyes vídeo, usa solo captura de pantalla (sin rostro) y compártelo como <em>no listado</em> o solo en Moodle.
+        </p>
+
+        <!-- CHECKLIST muy clara -->
+        <div class="card-soft p-3">
+          <h4 class="h6 mb-2">Checklist de entrega (4 ítems)</h4>
+          <ul class="list-unstyled small mb-0">
+            <li class="mb-1">✅ <strong>Repositorio</strong> con estructura propuesta y <code>README.md</code> enlazando a Pages.</li>
+            <li class="mb-1">✅ <strong>Matriz</strong> THD → características → aplicaciones → KPI completada.</li>
+            <li class="mb-1">✅ <strong>Diagrama IT/OT</strong> y <strong>tablas KPI</strong> (OEE, MTBF, MTTR; kWh/u o CO₂eq) con antes/después.</li>
+            <li>✅ <strong>Fuentes APA</strong> en <code>doc/fuentes.md</code> (2020–2025).</li>
+          </ul>
+        </div>
+
+        <!-- 2) ORGANIZACIÓN DEL PROYECTO · TREE -->
+        <section class="card-soft p-4 mt-4" aria-labelledby="tree-title">
+          <h2 id="tree-title" class="h5 mb-2">Cómo se debe organizar el proyecto</h2>
+          <p class="lead-soft small mb-3">Si separas cada criterio en su página, usa <code>pages/</code> así:</p>
+<pre class="p-3" aria-label="Estructura del proyecto (tree)"><code>ejercicio_RA2_THD/
+├── index.html                 # Informe (portada) con enlaces a criterios
+├── pages/
+│   ├── criterio-a.html        # a) Identificación THD
+│   ├── criterio-b.html        # b) THD ↔ Producto/Servicio
+│   ├── criterio-c.html        # c) Sostenibilidad
+│   ├── criterio-d.html        # d) Nuevos mercados
+│   ├── criterio-e.html        # e) Negocio vs planta (IT/OT)
+│   ├── criterio-f.html        # f) Mejoras IT/OT
+│   └── criterio-g.html        # g) Informe integrador
+├── assets/
+│   ├── css/main.css
+│   └── img/it-ot_esquema.png
+├── data/kpi.csv               # (opcional)
+└── doc/fuentes.md             # Bibliografía APA
+</code></pre>
+          <p class="small mb-0"><strong>Publicación:</strong> GitHub Pages → Branch: <code>main</code> / carpeta raíz. Añade el enlace en el <code>README.md</code>.</p>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

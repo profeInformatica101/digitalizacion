@@ -1,0 +1,74 @@
+<section
+  style="font-family: system-ui,Segoe UI,Roboto,Arial,sans-serif; line-height: 1.5; max-width: 900px;">
+  <h2>🧩 Identificación de Tecnologías Habilitadoras Digitales (THD)</h2>
+  <p><strong>🎯 Objetivo:</strong> completar la tabla de
+    <code>/docs/00_THD_Identificacion.odt</code> en una rama de trabajo
+    específica, usando el flujo Git (<em>fork → rama → commit → push</em>).</p>
+  <h3>📌 Repositorio base</h3>
+  <p>URL: <a href="https://github.com/profeInformatica101/thd_proyecto"
+      target="_blank" rel="noopener">
+      https://github.com/profeInformatica101/thd_proyecto </a></p>
+  <h3>🛠️ Pasos a realizar</h3>
+  <ol>
+    <li><strong>Haz un fork</strong> del repositorio en tu cuenta de GitHub.
+    </li>
+    <li><strong>Clona tu fork</strong> en local:
+      <pre><code>git clone https://github.com/&lt;tu_usuario&gt;/thd_proyecto.git
+cd thd_proyecto</code></pre>
+    </li>
+    <li>(Opcional) Añade el remoto <code>upstream</code> para poder sincronizar
+      con el repositorio original:
+      <pre><code>git remote add upstream https://github.com/profeInformatica101/thd_proyecto.git
+git fetch upstream</code></pre>
+    </li>
+    <li><strong>Crea y cambia</strong> a la rama de trabajo indicada:
+      <pre><code>git checkout -b tarea/thd-identificacion</code></pre>
+    </li>
+    <li><strong>Abre y completa</strong> la tabla del archivo:
+      <pre><code>/docs/00_THD_Identificacion.odt</code></pre>
+      <p>Rellena los campos: <em>descripción técnica breve, aplicación real
+          conocida, ventajas, desventajas, aplicación en la empresa ficticia e
+          impacto esperado.</em></p>
+    </li>
+    <li><strong>Guarda, añade, commitea y sube los cambios:</strong>
+      <pre><code>git add docs/00_THD_Identificacion.odt
+git commit -m "Tarea A: completada tabla de identificación de THD"
+git push -u origin tarea/thd-identificacion</code></pre>
+    </li>
+  </ol>
+  <h3>📤 Entrega</h3>
+  <ul>
+    <li>Sube el enlace a tu <strong>fork</strong> y a la <strong>rama</strong>
+      <code>tarea/thd-identificacion</code> en esta tarea de Moodle.</li>
+    <li>El archivo actualizado debe estar en
+      <code>/docs/00_THD_Identificacion.odt</code>.</li>
+    <li>Crea un <strong>PDF</strong> desde el documento y adjúntalo también a la
+      tarea de Moodle.</li>
+  </ul>
+  <h3>✅ Criterios de evaluación (resumen)</h3>
+  <ul>
+    <li><strong>a)</strong> Identificación de THD: definición precisa y concisa.
+    </li>
+    <li><strong>b)</strong> Relación con productos/servicios: aplicación real
+      coherente.</li>
+    <li><strong>c)</strong> Impacto: sostenibilidad/eficiencia justificada.</li>
+    <li><strong>Calidad de entrega técnica:</strong> estructura, ortografía, uso
+      correcto de Git (rama y commits).</li>
+  </ul>
+  <h3>🧯 Errores frecuentes</h3>
+  <ul>
+    <li>No trabajar en la rama <code>tarea/thd-identificacion</code>.</li>
+    <li>No subir el archivo en la ruta exacta
+      <code>/docs/00_THD_Identificacion.odt</code>.</li>
+    <li>Commits sin mensaje claro o sin autor configurado.</li>
+  </ul>
+  <h3>🔎 Comprobaciones rápidas</h3>
+  <pre><code># Ver rama actual
+git branch
+
+# Ver archivos modificados
+git status
+
+# Ver remotos configurados
+git remote -v</code></pre>
+</section>

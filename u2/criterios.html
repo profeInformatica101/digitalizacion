@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2. Tecnologías Habilitadoras Digitales (THD)</title>
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --bg-soft:#0f151d;
+      --panel:#0f1724;
+      --text:#e8eef7;
+      --muted:#b7c4d6;
+      --brand:#6aa6ff;
+      --brand-2:#9a7bff;
+      --ok:#27c093;
+      --warn:#ffb454;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f7f9fc;
+        --bg-soft:#eef3fb;
+        --panel:#ffffff;
+        --text:#1b2430;
+        --muted:#49566a;
+        --brand:#2b75ff;
+        --brand-2:#7a5cff;
+        --ok:#179f7b;
+        --warn:#b77400;
+        --shadow: 0 10px 30px rgba(18, 54, 94, .12);
+      }
+    }
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% -10%, var(--bg-soft), transparent 60%),
+                  radial-gradient(1200px 800px at 120% 20%, rgba(106,166,255,.15), transparent 40%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a{ color: var(--brand) }
+
+    /* Header */
+    .hero{
+      position:relative; overflow:hidden; isolation:isolate;
+      padding: clamp(28px, 6vw, 64px) 20px;
+      display:grid; place-items:center; text-align:center;
+    }
+    .hero::before{
+      content:""; position:absolute; inset:-2px; z-index:-1;
+      background: conic-gradient(from 230deg at 60% -10%, var(--brand), var(--brand-2), transparent 60%),
+                  radial-gradient(650px 160px at 50% 100%, rgba(154,123,255,.25), transparent 60%);
+      filter: blur(35px) saturate(140%); opacity:.35;
+    }
+    .title{ font-size:clamp(22px, 3.2vw, 40px); margin:0 0 10px; letter-spacing:.2px }
+    .subtitle{ margin:0 auto; max-width: 900px; color:var(--muted); font-size:clamp(14px, 1.4vw, 18px) }
+
+    /* Container */
+    .wrap{ max-width:1100px; margin: 0 auto; padding: 24px 20px 70px }
+
+    /* Info panel */
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), transparent),
+                 var(--panel);
+      border:1px solid rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .panel h2{ margin: 0 0 6px; font-size: 22px }
+    .panel p{ margin: 6px 0 0; color: var(--muted) }
+
+    /* Grid */
+    .grid{ margin-top:18px; display:grid; grid-template-columns: repeat(12, 1fr); gap:18px }
+    .col-4{ grid-column: span 12 }
+    @media (min-width:700px){ .col-4{ grid-column: span 6 } }
+    @media (min-width:1000px){ .col-4{ grid-column: span 4 } }
+
+    /* Cards */
+    .card{
+      position:relative; overflow:hidden;
+      border-radius: calc(var(--radius) - 2px);
+      padding:16px 14px 14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(106,166,255,.12), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), transparent),
+        var(--panel);
+      transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.18); border-color: rgba(106,166,255,.35) }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:600; font-size:14px;
+      padding:6px 10px; border-radius:999px;
+      background: rgba(106,166,255,.14); color: var(--brand);
+      border:1px solid rgba(106,166,255,.35);
+    }
+    .chip svg{ width:16px; height:16px; flex:none }
+    .card h3{ margin:10px 0 6px; font-size:18px; letter-spacing:.2px }
+    .card p{ margin:0; color:var(--muted); font-size:15px }
+    .meta{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap }
+    .tag{
+      font-size:12.5px; padding:6px 10px; border-radius:999px;
+      border:1px dashed rgba(255,255,255,.16); color:var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+
+    /* Table */
+    .table{
+      width:100%; border-collapse: collapse; margin-top: 14px; font-size: 14.5px
+    }
+    .table th, .table td{
+      border:1px solid rgba(255,255,255,.1);
+      padding:10px 12px; vertical-align: top;
+    }
+    .table th{
+      text-align:left; background: rgba(106,166,255,.08);
+      color:var(--text); font-weight:700;
+    }
+    .table tr:nth-child(even) td{ background: rgba(255,255,255,.02) }
+
+    /* Footer / checklist */
+    .footer{ margin-top:28px; display:grid; grid-template-columns: 1fr; gap:16px }
+    @media (min-width:900px){ .footer{ grid-template-columns: 2fr 1fr } }
+    .list{ list-style:none; padding:0; margin:0 }
+    .list li{
+      display:flex; align-items:flex-start; gap:10px;
+      padding:10px 12px; border:1px dashed rgba(255,255,255,.12);
+      border-radius: 12px; margin-bottom:10px; background: rgba(255,255,255,.02);
+    }
+    .tick{ width:18px; height:18px; border-radius:4px; border:2px solid var(--ok); margin-top:2px; display:inline-grid; place-items:center }
+    .tick svg{ width:14px; height:14px }
+    .note{
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 14px;
+      color: var(--muted);
+    }
+
+    /* Print helpers */
+    @media print{
+      .hero::before{ display:none }
+      body{ background: #fff; color:#000 }
+      .panel, .card{ box-shadow:none }
+      a::after{ content:" (" attr(href) ")" }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" role="banner">
+      <h1 id="titular">2. Caracteriza las tecnologías habilitadoras digitales necesarias para la
+adecuación/transformación de las empresas a entornos digitales describiendo sus características
+y aplicaciones.</h1>
+    <p class="subtitle">
+      Caracteriza las THD necesarias para la transformación digital de las empresas:
+      descripción, aplicaciones, impacto y relación con negocio, planta, IT/OT y sostenibilidad.
+    </p>
+  </header>
+
+  <main class="wrap" role="main">
+    <!-- Resumen -->
+    <section class="panel" aria-labelledby="resumen-title">
+      <h2 id="resumen-title">Resumen de la competencia</h2>
+      <p>
+        Identificar THD, conectarlas con productos/servicios, medir su impacto en economía sostenible y eficiente, y
+        elaborar un informe que relacione tecnologías, características y áreas de aplicación.
+      </p>
+
+    <!-- BLOQUE CON EL TEXTO EXACTO (a–g) -->
+<section class="panel exact" aria-labelledby="criterios">
+  <h2 id="criterios">Criterios de evaluación</h2>
+
+  <div class="container">
+    <h2>2. Caracteriza las <mark>tecnologías habilitadoras digitales</mark> necesarias para la adecuación/transformación de las empresas a entornos digitales describiendo sus características y aplicaciones.</h2>
+
+    <p>Necesarias para la <i>adecuación y transformación</i> de las empresas a entornos digitales, describiendo sus <b>características</b> y <mark>aplicaciones</mark>:</p>
+
+    <ol type="a">
+      <li>Se han identificado las principales <mark>tecnologías habilitadoras digitales</mark>.</li>
+      <li>Se han relacionado las <mark>THD</mark> con el desarrollo de productos y servicios.</li>
+      <li>Se ha relacionado la importancia de las <mark>THD</mark> con la economía sostenible y eficiente.</li>
+      <li>Se han identificado nuevos mercados generados por las <mark>THD</mark>.</li>
+      <li>Se ha analizado la implicación de <mark>THD</mark> tanto en la parte de negocio como en la parte de planta.</li>
+      <li>Se han identificado las mejoras producidas debido a la implantación de las <mark>tecnologías habilitadoras</mark> en relación con los entornos IT y OT.</li>
+      <li>Se ha elaborado un <b style="background-color: aqua;">informe</b> que relacione, las tecnologías con sus características y áreas de aplicación.</li>
+    </ol>
+  </div>
+</section>
+
+    <!-- Tabla de relación THD / características / áreas -->
+    <section class="panel" style="margin-top:22px" aria-labelledby="tabla-title">
+      <h2 id="tabla-title">Ejemplo <mark>tecnologías habilitadoras digitales</mark></h2>
+      <table class="table" role="table" aria-describedby="tabla-title">
+        <thead>
+          <tr>
+            <th scope="col">THD</th>
+            <th scope="col">Características clave</th>
+            <th scope="col">Áreas de aplicación</th>
+            <th scope="col">KPIs de impacto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Inteligencia Artificial / ML</td>
+            <td>Modelos predictivos, clasificación, optimización, asistentes</td>
+            <td>Calidad, mantenimiento, atención al cliente, finanzas</td>
+            <td>↓ Fallos, ↑ OEE, ↑ NPS, ↓ coste por incidente</td>
+          </tr>
+          <tr>
+            <td>Big Data & Analytics</td>
+            <td>Lago de datos, ETL/ELT, analítica avanzada, BI</td>
+            <td>Ventas, operaciones, marketing, supply chain</td>
+            <td>↑ Margen, ↓ lead time, ↑ exactitud forecast</td>
+          </tr>
+          <tr>
+            <td>IoT / IIoT</td>
+            <td>Sensórica, telemetría, edge, protocolos OT</td>
+            <td>Producción, logística, energía, salud ocupacional</td>
+            <td>↓ paradas, ↑ disponibilidad, ↓ energía</td>
+          </tr>
+          <tr>
+            <td>Cloud & Edge</td>
+            <td>Elasticidad, orquestación, serverless, baja latencia</td>
+            <td>Backoffice, analítica, control en tiempo real</td>
+            <td>↓ TCO, ↑ time-to-market, ↑ resiliencia</td>
+          </tr>
+          <tr>
+            <td>Ciberseguridad</td>
+            <td>Zero Trust, IAM, SIEM/SOAR, segmentación</td>
+            <td>IT/OT, datos, identidad, cumplimiento</td>
+            <td>↓ incidentes, ↑ MTTC/MTTR, cumplimiento</td>
+          </tr>
+          <tr>
+            <td>Gemelo Digital</td>
+            <td>Modelado, simulación, loop de retroalimentación</td>
+            <td>Ingeniería, operaciones, formación</td>
+            <td>↓ scrap, ↑ rendimiento, ↓ time-to-validate</td>
+          </tr>
+          <tr>
+            <td>5G / Redes avanzadas</td>
+            <td>uRLLC, slicing, alta densidad</td>
+            <td>Fábricas, puertos, vehículos conectados</td>
+            <td>↓ latencia, ↑ throughput, ↑ fiabilidad</td>
+          </tr>
+          <tr>
+            <td>Robótica / Automatización</td>
+            <td>Colaborativos, visión, RPA</td>
+            <td>Manufactura, backoffice, calidad</td>
+            <td>↑ productividad, ↓ errores, ↓ tiempos de ciclo</td>
+          </tr>
+          <tr>
+            <td>Blockchain</td>
+            <td>Inmutabilidad, trazabilidad, contratos inteligentes</td>
+            <td>Cadena de suministro, identidad, auditoría</td>
+            <td>↑ confianza, ↓ fraude, ↑ trazabilidad</td>
+          </tr>
+          <tr>
+            <td>XR (AR/VR/MR)</td>
+            <td>Asistencia remota, gemelo visual, formación inmersiva</td>
+            <td>Soporte, mantenimiento, aprendizaje</td>
+            <td>↓ tiempos de intervención, ↑ retención formativa</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Criterios a–g -->
+    <section class="grid" aria-label="Criterios de evaluación">
+      <!-- a -->
+      <article class="card col-4">
+        <span class="chip" aria-label="Criterio a">
+          <!-- icon -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          a) Identificación de THD
+        </span>
+        <h3>Principales tecnologías</h3>
+        <p>IA/ML, Big Data/Analytics, IoT/IIoT, Cloud/Edge, Ciberseguridad, Gemelo Digital, 5G/Redes, Robótica/Automatización, Blockchain, XR (AR/VR/MR), Low-Code/No-Code, RPA.</p>
+        <div class="meta">
+          <span class="tag">Mapa tecnológico</span>
+          <span class="tag">Tendencias</span>
+          <span class="tag">Normativa</span>
+        </div>
+      </article>
+
+      <!-- b -->
+      <article class="card col-4">
+        <span class="chip" aria-label="Criterio b">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 7h6v6H5zM13 7h6M13 11h6M5 15h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          b) THD ↔ Producto/Servicio
+        </span>
+        <h3>Del laboratorio al mercado</h3>
+        <p>Relaciona cada THD con funciones del producto, calidad del servicio, tiempos de ciclo y experiencia de cliente.</p>
+        <div class="meta">
+          <span class="tag">MVP</span><span class="tag">Roadmap</span><span class="tag">KPIs</span>
+        </div>
+      </article>
+
+      <!-- c -->
+      <article class="card col-4">
+        <span class="chip" aria-label="Criterio c">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M6 7h12M6 12h12M6 17h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7" cy="17" r="1.6" fill="currentColor"/><circle cx="17" cy="7" r="1.6" fill="currentColor"/></svg>
+          c) Sostenibilidad y eficiencia
+        </span>
+        <h3>Impacto en economía sostenible</h3>
+        <p>Optimización energética, reducción de residuos, mantenimiento predictivo y economía circular soportada por datos.</p>
+        <div class="meta">
+          <span class="tag">ESG</span><span class="tag">Eficiencia</span><span class="tag">Huella de carbono</span>
+        </div>
+      </article>
+
+      <!-- d -->
+      <article class="card col-4">
+        <span class="chip" aria-label="Criterio d">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18M12 3v18" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="7" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
+          d) Nuevos mercados
+        </span>
+        <h3>Oportunidades de negocio</h3>
+        <p>Servitización, datos como producto, plataformas B2B, gemelos digitales como servicio, ciberseguros, marketplaces IoT.</p>
+        <div class="meta">
+          <span class="tag">Modelos XaaS</span><span class="tag">Plataformas</span><span class="tag">Ecosistemas</span>
+        </div>
+      </article>
+
+      <!-- e -->
+      <article class="card col-4">
+        <span class="chip" aria-label="Criterio e">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h8v6H4zM12 12h8v6h-8z" stroke="currentColor" stroke-width="1.6"/><path d="M8 12v6M12 9h8" stroke="currentColor" stroke-width="1.6"/></svg>
+          e) Negocio y Planta
+        </span>
+        <h3>Conexión estratégica-operativa</h3>
+        <p>De la visión y el ROI a la línea de producción: casos de uso alineados con procesos core (ventas, logística, fabricación).</p>
+        <div class="meta">
+          <span class="tag">ROI</span><span class="tag">OT/Shopfloor</span><span class="tag">Procesos</span>
+        </div>
+      </article>
+
+      <!-- f -->
+      <article class="card col-4">
+        <span class="chip" aria-label="Criterio f">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 6h14v4H5zM5 14h14v4H5z" stroke="currentColor" stroke-width="1.6"/><path d="M9 6v4M15 14v4" stroke="currentColor" stroke-width="1.6"/></svg>
+          f) Mejora en IT y OT
+        </span>
+        <h3>Convergencia IT/OT</h3>
+        <p>Reducción de paradas, ciberseguridad end-to-end, datos en tiempo real y trazabilidad desde sensor a tablero directivo.</p>
+        <div class="meta">
+          <span class="tag">Edge</span><span class="tag">SCADA/MES</span><span class="tag">Zero Trust</span>
+        </div>
+      </article>
+
+      <!-- g -->
+      <article class="card col-4">
+        <span class="chip" aria-label="Criterio g">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M17 16l2 2 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          g) Informe final
+        </span>
+        <h3>Relación tecnología ↔ características ↔ aplicaciones</h3>
+        <p>Documento que vincula cada THD con sus rasgos clave, KPIs y áreas de implantación.</p>
+        <div class="meta">
+          <span class="tag">Plantilla incluida abajo</span>
+        </div>
+      </article>
+    </section>
+
+
+    <!-- Checklist e indicaciones -->
+    <section class="footer">
+      <div class="panel">
+        <h2>Checklist de entrega</h2>
+        <ul class="list">
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 12l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <strong>a)</strong> Lista de THD identificadas y justificadas con fuentes.
+            </div>
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 12l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <strong>b–f)</strong> Relación con producto/servicio, sostenibilidad, mercados, negocio/planta, mejoras IT/OT con KPIs.
+            </div>
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 12l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <strong>g)</strong> Informe final: matriz completada + conclusiones y próximos pasos.
+            </div>
+          </li>
+        </ul>
+      </div>
+      <aside class="note">
+        <strong>Consejo:</strong> incluye un <em>mapa de calor</em> que cruce impacto (alto/medio/bajo) y esfuerzo (alto/medio/bajo) para priorizar las THD. Añade riesgos (técnicos, regulatorios, adopción) y mitigaciones.
+      </aside>
+    </section>
+
+     <!-- =================== RÚBRICA 100/75/50/0 =================== -->
+    <section class="card-soft p-4 mb-4">
+      <h2 class="h5 mb-3">Rúbrica del Informe Final (a–g) — Niveles 100% · 75% · 50% · 0%</h2>
+      <div class="table-responsive">
+        <table class="table table-dark table-bordered align-middle">
+          <thead>
+            <tr>
+              <th style="width:20%">Criterio (RA2)</th>
+              <th class="text-center" style="width:20%">100%</th>
+              <th class="text-center" style="width:20%">75%</th>
+              <th class="text-center" style="width:20%">50%</th>
+              <th class="text-center" style="width:20%">0%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>a) Identificación THD</th>
+              <td class="lvl-100">≥10 THD correctas, definiciones precisas (≤30 palabras), actuales y con fuente.</td>
+              <td class="lvl-75">8–9 THD bien definidas; alguna falta de actualidad o una definición genérica.</td>
+              <td class="lvl-50">6–7 THD; definiciones vagas o parciales; pocas fuentes.</td>
+              <td class="lvl-0">≤5 THD o errores conceptuales graves; sin fuentes.</td>
+            </tr>
+            <tr>
+              <th>b) THD ↔ Producto/Servicio</th>
+              <td class="lvl-100">Mapea cada THD a función de producto/servicio con ejemplo y SLA/roadmap.</td>
+              <td class="lvl-75">Relaciona la mayoría con ejemplos comprensibles; faltan SLA o roadmap.</td>
+              <td class="lvl-50">Relaciones superficiales o genéricas; sin conexión clara al valor.</td>
+              <td class="lvl-0">No relaciona o lo hace con errores.</td>
+            </tr>
+            <tr>
+              <th>c) Sostenibilidad y eficiencia</th>
+              <td class="lvl-100">Incluye KPI ESG (kWh/u, CO₂eq, residuos) con antes/después y breve análisis.</td>
+              <td class="lvl-75">Menciona indicadores; comparativa parcial o sin análisis.</td>
+              <td class="lvl-50">Aproximación cualitativa sin métricas.</td>
+              <td class="lvl-0">Sin sostenibilidad ni indicadores.</td>
+            </tr>
+            <tr>
+              <th>d) Nuevos mercados</th>
+              <td class="lvl-100">≥2 oportunidades por THD (p. ej., XaaS, datos como producto) con ejemplo sectorial.</td>
+              <td class="lvl-75">Identifica oportunidades generales con 1 ejemplo.</td>
+              <td class="lvl-50">Solo una oportunidad poco definida.</td>
+              <td class="lvl-0">No identifica mercados.</td>
+            </tr>
+            <tr>
+              <th>e) Implicación en negocio y planta (IT/OT)</th>
+              <td class="lvl-100">Explica y/o diagrama IT/OT (ERP–MES–SCADA/Edge) con flujos de datos.</td>
+              <td class="lvl-75">Describe impactos en negocio y planta con pequeñas lagunas técnicas.</td>
+              <td class="lvl-50">Menciona áreas sin clarificar IT vs OT.</td>
+              <td class="lvl-0">No diferencia negocio/planta.</td>
+            </tr>
+            <tr>
+              <th>f) Mejoras IT/OT</th>
+              <td class="lvl-100">KPI operativos (OEE, MTBF, MTTR, Throughput) antes/después + comentario.</td>
+              <td class="lvl-75">KPI presentes pero sin comparativa completa o sin comentario.</td>
+              <td class="lvl-50">Ventajas declarativas sin KPI.</td>
+              <td class="lvl-0">Sin evidencias de mejora.</td>
+            </tr>
+            <tr>
+              <th>g) Informe integrador</th>
+              <td class="lvl-100">Informe web claro (Bootstrap), matriz THD→características→aplicaciones, fuentes y publicación (Pages).</td>
+              <td class="lvl-75">Informe completo con pequeños fallos de formato o enlace.</td>
+              <td class="lvl-50">Estructura parcial o poco clara.</td>
+              <td class="lvl-0">No entregado o inoperativo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-muted mb-0">
+        <span class="badge badge-k text-light">Consejo</span> Usa el glosario (IoT, IA/ML, Edge, CPS, KPI, SLA, TRL) y enlaza evidencias en el README.
+      </p>
+    </section>
+
+    <!-- =================== (a) CATÁLOGO THD =================== -->
+    <section class="card-soft p-4 mb-4" aria-labelledby="catalogo-title">
+      <h2 id="catalogo-title" class="h5 mb-2">(a) Catálogo de Tecnologías Habilitadoras Digitales</h2>
+      <p class="small-muted">Rellena al menos 10 filas. Mantén definiciones ≤30 palabras y añade fuente y TRL estimado.</p>
+      <div class="table-responsive">
+        <table class="table table-dark table-bordered align-middle">
+          <thead>
+            <tr>
+              <th style="min-width:160px">THD</th>
+              <th>Definición (≤30 palabras)</th>
+              <th>Características clave</th>
+              <th>Aplicaciones (sector)</th>
+              <th>KPI</th>
+              <th style="width:72px">TRL</th>
+              <th>Fuente (año / URL)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>IoT / IIoT</td>
+              <td>Red de sensores/actuadores conectados que capturan y envían datos de procesos y activos en tiempo real.</td>
+              <td>Sensórica, telemetría, Edge, protocolos OT</td>
+              <td>Mantenimiento predictivo, logística, energía</td>
+              <td>OEE, MTBF, MTTR, kWh/u</td>
+              <td>6</td>
+              <td>Fuente (2024)</td>
+            </tr>
+            <tr>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- =================== (b) RELACIÓN THD → PRODUCTO (2) =================== -->
+    <section class="card-soft p-4" aria-labelledby="relacion-title">
+      <h2 id="relacion-title" class="h5 mb-2">(b) Relaciones THD → Producto (2 ejemplos)</h2>
+
+      <div class="table-responsive mb-3">
+        <table class="table table-dark table-bordered align-middle">
+          <thead>
+            <tr>
+              <th style="min-width:160px">THD</th>
+              <th>Producto/Servicio</th>
+              <th>Función habilitada</th>
+              <th>Proceso afectado</th>
+              <th>KPI esperado</th>
+              <th>Riesgo · Mitigación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>IoT + Edge</td>
+              <td>“Mantenimiento predictivo como servicio” (PaaS) para compresores industriales</td>
+              <td>Predicción de fallos por vibración/temperatura; alertas en tiempo real</td>
+              <td>Mantenimiento / Operaciones (OT)</td>
+              <td>↑ MTBF 15%, ↓ MTTR 20%, ↑ OEE +5 p.p.</td>
+              <td>Datos ruidosos · Filtrado + calibración periódica</td>
+            </tr>
+            <tr>
+              <td>IA/ML + Vision</td>
+              <td>Control de calidad automatizado en línea de envasado</td>
+              <td>Detección de defectos por visión; rechazo automático</td>
+              <td>Calidad / Producción (OT)</td>
+              <td>↑ % conformes +3 p.p., ↓ scrap 10%</td>
+              <td>Falsos positivos · Reentrenar con dataset representativo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="small-muted mb-0">
+        <span class="badge badge-k text-light">Sugerencia</span> Añade más filas para tu sector. Incluye SLA si aplica (latencia, disponibilidad) y vincula a tu matriz del informe.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
