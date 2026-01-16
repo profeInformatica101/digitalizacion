@@ -1,0 +1,177 @@
+<style>
+  :root{
+    --ink:#0f172a;
+    --muted:#475569;
+    --border:#e2e8f0;
+    --head:#0b1220;
+    --headText:#ffffff;
+
+    /* Niveles (profesional, no “chillón”) */
+    --lvl0:#fde2e2;   /* Insuficiente */
+    --lvl1:#fff1d6;   /* Básico */
+    --lvl2:#fef9c7;   /* Adecuado */
+    --lvl3:#dcfce7;   /* Excelente */
+  }
+
+  table.rubrica{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    table-layout:fixed;
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--ink);
+    font-size:13px;
+  }
+  .rubrica th, .rubrica td{
+    padding:10px 10px;
+    vertical-align:top;
+    border-right:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .rubrica tr:last-child td{ border-bottom:none; }
+  .rubrica th:last-child, .rubrica td:last-child{ border-right:none; }
+
+  .rubrica thead th{
+    background:var(--head);
+    color:var(--headText);
+    font-weight:800;
+    text-align:left;
+    font-size:13px;
+  }
+
+  .crit{ width:22%; font-weight:800; }
+  .lvl0{ background:var(--lvl0); }
+  .lvl1{ background:var(--lvl1); }
+  .lvl2{ background:var(--lvl2); }
+  .lvl3{ background:var(--lvl3); }
+
+  .tag{
+    display:inline-block;
+    font-size:12px;
+    font-weight:900;
+    padding:2px 8px;
+    border-radius:999px;
+    border:1px solid rgba(0,0,0,.10);
+    background:rgba(255,255,255,.72);
+    margin:0 0 6px 0;
+  }
+  .small{ color:var(--muted); font-size:12.5px; margin-top:6px; }
+  .mt{ margin-top:16px; }
+  code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+</style>
+
+<!-- ===================== EJERCICIO 1 ===================== -->
+<table class="rubrica" aria-label="Rúbrica Ejercicio 1">
+  <thead>
+    <tr>
+      <th class="crit">Ejercicio 1 (2,5 pts) · Criterio (0,5)</th>
+      <th>0% · Insuficiente (0,00)</th>
+      <th>50% · Básico (0,25)</th>
+      <th>75% · Adecuado (0,375)</th>
+      <th>100% · Excelente (0,50)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="crit">a) Comando <code>echo</code> y mensaje exacto</td>
+      <td class="lvl0"><span class="tag">0%</span>No crea el comando o no corresponde a <code>echo</code>.</td>
+      <td class="lvl1"><span class="tag">50%</span>Usa <code>echo</code> pero el mensaje no coincide (errores claros de texto/caso/orden).</td>
+      <td class="lvl2"><span class="tag">75%</span>Mensaje casi correcto, con un detalle menor (p. ej., mayúsculas/minúsculas o espacio).</td>
+      <td class="lvl3"><span class="tag">100%</span><code>new ProcessBuilder("echo","Hola Mundo")</code> (o equivalente exacto).</td>
+    </tr>
+
+    <tr>
+      <td class="crit">b) Uso de <code>inheritIO()</code> (requisito del enunciado)</td>
+      <td class="lvl0"><span class="tag">0%</span>No usa <code>inheritIO()</code> y/o no se muestra la salida del proceso en consola.</td>
+      <td class="lvl1"><span class="tag">50%</span>Intenta mostrar salida por otra vía (p. ej. leer streams) o lo usa mal.</td>
+      <td class="lvl2"><span class="tag">75%</span>Usa <code>inheritIO()</code> pero con estructura mejorable (p. ej. encadenado confuso o falta claridad).</td>
+      <td class="lvl3"><span class="tag">100%</span>Usa <code>pb.inheritIO()</code> correctamente para que <code>echo</code> imprima directamente en consola.</td>
+    </tr>
+
+    <tr>
+      <td class="crit">c) Ejecución del proceso (<code>start()</code>)</td>
+      <td class="lvl0"><span class="tag">0%</span>No ejecuta el proceso o el código no compila.</td>
+      <td class="lvl1"><span class="tag">50%</span>Ejecuta pero ignora/gestiona mal el <code>Process</code> (no lo almacena o uso incorrecto).</td>
+      <td class="lvl2"><span class="tag">75%</span>Ejecuta y almacena el proceso con pequeños fallos no críticos.</td>
+      <td class="lvl3"><span class="tag">100%</span>Ejecuta correctamente y obtiene un <code>Process</code> válido.</td>
+    </tr>
+
+    <tr>
+      <td class="crit">d) Verificación de finalización (<code>waitFor()</code> + <code>exitCode</code>)</td>
+      <td class="lvl0"><span class="tag">0%</span>No espera al proceso ni obtiene el código de salida.</td>
+      <td class="lvl1"><span class="tag">50%</span>Usa <code>waitFor()</code> de forma incompleta o no utiliza el resultado.</td>
+      <td class="lvl2"><span class="tag">75%</span>Obtiene el código y verifica parcialmente (falta caso de error o mensaje poco claro).</td>
+      <td class="lvl3"><span class="tag">100%</span>Obtiene <code>exitCode</code> y verifica <code>exitCode == 0</code> mostrando un mensaje claro.</td>
+    </tr>
+
+    <tr>
+      <td class="crit">e) Gestión de errores y estilo</td>
+      <td class="lvl0"><span class="tag">0%</span>Sin control de excepciones o errores graves; salida de error inexistente.</td>
+      <td class="lvl1"><span class="tag">50%</span><code>try/catch</code> genérico con mensajes poco informativos.</td>
+      <td class="lvl2"><span class="tag">75%</span>Manejo correcto, pero mejorable (mensajes/indentación/precisión).</td>
+      <td class="lvl3"><span class="tag">100%</span>Captura <code>IOException</code>/<code>InterruptedException</code>, usa <code>System.err</code> y mantiene código limpio.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ===================== EJERCICIO 2 ===================== -->
+<table class="rubrica mt" aria-label="Rúbrica Ejercicio 2">
+  <thead>
+    <tr>
+      <th class="crit">Ejercicio 2 (2,5 pts) · Criterio (0,5)</th>
+      <th>0% · Insuficiente (0,00)</th>
+      <th>50% · Básico (0,25)</th>
+      <th>75% · Adecuado (0,375)</th>
+      <th>100% · Excelente (0,50)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="crit">a) Comando <code>grep</code> y fichero objetivo</td>
+      <td class="lvl0"><span class="tag">0%</span>No ejecuta <code>grep</code> o no apunta al fichero del enunciado.</td>
+      <td class="lvl1"><span class="tag">50%</span>Ejecuta <code>grep</code> con argumentos incorrectos (palabra o fichero erróneos).</td>
+      <td class="lvl2"><span class="tag">75%</span>Comando funcional con un detalle menor (ruta relativa sin justificar o parámetro extra no requerido).</td>
+      <td class="lvl3"><span class="tag">100%</span>Busca <code>"error"</code> en <code>/var/log/syslog</code> (ruta absoluta o equivalente válido con <code>directory()</code>).</td>
+    </tr>
+
+    <tr>
+      <td class="crit">b) Directorio de trabajo / ruta (si usa ruta relativa)</td>
+      <td class="lvl0"><span class="tag">0%</span>Ruta relativa incorrecta y sin <code>directory()</code> (no encuentra el fichero).</td>
+      <td class="lvl1"><span class="tag">50%</span>Intenta usar <code>directory()</code> o ruta, pero con errores de ruta o uso de <code>File</code>.</td>
+      <td class="lvl2"><span class="tag">75%</span>Directorio correcto, pero explicado/implementado de forma mejorable.</td>
+      <td class="lvl3"><span class="tag">100%</span>Opción A: usa <code>/var/log/syslog</code> directo. Opción B: <code>pb.directory(new File("/var/log"))</code> + fichero <code>"syslog"</code>.</td>
+    </tr>
+
+    <tr>
+      <td class="crit">c) Lectura con <code>BufferedReader</code> (stdout)</td>
+      <td class="lvl0"><span class="tag">0%</span>No usa <code>BufferedReader</code> o no lee la salida del proceso.</td>
+      <td class="lvl1"><span class="tag">50%</span>Lee parcialmente (una línea) o sin bucle correcto.</td>
+      <td class="lvl2"><span class="tag">75%</span>Lee casi todo, pero con estructura mejorable (cierre manual, fallos menores).</td>
+      <td class="lvl3"><span class="tag">100%</span><code>BufferedReader</code> + bucle <code>readLine()</code> hasta <code>null</code> usando <code>try-with-resources</code>.</td>
+    </tr>
+
+    <tr>
+      <td class="crit">d) Impresión y orden exacto</td>
+      <td class="lvl0"><span class="tag">0%</span>No imprime las líneas o altera su orden.</td>
+      <td class="lvl1"><span class="tag">50%</span>Imprime con cambios que pueden afectar el orden (acumula y reordena, filtra mal, etc.).</td>
+      <td class="lvl2"><span class="tag">75%</span>Imprime en orden, pero mezcla flujos o añade texto intercalado que puede romper la correspondencia.</td>
+      <td class="lvl3"><span class="tag">100%</span>Imprime línea a línea según se lee de stdout, manteniendo exactamente el orden del archivo.</td>
+    </tr>
+
+    <tr>
+      <td class="crit">e) Finalización, robustez y errores</td>
+      <td class="lvl0"><span class="tag">0%</span>No usa <code>waitFor()</code> y/o no gestiona excepciones.</td>
+      <td class="lvl1"><span class="tag">50%</span>Gestión básica con mensajes poco claros o captura demasiado genérica.</td>
+      <td class="lvl2"><span class="tag">75%</span>Espera y gestiona excepciones correctamente; mensajes mejorables.</td>
+      <td class="lvl3"><span class="tag">100%</span>Usa <code>waitFor()</code>, trata <code>InterruptedException</code> con <code>interrupt()</code>, y reporta errores por <code>System.err</code> (sin contaminar la salida requerida).</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="small">
+  <b>Nota de corrección:</b> En el Ej. 2 se acepta ruta absoluta (<code>/var/log/syslog</code>) o ruta relativa con <code>pb.directory(new File("/var/log"))</code>.  
+  En el Ej. 1 se exige <code>inheritIO()</code> (si se lee stdout con <code>BufferedReader</code> en su lugar, no cumple ese criterio).
+</div>

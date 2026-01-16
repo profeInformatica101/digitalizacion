@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DAW 1º — Cloud, Edge/Fog y Sistemas Conectados (RA/CE 3)</title>
+
+  <meta name="description" content="Documento didáctico evaluable para DAW 1º sobre cloud computing, edge/fog/mist, ejemplos reales, evidencias y marco legal (España/UE) aplicable a sistemas conectados e IA." />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <style>
+    :root { --anchor-offset: 5.25rem; }
+
+    html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: var(--anchor-offset); }
+
+    .hero {
+      background:
+        radial-gradient(1200px circle at 20% 10%, rgba(13,110,253,.18), transparent 45%),
+        radial-gradient(900px circle at 80% 30%, rgba(25,135,84,.18), transparent 40%),
+        radial-gradient(700px circle at 50% 100%, rgba(255,193,7,.18), transparent 45%);
+    }
+    .icon-pill{
+      width: 44px; height: 44px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius: 14px;
+      background: rgba(13,110,253,.10);
+    }
+    .card-soft { border: 1px solid rgba(0,0,0,.06); }
+    .small-muted { color: var(--bs-secondary-color); }
+    .kbd-like{
+      background: rgba(0,0,0,.06);
+      padding: .12rem .35rem;
+      border-radius: .4rem;
+    }
+    .chip {
+      display:inline-flex;
+      gap:.4rem;
+      align-items:center;
+      padding:.35rem .65rem;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.7);
+      font-size:.92rem;
+      text-decoration:none;
+      color: inherit;
+    }
+    .chip:hover { background: rgba(255,255,255,.95); }
+    .sticky-col { position: sticky; top: 1rem; }
+    dl.dict dt { font-weight: 700; }
+    dl.dict dd { margin-bottom: .9rem; }
+
+    .link-quiet { text-decoration: none; }
+    .link-quiet:hover { text-decoration: underline; }
+
+    /* Accesibilidad: foco visible */
+    :focus-visible { outline: 3px solid rgba(13,110,253,.35); outline-offset: 2px; border-radius: .4rem; }
+
+    /* Botón volver arriba */
+    .to-top {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 1030;
+      opacity: .92;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html { scroll-behavior: auto; }
+      .to-top { transition: none !important; }
+    }
+
+    @media print{
+      .navbar, .to-top { display:none !important; }
+      body { background: #fff !important; }
+      .card, .alert { break-inside: avoid; }
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  <!-- Skip link -->
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 p-2 bg-white border rounded"
+     href="#contenido">Saltar al contenido</a>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top" aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="#top">
+        <i class="bi bi-cloud-fill text-primary me-2" aria-hidden="true"></i>
+        DAW 1º · Cloud, Edge/Fog y sistemas conectados
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+              aria-controls="nav" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#criterios">Criterios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#diccionario">Diccionario evaluable</a></li>
+          <li class="nav-item"><a class="nav-link" href="#fog-ia">Fog + IA (marco legal)</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ejemplos">Ejemplos reales</a></li>
+          <li class="nav-item"><a class="nav-link" href="#evidencias">Evidencias DAW</a></li>
+          <li class="nav-item"><a class="nav-link" href="#referencias">Referencias APA</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" class="hero py-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-8">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <span class="icon-pill" aria-hidden="true">
+              <i class="bi bi-diagram-3-fill text-primary fs-4"></i>
+            </span>
+            <div>
+              <h1 class="display-6 fw-bold mb-0">Cloud, Edge/Fog y su influencia en sistemas digitales (RA/CE 3)</h1>
+              <div class="small-muted mt-1">
+                Enfoque <strong>DAW (1º)</strong>: despliegue de apps web, colaboración, servicios gestionados,
+                arquitectura <span class="kbd-like">cloud → edge</span> y bases de cumplimiento.
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-2">
+            <div class="col-md-6">
+              <div class="card card-soft shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex gap-3">
+                    <div class="text-primary" aria-hidden="true"><i class="bi bi-code-slash fs-4"></i></div>
+                    <div>
+                      <div class="fw-semibold">Aplicación directa en DAW</div>
+                      <div class="small-muted">
+                        Hosting, despliegue, BBDD/almacenamiento gestionado, CI/CD, repositorios, trabajo en equipo.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card card-soft shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex gap-3">
+                    <div class="text-success" aria-hidden="true"><i class="bi bi-check2-circle fs-4"></i></div>
+                    <div>
+                      <div class="fw-semibold">Formato “evaluable”</div>
+                      <div class="small-muted">
+                        Definición + ejemplo real + ejemplo DAW + indicadores + entregables alineados.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 d-flex flex-wrap gap-2">
+            <span class="badge rounded-pill text-bg-primary"><i class="bi bi-layers me-1" aria-hidden="true"></i>IaaS / PaaS / SaaS</span>
+            <span class="badge rounded-pill text-bg-success"><i class="bi bi-router me-1" aria-hidden="true"></i>Edge / Fog / Mist</span>
+            <span class="badge rounded-pill text-bg-warning"><i class="bi bi-shield-lock me-1" aria-hidden="true"></i>Seguridad, datos e IA</span>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <div class="fw-semibold mb-1"><i class="bi bi-compass-fill text-primary me-2" aria-hidden="true"></i>Checklist rápido</div>
+              <div class="small-muted mb-3">Indicadores observables (DAW 1º)</div>
+              <ul class="list-unstyled mb-0 small">
+                <li class="mb-2"><i class="bi bi-dot" aria-hidden="true"></i>Clasifica servicios reales (IaaS/PaaS/SaaS).</li>
+                <li class="mb-2"><i class="bi bi-dot" aria-hidden="true"></i>Relaciona funciones cloud con una app web típica.</li>
+                <li class="mb-2"><i class="bi bi-dot" aria-hidden="true"></i>Explica edge/fog/mist por latencia y conectividad.</li>
+                <li class="mb-2"><i class="bi bi-dot" aria-hidden="true"></i>Argumenta ventajas (movilidad, cooperación, interoperabilidad, protección).</li>
+                <li><i class="bi bi-dot" aria-hidden="true"></i>Identifica “mínimos de cumplimiento” (ENS/RGPD/IA) según el caso.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido" class="py-4">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- LEFT NAV -->
+        <aside class="col-lg-3">
+          <div class="sticky-col">
+            <div class="card card-soft shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold"><i class="bi bi-list-check text-primary me-2" aria-hidden="true"></i>Secciones</div>
+                <hr class="my-2">
+                <div class="list-group list-group-flush">
+                  <a class="list-group-item list-group-item-action" href="#criterios"><i class="bi bi-clipboard-check me-2" aria-hidden="true"></i>Criterios (literal)</a>
+                  <a class="list-group-item list-group-item-action" href="#diccionario"><i class="bi bi-book me-2" aria-hidden="true"></i>Diccionario evaluable</a>
+                  <a class="list-group-item list-group-item-action" href="#fog-ia"><i class="bi bi-cpu me-2" aria-hidden="true"></i>Fog + IA (marco legal)</a>
+                  <a class="list-group-item list-group-item-action" href="#ejemplos"><i class="bi bi-globe2 me-2" aria-hidden="true"></i>Ejemplos reales</a>
+                  <a class="list-group-item list-group-item-action" href="#evidencias"><i class="bi bi-easel2 me-2" aria-hidden="true"></i>Evidencias DAW</a>
+                  <a class="list-group-item list-group-item-action" href="#referencias"><i class="bi bi-journal-text me-2" aria-hidden="true"></i>Referencias APA</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-soft shadow-sm mt-3">
+              <div class="card-body small">
+                <div class="fw-semibold mb-1"><i class="bi bi-info-circle text-primary me-2" aria-hidden="true"></i>Clave para evaluar</div>
+                <div class="small-muted">
+                  En cada concepto: <span class="kbd-like">Definición</span> + <span class="kbd-like">Ejemplo real</span> +
+                  <span class="kbd-like">Ejemplo DAW</span> + <span class="kbd-like">Indicadores</span>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- CONTENT -->
+        <section class="col-lg-9" aria-label="Contenido principal">
+
+          <!-- CRITERIOS (LITERAL) -->
+          <div id="criterios" class="card card-soft shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-clipboard-check text-primary me-2" aria-hidden="true"></i>Criterios de evaluación (literal)</h2>
+
+              <div class="alert alert-primary mb-3">
+                <strong>3. Identifica sistemas basados en cloud/nube y su influencia en el desarrollo de los sistemas digitales.</strong>
+                <div class="mt-2">
+                  <div>a) Se han identificado los diferentes niveles de la cloud/nube.</div>
+                  <div>b) Se han identificado las principales funciones de la cloud/nube (procesamiento de datos, intercambio de información, ejecución de aplicaciones, entre otros).</div>
+                  <div>c) Se ha descrito el concepto de edge computing y su relación con la cloud/nube.</div>
+                  <div>d) Se han definido los conceptos de fog y mist y sus zonas de aplicación en el conjunto.</div>
+                  <div>e) Se han identificado las ventajas que proporciona la utilización de la cloud/nube en los sistemas conectados.</div>
+                </div>
+              </div>
+
+              <div class="alert alert-success mb-0">
+                <strong>3. Cloud y sistemas conectados.</strong>
+                <div class="mt-2">
+                  <div>a) Cloud. Definición y niveles. Cloud computing:</div>
+                  <div class="ms-3">i. Infraestructura como Servicio (<span lang="en">Infrastructure as a Service</span>, IaaS).</div>
+                  <div class="ms-3">ii. Plataforma como Servicio (<span lang="en">Platform as a Service</span>, PaaS).</div>
+                  <div class="ms-3">iii. Software como Servicio (<span lang="en">Software as a Service</span>, SaaS).</div>
+                  <div class="mt-2">b) Posibilidades del trabajo en la cloud.</div>
+                  <div>c) Edge computing y su relación con la cloud.</div>
+                  <div>d) Fog y Mist. Relación con la cloud.</div>
+                  <div>e) Ventajas del uso de los recursos de la cloud:</div>
+                  <div class="ms-3">i. Protección de datos.</div>
+                  <div class="ms-3">ii. Interoperabilidad.</div>
+                  <div class="ms-3">iii. Movilidad.</div>
+                  <div class="ms-3">iv. Trabajo cooperativo.</div>
+                  <div class="mt-2">f) Uso de Cloud y la rentabilidad de la empresa.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DICCIONARIO -->
+          <div id="diccionario" class="card card-soft shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-book text-primary me-2" aria-hidden="true"></i>Diccionario evaluable</h2>
+
+              <!-- CLOUD -->
+              <div class="card card-soft mb-3">
+                <div class="card-body">
+                  <h3 class="h5 mb-3"><i class="bi bi-cloud-fill text-primary me-2" aria-hidden="true"></i>Cloud computing (nube)</h3>
+                  <dl class="dict">
+                    <dt>Definición (estándar)</dt>
+                    <dd>
+                      Modelo que permite acceso ubicuo, conveniente y bajo demanda a un conjunto compartido de recursos informáticos configurables,
+                      aprovisionables y liberables rápidamente con esfuerzo mínimo de gestión.
+                      <span class="badge text-bg-light border ms-1">NIST SP 800-145</span>
+                    </dd>
+
+                    <dt>Niveles (modelos de servicio)</dt>
+                    <dd>
+                      <ul class="mb-0">
+                        <li><strong>IaaS</strong>: infraestructura (VMs, red, almacenamiento). El equipo gestiona SO, runtime y despliegue.</li>
+                        <li><strong>PaaS</strong>: plataforma gestionada (runtime, escalado, despliegue). El equipo gestiona código y configuración.</li>
+                        <li><strong>SaaS</strong>: aplicación lista para usar. El usuario configura y utiliza.</li>
+                      </ul>
+                    </dd>
+
+                    <dt>Ejemplo DAW</dt>
+                    <dd>
+                      Proyecto web típico:
+                      <span class="kbd-like">SaaS</span> (GitHub + CI/CD),
+                      <span class="kbd-like">PaaS</span> (hosting de frontend/API),
+                      y a veces <span class="kbd-like">IaaS</span> (VM para aprender administración y despliegue).
+                    </dd>
+
+                    <dt>Indicadores evaluables</dt>
+                    <dd class="mb-0">
+                      <ul class="mb-0">
+                        <li>Clasifica servicios reales como IaaS/PaaS/SaaS y justifica “qué gestiona el proveedor” vs “qué gestiona el equipo”.</li>
+                        <li>Explica impacto en DAW: despliegue, escalado, seguridad, costes, mantenimiento.</li>
+                      </ul>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+
+              <!-- FUNCIONES -->
+              <div class="card card-soft mb-3">
+                <div class="card-body">
+                  <h3 class="h5 mb-3"><i class="bi bi-cpu-fill text-primary me-2" aria-hidden="true"></i>Funciones principales de la cloud</h3>
+                  <dl class="dict">
+                    <dt>Definición</dt>
+                    <dd>Capacidades típicas que la nube ofrece para soportar sistemas digitales conectados.</dd>
+
+                    <dt>Funciones (mínimo evaluable)</dt>
+                    <dd>
+                      <ul class="mb-0">
+                        <li><strong>Procesamiento</strong>: ejecutar lógica (backend, jobs, colas).</li>
+                        <li><strong>Intercambio</strong>: APIs, mensajería, sincronización, CDN/edge delivery.</li>
+                        <li><strong>Ejecución</strong>: hosting de frontend/backend, autoescalado, balanceo.</li>
+                        <li><strong>Almacenamiento</strong>: ficheros/objetos, BBDD, backups.</li>
+                      </ul>
+                    </dd>
+
+                    <dt>Ejemplo DAW</dt>
+                    <dd>
+                      App CRUD:
+                      <span class="kbd-like">Frontend</span> + <span class="kbd-like">API</span> + <span class="kbd-like">BBDD</span> + <span class="kbd-like">Storage</span> (imágenes).
+                    </dd>
+
+                    <dt>Indicadores evaluables</dt>
+                    <dd class="mb-0">Relaciona ≥3 funciones con componentes concretos de una aplicación web.</dd>
+                  </dl>
+                </div>
+              </div>
+
+              <!-- EDGE -->
+              <div class="card card-soft mb-3">
+                <div class="card-body">
+                  <h3 class="h5 mb-3"><i class="bi bi-router-fill text-primary me-2" aria-hidden="true"></i>Edge computing y relación con la cloud</h3>
+                  <dl class="dict">
+                    <dt>Definición</dt>
+                    <dd>
+                      Computación distribuida que acerca el procesamiento al lugar donde se generan/consumen los datos (cerca del usuario o dispositivo)
+                      para reducir latencia y tráfico hacia la nube central.
+                      <span class="badge text-bg-light border ms-1">ETSI MEC (marco relacionado)</span>
+                    </dd>
+
+                    <dt>Relación cloud ↔ edge</dt>
+                    <dd>
+                      <ul class="mb-0">
+                        <li><strong>Edge</strong>: respuesta rápida, caché, lógica próxima.</li>
+                        <li><strong>Cloud</strong>: almacenamiento masivo, analítica pesada, coordinación global, DevOps.</li>
+                      </ul>
+                    </dd>
+
+                    <dt>Ejemplo</dt>
+                    <dd>Frontend servido desde edge (cerca del usuario) y API/BBDD en cloud central.</dd>
+
+                    <dt>Indicadores evaluables</dt>
+                    <dd class="mb-0">Explica con un ejemplo por qué edge reduce latencia frente a “todo en cloud”.</dd>
+                  </dl>
+                </div>
+              </div>
+
+              <!-- FOG / MIST -->
+              <div class="card card-soft mb-0">
+                <div class="card-body">
+                  <h3 class="h5 mb-3"><i class="bi bi-layers-fill text-primary me-2" aria-hidden="true"></i>Fog y Mist (zonas de aplicación)</h3>
+                  <dl class="dict mb-0">
+                    <dt>Fog (definición)</dt>
+                    <dd>
+                      Capa distribuida entre dispositivos y cloud central donde se colocan recursos (cómputo, red y almacenamiento) en nodos intermedios
+                      para soportar IoT y baja latencia.
+                      <span class="badge text-bg-light border ms-1">NIST SP 800-191</span>
+                    </dd>
+
+                    <dt>Mist (definición)</dt>
+                    <dd>
+                      Capa muy cercana al “thing”: procesamiento ligero en microcontroladores/dispositivos finales o gateways muy próximos
+                      (decisiones simples y filtrado).
+                      <span class="badge text-bg-light border ms-1">NIST SP 800-191</span>
+                    </dd>
+
+                    <dt>Continuo (mist → fog → cloud)</dt>
+                    <dd>
+                      <ul class="mb-0">
+                        <li><strong>Mist</strong>: sensor/microcontrolador (p.ej., ESP32) → decisiones básicas/filtrado.</li>
+                        <li><strong>Fog</strong>: gateway/nodo local → agrega, valida, cachea, protege y opera “cerca”.</li>
+                        <li><strong>Cloud</strong>: histórico, panel web, analítica, CI/CD, escalado.</li>
+                      </ul>
+                    </dd>
+
+                    <dt>Indicadores evaluables</dt>
+                    <dd class="mb-0">Define fog y mist y ubica su función en el flujo de datos (mist → fog → cloud).</dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FOG + IA (MARCO LEGAL) -->
+          <div id="fog-ia" class="card card-soft shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-cpu text-primary me-2" aria-hidden="true"></i>Fog Computing e IA: marco legal (España/UE) y “mínimos”</h2>
+
+              <div class="alert alert-info">
+                <strong>Idea clave:</strong> Fog/Edge cambia la <em>arquitectura</em> (procesas cerca del dato), pero no “te saca” de las obligaciones.
+                Si hay datos personales o IA con impacto, entran RGPD/LOPDGDD y el marco de IA.
+              </div>
+
+              <div class="row g-3">
+                <div class="col-lg-6">
+                  <div class="p-3 bg-white border rounded-3 h-100">
+                    <div class="fw-semibold mb-2"><i class="bi bi-shield-lock me-2" aria-hidden="true"></i>España: seguridad e interoperabilidad</div>
+                    <ul class="small mb-0">
+                      <li><strong>ENS (RD 311/2022)</strong>: obligatorio en sector público y muy relevante para proveedores y sistemas conectados (hardening, riesgos, operación segura).</li>
+                      <li><strong>CCN-CERT (series CCN-STIC, especialmente 800)</strong>: guías prácticas para implantar ENS (muy útiles si el “fog” es una VM/Raspberry Pi).</li>
+                      <li><strong>ENI (RD 4/2010)</strong>: formatos e intercambio; impacto en APIs, datos, metadatos e interoperabilidad.</li>
+                      <li><strong>RD 203/2021</strong>: referencia de funcionamiento electrónico en el sector público.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="p-3 bg-white border rounded-3 h-100">
+                    <div class="fw-semibold mb-2"><i class="bi bi-person-badge me-2" aria-hidden="true"></i>Datos e IA: cumplimiento esencial</div>
+                    <ul class="small mb-0">
+                      <li><strong>RGPD (UE 2016/679)</strong> + <strong>LOPDGDD (LO 3/2018)</strong>: si hay datos personales (audio/vídeo/identificadores/telemetría vinculable), exige base jurídica, minimización, seguridad y derechos.</li>
+                      <li><strong>Reglamento Europeo de IA (AI Act)</strong>: obligaciones por nivel de riesgo (transparencia, control, documentación, etc.).</li>
+                      <li><strong>AESIA</strong>: agencia española de supervisión de la IA (gobernanza nacional).</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-3 p-3 bg-light border rounded-3">
+                <div class="fw-semibold mb-2"><i class="bi bi-check2-square text-primary me-2" aria-hidden="true"></i>Checklist DAW (si haces proyecto Fog + IA)</div>
+                <ol class="small mb-0">
+                  <li><strong>Clasifica</strong> el sistema: ¿IA? ¿datos personales? ¿entorno público?</li>
+                  <li><strong>Diseña por minimización</strong>: procesa lo mínimo en edge/fog y sube solo lo necesario a cloud.</li>
+                  <li><strong>Seguridad operativa</strong>: parches, firewall, segmentación, backups, logs, credenciales (especialmente en gateways fog).</li>
+                  <li><strong>Documenta</strong>: arquitectura mist→fog→cloud + responsabilidades + riesgos + medidas.</li>
+                </ol>
+              </div>
+
+              <hr class="my-3">
+
+              <div class="fw-semibold mb-2"><i class="bi bi-link-45deg me-2" aria-hidden="true"></i>Enlaces oficiales recomendados</div>
+              <div class="d-flex flex-wrap gap-2">
+                <a class="chip" href="https://www.boe.es/buscar/act.php?id=BOE-A-2022-7191" target="_blank" rel="noopener">
+                  <i class="bi bi-file-earmark-text"></i> ENS (RD 311/2022) — BOE
+                </a>
+                <a class="chip" href="https://www.ccn-cert.cni.es/es/series-ccn-stic/800-guia-esquema-nacional-de-seguridad" target="_blank" rel="noopener">
+                  <i class="bi bi-shield-check"></i> CCN-STIC 800 — CCN-CERT
+                </a>
+                <a class="chip" href="https://www.boe.es/buscar/act.php?id=BOE-A-2010-1331" target="_blank" rel="noopener">
+                  <i class="bi bi-diagram-3"></i> ENI (RD 4/2010) — BOE
+                </a>
+                <a class="chip" href="https://www.boe.es/buscar/act.php?id=BOE-A-2021-5032" target="_blank" rel="noopener">
+                  <i class="bi bi-building"></i> RD 203/2021 — BOE
+                </a>
+                <a class="chip" href="https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673" target="_blank" rel="noopener">
+                  <i class="bi bi-lock"></i> LOPDGDD (LO 3/2018) — BOE
+                </a>
+                <a class="chip" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj?locale=es" target="_blank" rel="noopener">
+                  <i class="bi bi-globe"></i> RGPD — EUR-Lex
+                </a>
+                <a class="chip" href="https://www.boe.es/buscar/doc.php?id=BOE-A-2023-18385" target="_blank" rel="noopener">
+                  <i class="bi bi-cpu"></i> AESIA (RD 729/2023) — BOE
+                </a>
+                <!-- Nota: enlace del AI Act puede variar por ELI final. Mantengo enlace “estable” a EUR-Lex (buscador) -->
+                <a class="chip" href="https://eur-lex.europa.eu/advanced-search-form.html" target="_blank" rel="noopener">
+                  <i class="bi bi-search"></i> AI Act — EUR-Lex (buscar “Artificial Intelligence Act”)
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJEMPLOS REALES -->
+          <div id="ejemplos" class="card card-soft shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-globe2 text-primary me-2" aria-hidden="true"></i>Ejemplos reales (clasificar y justificar)</h2>
+
+              <div class="alert alert-info">
+                <div class="d-flex gap-2 align-items-start">
+                  <i class="bi bi-lightbulb fs-4" aria-hidden="true"></i>
+                  <div>
+                    <strong>Uso en evaluación:</strong>
+                    <div class="small">
+                      Indicar si es IaaS/PaaS/SaaS o Edge/Fog y justificarlo con “qué gestiona el proveedor” vs “qué gestiona el equipo”.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <!-- IaaS -->
+                <div class="col-lg-4">
+                  <div class="card card-soft h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="fw-semibold"><i class="bi bi-hdd-network text-primary me-2" aria-hidden="true"></i>IaaS</div>
+                        <span class="badge text-bg-primary">Infraestructura</span>
+                      </div>
+                      <div class="small-muted mb-2">VMs y recursos base (red/almacenamiento).</div>
+
+                      <div class="d-flex flex-column gap-2">
+                        <a class="chip" href="https://aws.amazon.com/ec2/" target="_blank" rel="noopener"><i class="bi bi-box"></i> Amazon EC2</a>
+                        <a class="chip" href="https://azure.microsoft.com/en-us/products/virtual-machines" target="_blank" rel="noopener"><i class="bi bi-microsoft"></i> Azure Virtual Machines</a>
+                        <a class="chip" href="https://cloud.google.com/compute" target="_blank" rel="noopener"><i class="bi bi-google"></i> Google Compute Engine</a>
+                      </div>
+
+                      <hr>
+                      <div class="small"><strong>Ejemplo DAW:</strong> Nginx/Apache + app + BBDD en VM (SO y parches).</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PaaS -->
+                <div class="col-lg-4">
+                  <div class="card card-soft h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="fw-semibold"><i class="bi bi-boxes text-success me-2" aria-hidden="true"></i>PaaS</div>
+                        <span class="badge text-bg-success">Plataforma</span>
+                      </div>
+                      <div class="small-muted mb-2">Subes código; la plataforma gestiona runtime y escalado.</div>
+
+                      <div class="d-flex flex-column gap-2">
+                        <a class="chip" href="https://azure.microsoft.com/es-es/products/app-service" target="_blank" rel="noopener"><i class="bi bi-microsoft"></i> Azure App Service</a>
+                        <a class="chip" href="https://www.heroku.com/" target="_blank" rel="noopener"><i class="bi bi-stack"></i> Heroku</a>
+                        <a class="chip" href="https://cloud.google.com/appengine" target="_blank" rel="noopener"><i class="bi bi-google"></i> Google App Engine</a>
+                        <a class="chip" href="https://aws.amazon.com/elasticbeanstalk/" target="_blank" rel="noopener"><i class="bi bi-box"></i> AWS Elastic Beanstalk</a>
+                        <a class="chip" href="https://vercel.com/" target="_blank" rel="noopener"><i class="bi bi-triangle"></i> Vercel</a>
+                      </div>
+
+                      <hr>
+                      <div class="small"><strong>Ejemplo DAW:</strong> desplegar API sin administrar VMs.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SaaS -->
+                <div class="col-lg-4">
+                  <div class="card card-soft h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="fw-semibold"><i class="bi bi-app-indicator text-warning me-2" aria-hidden="true"></i>SaaS</div>
+                        <span class="badge text-bg-warning">Software</span>
+                      </div>
+                      <div class="small-muted mb-2">Aplicación lista para usar (configuras y utilizas).</div>
+
+                      <div class="d-flex flex-column gap-2">
+                        <a class="chip" href="https://github.com/" target="_blank" rel="noopener"><i class="bi bi-github"></i> GitHub</a>
+                        <a class="chip" href="https://workspace.google.com/" target="_blank" rel="noopener"><i class="bi bi-google"></i> Google Workspace</a>
+                        <a class="chip" href="https://www.microsoft.com/microsoft-365" target="_blank" rel="noopener"><i class="bi bi-microsoft"></i> Microsoft 365</a>
+                        <a class="chip" href="https://slack.com/" target="_blank" rel="noopener"><i class="bi bi-chat-dots"></i> Slack</a>
+                        <a class="chip" href="https://www.atlassian.com/software/jira" target="_blank" rel="noopener"><i class="bi bi-kanban"></i> Jira</a>
+                      </div>
+
+                      <hr>
+                      <div class="small"><strong>Ejemplo DAW:</strong> issues, PRs, CI, comunicación del equipo.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <h3 class="h5 mb-3"><i class="bi bi-router text-primary me-2" aria-hidden="true"></i>Ejemplos reales de Edge</h3>
+              <div class="row g-3">
+                <div class="col-lg-4">
+                  <div class="card card-soft h-100">
+                    <div class="card-body">
+                      <div class="fw-semibold mb-2"><i class="bi bi-lightning-charge text-primary me-2" aria-hidden="true"></i>Edge para web</div>
+                      <div class="small-muted mb-2">Lógica cerca del usuario (baja latencia).</div>
+                      <div class="d-flex flex-column gap-2">
+                        <a class="chip" href="https://aws.amazon.com/lambda/edge/" target="_blank" rel="noopener"><i class="bi bi-box"></i> AWS Lambda@Edge</a>
+                        <a class="chip" href="https://developers.cloudflare.com/workers/" target="_blank" rel="noopener"><i class="bi bi-cloud"></i> Cloudflare Workers</a>
+                        <a class="chip" href="https://www.fastly.com/products/edge-compute" target="_blank" rel="noopener"><i class="bi bi-globe"></i> Fastly Compute</a>
+                      </div>
+                      <hr>
+                      <div class="small"><strong>Ejemplo DAW:</strong> caché/seguridad/personalización en edge.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4">
+                  <div class="card card-soft h-100">
+                    <div class="card-body">
+                      <div class="fw-semibold mb-2"><i class="bi bi-cpu text-success me-2" aria-hidden="true"></i>Edge/Fog para IoT</div>
+                      <div class="small-muted mb-2">Software gestionado cerca del dispositivo.</div>
+                      <div class="d-flex flex-column gap-2">
+                        <a class="chip" href="https://aws.amazon.com/greengrass/" target="_blank" rel="noopener"><i class="bi bi-box"></i> AWS IoT Greengrass</a>
+                        <a class="chip" href="https://learn.microsoft.com/en-us/azure/iot-edge/" target="_blank" rel="noopener"><i class="bi bi-microsoft"></i> Azure IoT Edge</a>
+                      </div>
+                      <hr>
+                      <div class="small"><strong>Ejemplo DAW:</strong> gateway filtra/valida y cloud guarda histórico.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4">
+                  <div class="card card-soft h-100">
+                    <div class="card-body">
+                      <div class="fw-semibold mb-2"><i class="bi bi-layers text-warning me-2" aria-hidden="true"></i>Mist</div>
+                      <div class="small-muted mb-2">Procesamiento mínimo en el “thing”.</div>
+                      <ul class="small mb-0">
+                        <li><strong>Ejemplos:</strong> ESP32/Arduino/sensores.</li>
+                        <li><strong>Uso:</strong> filtrar, umbrales, eventos “relevantes” antes de fog/cloud.</li>
+                      </ul>
+                      <hr>
+                      <div class="small"><strong>Ejemplo DAW:</strong> enviar solo eventos relevantes a una API.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- EVIDENCIAS -->
+          <div id="evidencias" class="card card-soft shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-easel2 text-primary me-2" aria-hidden="true"></i>Evidencias y actividades (alineadas a criterios)</h2>
+
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th style="width:35%">Criterio (literal)</th>
+                      <th style="width:35%">Entregable DAW</th>
+                      <th style="width:30%">Indicadores observables</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>a)</strong> Niveles de cloud/nube.</td>
+                      <td>Tabla con 10 servicios reales clasificados (IaaS/PaaS/SaaS) + enlace.</td>
+                      <td>Justifica responsabilidades proveedor vs equipo.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>b)</strong> Funciones principales de cloud.</td>
+                      <td>Diagrama de arquitectura (front/API/BBDD/storage) + explicación.</td>
+                      <td>Mapea ≥3 funciones a componentes reales.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>c)</strong> Edge computing y relación con cloud.</td>
+                      <td>Mini-caso de latencia (edge) + flujo edge→cloud.</td>
+                      <td>Explica latencia/tráfico y razonamiento.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>d)</strong> Fog y Mist + zonas.</td>
+                      <td>Esquema Mist→Fog→Cloud con 1 ejemplo (gateway + cloud).</td>
+                      <td>Ubicación correcta de capas y funciones.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>e)</strong> Ventajas de cloud.</td>
+                      <td>Checklist argumentada con ejemplos DAW (repo, despliegue, APIs, acceso remoto).</td>
+                      <td>Aplica protección/interoperabilidad/movilidad/cooperación.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="alert alert-warning mb-0">
+                <div class="d-flex gap-2 align-items-start">
+                  <i class="bi bi-graph-up-arrow fs-4" aria-hidden="true"></i>
+                  <div>
+                    <strong>f) Cloud y rentabilidad (en términos simples)</strong>
+                    <ul class="small mb-0 mt-2">
+                      <li><strong>Pago por uso</strong>: ajusta coste a demanda.</li>
+                      <li><strong>Menos operación</strong> (PaaS/SaaS): menos tiempo en administración.</li>
+                      <li><strong>Time-to-market</strong>: despliegue rápido con CI/CD.</li>
+                      <li><strong>Control</strong>: monitorizar gasto y fijar límites.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- REFERENCIAS -->
+          <div id="referencias" class="card card-soft shadow-sm">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-journal-text text-primary me-2" aria-hidden="true"></i>Referencias (APA, enlaces oficiales)</h2>
+
+              <ol class="mb-0">
+                <li class="mb-2">
+                  Mell, P., & Grance, T. (2011). <em>The NIST Definition of Cloud Computing (NIST SP 800-145)</em>. National Institute of Standards and Technology.
+                  <a class="link-quiet" href="https://doi.org/10.6028/NIST.SP.800-145" target="_blank" rel="noopener">https://doi.org/10.6028/NIST.SP.800-145</a>
+                </li>
+                <li class="mb-2">
+                  Iorga, M., Feldman, L., Barton, R., et al. (2018). <em>The NIST Definition of Fog Computing (NIST SP 800-191)</em>. National Institute of Standards and Technology.
+                  <a class="link-quiet" href="https://csrc.nist.gov/publications/detail/sp/800-191/final" target="_blank" rel="noopener">https://csrc.nist.gov/publications/detail/sp/800-191/final</a>
+                </li>
+                <li class="mb-2">
+                  European Telecommunications Standards Institute. (s. f.). <em>Multi-access Edge Computing (MEC)</em>.
+                  <a class="link-quiet" href="https://www.etsi.org/technologies/multi-access-edge-computing" target="_blank" rel="noopener">https://www.etsi.org/technologies/multi-access-edge-computing</a>
+                </li>
+                <li class="mb-2">
+                  Boletín Oficial del Estado. (2022). <em>Real Decreto 311/2022, Esquema Nacional de Seguridad</em>.
+                  <a class="link-quiet" href="https://www.boe.es/buscar/act.php?id=BOE-A-2022-7191" target="_blank" rel="noopener">https://www.boe.es/buscar/act.php?id=BOE-A-2022-7191</a>
+                </li>
+                <li class="mb-2">
+                  Boletín Oficial del Estado. (2018). <em>Ley Orgánica 3/2018 (LOPDGDD)</em>.
+                  <a class="link-quiet" href="https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673" target="_blank" rel="noopener">https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673</a>
+                </li>
+                <li class="mb-2">
+                  EUR-Lex. (2016). <em>Reglamento (UE) 2016/679 (RGPD)</em>.
+                  <a class="link-quiet" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj?locale=es" target="_blank" rel="noopener">https://eur-lex.europa.eu/eli/reg/2016/679/oj?locale=es</a>
+                </li>
+                <li class="mb-2">
+                  Boletín Oficial del Estado. (2023). <em>Real Decreto 729/2023 (AESIA)</em>.
+                  <a class="link-quiet" href="https://www.boe.es/buscar/doc.php?id=BOE-A-2023-18385" target="_blank" rel="noopener">https://www.boe.es/buscar/doc.php?id=BOE-A-2023-18385</a>
+                </li>
+                <li class="mb-0">
+                  Boletín Oficial del Estado. (2010). <em>Real Decreto 4/2010 (ENI)</em>.
+                  <a class="link-quiet" href="https://www.boe.es/buscar/act.php?id=BOE-A-2010-1331" target="_blank" rel="noopener">https://www.boe.es/buscar/act.php?id=BOE-A-2010-1331</a>
+                </li>
+              </ol>
+
+              <div class="small text-muted mt-3">
+                Nota: el enlace final del Reglamento Europeo de IA (AI Act) usa ELI en EUR-Lex; si lo necesitas “clavado” en la lista APA,
+                localízalo en EUR-Lex y sustitúyelo en esta sección.
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <a class="btn btn-primary rounded-circle to-top" href="#top" aria-label="Volver arriba">
+    <i class="bi bi-arrow-up" aria-hidden="true"></i>
+  </a>
+
+  <footer class="py-4">
+    <div class="container small text-center small-muted">
+      <i class="bi bi-info-circle" aria-hidden="true"></i>
+      Documento didáctico DAW 1º · Preparado para Moodle/GitHub Pages · Última revisión: 2026-01-11
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

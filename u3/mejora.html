@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DAW 1º — Cloud y Sistemas Conectados (RA/CE 3)</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    :root{
+      /* Colores consistentes */
+      --c-iaas: #0d6efd;   /* azul */
+      --c-paas: #198754;   /* verde */
+      --c-saas: #fd7e14;   /* naranja */
+      --c-edge: #6f42c1;   /* morado */
+    }
+
+    body { background: #f6f7fb; }
+
+    .hero {
+      background:
+        radial-gradient(1200px circle at 20% 10%, rgba(13,110,253,.18), transparent 45%),
+        radial-gradient(900px circle at 80% 30%, rgba(25,135,84,.18), transparent 40%),
+        radial-gradient(700px circle at 50% 100%, rgba(255,193,7,.18), transparent 45%);
+    }
+
+    .icon-pill{
+      width: 44px; height: 44px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius: 14px;
+      background: rgba(13,110,253,.10);
+    }
+
+    .card-soft { border: 1px solid rgba(0,0,0,.06); }
+    .small-muted { color: #495057; } /* más contraste */
+
+    .kbd-like{
+      background: rgba(0,0,0,.06);
+      padding: .12rem .35rem;
+      border-radius: .4rem;
+    }
+
+    .chip {
+      display:inline-flex; gap:.4rem; align-items:center;
+      padding:.35rem .65rem;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.85);
+      font-size:.92rem;
+      text-decoration:none;
+      color: inherit;
+    }
+    .chip:hover { background: rgba(255,255,255,.98); }
+
+    /* Indicador enlaces externos */
+    a[target="_blank"]::after {
+      content: " ↗";
+      font-size: 0.8em;
+      opacity: 0.6;
+    }
+
+    .sticky-col { position: sticky; top: 1rem; }
+    @media (max-width: 991px) { .sticky-col { position: static; } }
+
+    dl.dict dt { font-weight: 700; }
+    dl.dict dd { margin-bottom: .9rem; }
+
+    .badge-iaas{ background: rgba(13,110,253,.12); color: var(--c-iaas); border: 1px solid rgba(13,110,253,.25); }
+    .badge-paas{ background: rgba(25,135,84,.12); color: var(--c-paas); border: 1px solid rgba(25,135,84,.25); }
+    .badge-saas{ background: rgba(253,126,20,.14); color: var(--c-saas); border: 1px solid rgba(253,126,20,.28); }
+    .badge-edge{ background: rgba(111,66,193,.12); color: var(--c-edge); border: 1px solid rgba(111,66,193,.25); }
+
+    .toc-btn { border: 1px solid rgba(0,0,0,.1); }
+
+    /* Print stylesheet */
+    @media print {
+      .navbar, .sticky-col, footer, .no-print { display: none !important; }
+      .card { page-break-inside: avoid; }
+      body { background: #fff; }
+      a[target="_blank"]::after { content: ""; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="#top">
+        <i class="bi bi-cloud-fill text-primary me-2" aria-hidden="true"></i>DAW 1º · Cloud y sistemas conectados
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon" aria-hidden="true"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#criterios">Criterios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#glosario">Glosario</a></li>
+          <li class="nav-item"><a class="nav-link" href="#diccionario">Diccionario</a></li>
+          <li class="nav-item"><a class="nav-link" href="#comparativa">Tabla comparativa</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ejemplos">Ejemplos DAW</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ventajas">Ventajas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#riesgos">Riesgos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#errores">Errores comunes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#autoevaluacion">Autoevaluación</a></li>
+          <li class="nav-item"><a class="nav-link" href="#referencias">Referencias</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" class="hero py-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-8">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <span class="icon-pill" aria-hidden="true">
+              <i class="bi bi-diagram-3-fill text-primary fs-4"></i>
+            </span>
+            <div>
+              <h1 class="display-6 fw-bold mb-0">
+                <span lang="en">Cloud Computing</span> y sistemas conectados (RA/CE 3)
+              </h1>
+              <div class="small-muted mt-1">
+                Documento para <strong>DAW 1º</strong> con definiciones evaluables, ejemplos reales, riesgos, casos prácticos y autoevaluación.
+              </div>
+            </div>
+          </div>
+
+          <!-- TOC colapsable (útil en móviles) -->
+          <div class="no-print mb-3">
+            <button class="btn btn-light toc-btn w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#tocCollapse" aria-expanded="false" aria-controls="tocCollapse">
+              <i class="bi bi-list-check text-primary me-2" aria-hidden="true"></i>Tabla de contenidos (toca para desplegar)
+            </button>
+            <div class="collapse" id="tocCollapse">
+              <div class="card card-soft mt-2">
+                <div class="card-body">
+                  <div class="d-flex flex-wrap gap-2">
+                    <a class="chip" href="#criterios"><i class="bi bi-clipboard-check" aria-hidden="true"></i>Criterios</a>
+                    <a class="chip" href="#glosario"><i class="bi bi-book" aria-hidden="true"></i>Glosario</a>
+                    <a class="chip" href="#diccionario"><i class="bi bi-journal-text" aria-hidden="true"></i>Diccionario</a>
+                    <a class="chip" href="#comparativa"><i class="bi bi-table" aria-hidden="true"></i>Comparativa</a>
+                    <a class="chip" href="#diagrama"><i class="bi bi-diagram-2" aria-hidden="true"></i>Continuo</a>
+                    <a class="chip" href="#ejemplos"><i class="bi bi-code-slash" aria-hidden="true"></i>Ejemplos DAW</a>
+                    <a class="chip" href="#ventajas"><i class="bi bi-award" aria-hidden="true"></i>Ventajas</a>
+                    <a class="chip" href="#riesgos"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i>Riesgos</a>
+                    <a class="chip" href="#errores"><i class="bi bi-x-circle" aria-hidden="true"></i>Errores comunes</a>
+                    <a class="chip" href="#autoevaluacion"><i class="bi bi-ui-checks" aria-hidden="true"></i>Autoevaluación</a>
+                    <a class="chip" href="#recursos"><i class="bi bi-link-45deg" aria-hidden="true"></i>Recursos</a>
+                    <a class="chip" href="#referencias"><i class="bi bi-journal" aria-hidden="true"></i>APA</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge rounded-pill badge-iaas"><i class="bi bi-hdd-network me-1" aria-hidden="true"></i>IaaS</span>
+            <span class="badge rounded-pill badge-paas"><i class="bi bi-boxes me-1" aria-hidden="true"></i>PaaS</span>
+            <span class="badge rounded-pill badge-saas"><i class="bi bi-app-indicator me-1" aria-hidden="true"></i>SaaS</span>
+            <span class="badge rounded-pill badge-edge"><i class="bi bi-router me-1" aria-hidden="true"></i>Edge/Fog/Mist</span>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <div class="fw-semibold mb-2"><i class="bi bi-compass-fill text-primary me-2" aria-hidden="true"></i>Checklist DAW 1º</div>
+              <ul class="list-unstyled mb-0 small">
+                <li class="mb-2"><i class="bi bi-dot" aria-hidden="true"></i>Clasifica servicios reales como IaaS/PaaS/SaaS.</li>
+                <li class="mb-2"><i class="bi bi-dot" aria-hidden="true"></i>Relaciona funciones cloud con una app web (front/API/BBDD/storage).</li>
+                <li class="mb-2"><i class="bi bi-dot" aria-hidden="true"></i>Explica edge/fog/mist: latencia, conectividad, coste.</li>
+                <li class="mb-2"><i class="bi bi-dot" aria-hidden="true"></i>Argumenta ventajas y riesgos (visión equilibrada).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main class="py-4">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- LEFT -->
+        <aside class="col-lg-3">
+          <div class="sticky-col">
+            <div class="card card-soft shadow-sm">
+              <div class="card-body">
+                <div class="fw-semibold"><i class="bi bi-list-check text-primary me-2" aria-hidden="true"></i>Acceso rápido</div>
+                <hr class="my-2">
+                <div class="list-group list-group-flush">
+                  <a class="list-group-item list-group-item-action" href="#criterios"><i class="bi bi-clipboard-check me-2" aria-hidden="true"></i>Criterios (literal)</a>
+                  <a class="list-group-item list-group-item-action" href="#glosario"><i class="bi bi-book me-2" aria-hidden="true"></i>Glosario rápido</a>
+                  <a class="list-group-item list-group-item-action" href="#diccionario"><i class="bi bi-journal-text me-2" aria-hidden="true"></i>Diccionario evaluable</a>
+                  <a class="list-group-item list-group-item-action" href="#comparativa"><i class="bi bi-table me-2" aria-hidden="true"></i>IaaS vs PaaS vs SaaS</a>
+                  <a class="list-group-item list-group-item-action" href="#diagrama"><i class="bi bi-diagram-2 me-2" aria-hidden="true"></i>Continuo Mist→Fog→Edge→Cloud</a>
+                  <a class="list-group-item list-group-item-action" href="#ejemplos"><i class="bi bi-code-slash me-2" aria-hidden="true"></i>Ejemplos prácticos DAW</a>
+                  <a class="list-group-item list-group-item-action" href="#ventajas"><i class="bi bi-award me-2" aria-hidden="true"></i>Ventajas</a>
+                  <a class="list-group-item list-group-item-action" href="#riesgos"><i class="bi bi-exclamation-triangle me-2" aria-hidden="true"></i>Desventajas / Riesgos</a>
+                  <a class="list-group-item list-group-item-action" href="#errores"><i class="bi bi-x-circle me-2" aria-hidden="true"></i>Errores comunes</a>
+                  <a class="list-group-item list-group-item-action" href="#autoevaluacion"><i class="bi bi-ui-checks me-2" aria-hidden="true"></i>Autoevaluación</a>
+                  <a class="list-group-item list-group-item-action" href="#recursos"><i class="bi bi-link-45deg me-2" aria-hidden="true"></i>Recursos extra</a>
+                  <a class="list-group-item list-group-item-action" href="#referencias"><i class="bi bi-journal me-2" aria-hidden="true"></i>Referencias APA</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-soft shadow-sm mt-3">
+              <div class="card-body small">
+                <div class="fw-semibold mb-1"><i class="bi bi-info-circle text-primary me-2" aria-hidden="true"></i>Formato “diccionario”</div>
+                <div class="small-muted">
+                  Cada concepto incluye <span class="kbd-like">Definición</span>, <span class="kbd-like">Ejemplos reales</span>,
+                  <span class="kbd-like">Ejemplo DAW</span> e <span class="kbd-like">Indicadores evaluables</span>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- RIGHT -->
+        <section class="col-lg-9">
+
+          <!-- CRITERIOS -->
+          <div id="criterios" class="card card-soft shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-clipboard-check text-primary me-2" aria-hidden="true"></i>Criterios de evaluación (tal cual aparecen)</h2>
+
+              <div class="alert alert-primary mb-3">
+                <strong>3. Identifica sistemas basados en cloud/nube y su influencia en el desarrollo de los sistemas digitales.</strong>
+                <div class="mt-2">
+                  <div>a) Se han identificado los diferentes niveles de la cloud/nube.</div>
+                  <div>b) Se han identificado las principales funciones de la cloud/nube (procesamiento de datos, intercambio de información, ejecución de aplicaciones, entre otros).</div>
+                  <div>c) Se ha descrito el concepto de edge computing y su relación con la cloud/nube.</div>
+                  <div>d) Se han definido los conceptos de fog y mist y sus zonas de aplicación en el conjunto.</div>
+                  <div>e) Se han identificado las ventajas que proporciona la utilización de la cloud/nube en los sistemas conectados.</div>
+                </div>
+              </div>
+
+              <div class="alert alert-success mb-0">
+                <strong>3. Cloud y sistemas conectados.</strong>
+                <div class="mt-2">
+                  <div>a) Cloud. Definición y niveles. Cloud computing:</div>
+                  <div class="ms-3">i. Infraestructura como Servicio o Infrastructure as a Service (IaaS).</div>
+                  <div class="ms-3">ii. Plataforma como Servicio o Platform as a Service (Paas). i</div>
+                  <div class="ms-3">ii. Software como Servicio o Software as a Service (Saas).</div>
+                  <div class="mt-2">b) Posibilidades del trabajo en la cloud.</div>
+                  <div>c) Edge computing y su relación con la cloud.</div>
+                  <div>d) Fog y Mist. Relación con la cloud.</div>
+                  <div>e) Ventajas del uso de los recursos de la cloud:</div>
+                  <div class="ms-3">i. Protección de datos.</div>
+                  <div class="ms-3">ii. Interoperabilidad.</div>
+                  <div class="ms-3">iii. Movilidad.</div>
+                  <div class="ms-3">iv. Trabajo cooperativo.</div>
+                  <div class="mt-2">f) Uso de Cloud y la rentabilidad de la empresa.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GLOSARIO -->
+          <div id="glosario" class="card card-soft shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-book text-primary me-2" aria-hidden="true"></i>Glosario rápido (DAW 1º)</h2>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="p-3 bg-white rounded-3 border">
+                    <div class="fw-semibold">Runtime</div>
+                    <div class="small-muted">Entorno de ejecución de una app (p. ej., Node.js, JVM, PHP-FPM).</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-3 bg-white rounded-3 border">
+                    <div class="fw-semibold">Escalado</div>
+                    <div class="small-muted">Ajuste de recursos (CPU/RAM/instancias) para soportar más o menos carga.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-3 bg-white rounded-3 border">
+                    <div class="fw-semibold">Latencia</div>
+                    <div class="small-muted">Tiempo de respuesta percibido; clave en apps interactivas o en tiempo real.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-3 bg-white rounded-3 border">
+                    <div class="fw-semibold">CDN</div>
+                    <div class="small-muted">Red de distribución de contenidos que acerca archivos a los usuarios (edge).</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DICCIONARIO -->
+          <div id="diccionario" class="card card-soft shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-journal-text text-primary me-2" aria-hidden="true"></i>Diccionario evaluable</h2>
+
+              <!-- Cloud -->
+              <div class="card card-soft mb-3">
+                <div class="card-body">
+                  <h3 class="h5 mb-3"><i class="bi bi-cloud-fill text-primary me-2" aria-hidden="true"></i><span lang="en">Cloud Computing</span> (nube)</h3>
+                  <dl class="dict">
+                    <dt>Definición</dt>
+                    <dd>
+                      Modelo de acceso por red, bajo demanda, a un conjunto compartido de recursos configurables que se aprovisionan/liberan rápidamente con mínima gestión.
+                      <span class="badge rounded-pill badge-iaas ms-1">Marco: NIST</span>
+                    </dd>
+
+                    <dt>Niveles (modelos de servicio)</dt>
+                    <dd>
+                      <ul class="mb-0">
+                        <li><span class="badge rounded-pill badge-iaas">IaaS</span> Infraestructura: VMs, red, discos; el equipo administra SO, runtime y despliegue.</li>
+                        <li><span class="badge rounded-pill badge-paas">PaaS</span> Plataforma: runtime/hosting gestionado; el equipo se centra en código y configuración.</li>
+                        <li><span class="badge rounded-pill badge-saas">SaaS</span> Software: aplicación lista para usar; el usuario configura y utiliza.</li>
+                      </ul>
+                    </dd>
+
+                    <dt>Indicadores evaluables</dt>
+                    <dd class="mb-0">
+                      <ul class="mb-0">
+                        <li>Clasifica servicios reales como IaaS/PaaS/SaaS justificando responsabilidad del proveedor vs equipo.</li>
+                        <li>Diferencia “cloud ≠ internet” (la nube es un modelo de servicio; internet es la red).</li>
+                      </ul>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+
+              <!-- Funciones -->
+              <div class="card card-soft mb-3">
+                <div class="card-body">
+                  <h3 class="h5 mb-3"><i class="bi bi-cpu-fill text-primary me-2" aria-hidden="true"></i>Funciones principales de la cloud</h3>
+                  <dl class="dict">
+                    <dt>Definición</dt>
+                    <dd>Capacidades típicas que la nube ofrece para construir, ejecutar y operar aplicaciones web.</dd>
+
+                    <dt>Funciones (mínimo evaluable)</dt>
+                    <dd>
+                      <ul class="mb-0">
+                        <li><strong>Procesamiento de datos</strong>: backend, colas, tareas programadas (<span lang="en">jobs</span>).</li>
+                        <li><strong>Intercambio de información</strong>: APIs REST/GraphQL, mensajería, sincronización.</li>
+                        <li><strong>Ejecución de aplicaciones</strong>: hosting, balanceo, autoescalado.</li>
+                        <li><strong>Almacenamiento</strong>: ficheros/objetos, BBDD, copias de seguridad.</li>
+                      </ul>
+                    </dd>
+
+                    <dt>Ejemplo DAW</dt>
+                    <dd class="mb-0">
+                      App CRUD: <span class="kbd-like">Frontend</span> + <span class="kbd-like">API</span> + <span class="kbd-like">BBDD</span> + <span class="kbd-like">Storage</span> para imágenes.
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+
+              <!-- Edge -->
+              <div class="card card-soft mb-3">
+                <div class="card-body">
+                  <h3 class

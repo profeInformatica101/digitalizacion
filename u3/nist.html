@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DAW 1º — Traducción técnica (NIST SP 800-145): Cloud Computing</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --c-iaas:#0d6efd; /* azul */
+      --c-paas:#198754; /* verde */
+      --c-saas:#fd7e14; /* naranja */
+    }
+    body{ background:#f6f7fb; }
+    .card-soft{ border:1px solid rgba(0,0,0,.06); }
+    .small-muted{ color:#495057; }
+    dl.dict dt{ font-weight:700; }
+    dl.dict dd{ margin-bottom:.9rem; }
+    .badge-iaas{ background:rgba(13,110,253,.12); color:var(--c-iaas); border:1px solid rgba(13,110,253,.25); }
+    .badge-paas{ background:rgba(25,135,84,.12); color:var(--c-paas); border:1px solid rgba(25,135,84,.25); }
+    .badge-saas{ background:rgba(253,126,20,.14); color:var(--c-saas); border:1px solid rgba(253,126,20,.28); }
+    a[target="_blank"]::after{ content:" ↗"; font-size:.8em; opacity:.6; }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="#top">
+        <i class="bi bi-cloud-fill text-primary me-2" aria-hidden="true"></i>
+        DAW 1º · NIST SP 800-145 (traducción técnica)
+      </a>
+    </div>
+  </nav>
+
+  <header id="top" class="py-4">
+    <div class="container">
+      <div class="card card-soft shadow-sm">
+        <div class="card-body">
+          <h1 class="h3 mb-2">
+            <span lang="en">The NIST Definition of Cloud Computing</span> (NIST SP 800-145)
+          </h1>
+          <p class="mb-0 small-muted">
+            Traducción y adaptación didáctica para <strong>1º de DAW</strong> (desarrollo web y trabajo colaborativo).
+            Basado en el documento oficial de NIST. :contentReference[oaicite:1]{index=1}
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pb-5">
+    <div class="container">
+
+      <!-- Definición NIST -->
+      <section class="mb-4">
+        <div class="card card-soft shadow-sm">
+          <div class="card-body">
+            <h2 class="h4 mb-3"><i class="bi bi-file-text text-primary me-2" aria-hidden="true"></i>1) Definición de computación en la nube (traducción técnica)</h2>
+
+            <div class="alert alert-primary">
+              <strong>Definición (NIST, traducción):</strong>
+              La computación en la nube es un modelo que permite el acceso ubicuo, cómodo y bajo demanda, a través de la red, a un conjunto compartido de recursos informáticos configurables
+              (por ejemplo: redes, servidores, almacenamiento, aplicaciones y servicios), que pueden aprovisionarse y liberarse rápidamente con un esfuerzo mínimo de gestión o interacción con el proveedor.
+              <div class="mt-2 small">
+                Este modelo se compone de <strong>cinco características esenciales</strong>, <strong>tres modelos de servicio</strong> y <strong>cuatro modelos de despliegue</strong>. :contentReference[oaicite:2]{index=2}
+              </div>
+            </div>
+
+            <div class="small-muted">
+              <strong>En DAW 1º:</strong> esta definición explica por qué hoy “montar” una aplicación web puede ser cuestión de minutos:
+              el proveedor automatiza el aprovisionamiento (servidores, escalado, almacenamiento, etc.), y el equipo se centra en el código y la configuración.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Características esenciales -->
+      <section class="mb-4">
+        <div class="card card-soft shadow-sm">
+          <div class="card-body">
+            <h2 class="h4 mb-3"><i class="bi bi-check2-circle text-primary me-2" aria-hidden="true"></i>2) Cinco características esenciales (NIST) — traducción</h2>
+
+            <dl class="dict mb-0">
+              <dt>1. Autoservicio bajo demanda (<span lang="en">On-demand self-service</span>)</dt>
+              <dd class="small-muted">
+                El consumidor puede aprovisionar capacidades (p. ej., tiempo de servidor o almacenamiento) de forma automática, cuando las necesita, sin intervención humana del proveedor. :contentReference[oaicite:3]{index=3}
+              </dd>
+
+              <dt>2. Acceso amplio por red (<span lang="en">Broad network access</span>)</dt>
+              <dd class="small-muted">
+                Las capacidades están disponibles en red y se accede a ellas con mecanismos estándar, facilitando su uso desde distintos dispositivos (móvil, tablet, portátil o PC). :contentReference[oaicite:4]{index=4}
+              </dd>
+
+              <dt>3. Agrupación de recursos (<span lang="en">Resource pooling</span>)</dt>
+              <dd class="small-muted">
+                Los recursos del proveedor se comparten para atender a múltiples consumidores mediante un modelo multi-inquilino (multi-tenant), asignando y reasignando recursos físicos/virtuales según demanda.
+                Existe independencia de ubicación: el cliente no conoce ni controla la localización exacta, aunque puede seleccionar un nivel alto (país/region/CPD). :contentReference[oaicite:5]{index=5}
+              </dd>
+
+              <dt>4. Elasticidad rápida (<span lang="en">Rapid elasticity</span>)</dt>
+              <dd class="small-muted">
+                Las capacidades se aprovisionan y liberan de forma elástica (a veces automáticamente) para escalar hacia arriba o abajo según la demanda; para el consumidor puede “parecer” ilimitado. :contentReference[oaicite:6]{index=6}
+              </dd>
+
+              <dt>5. Servicio medido (<span lang="en">Measured service</span>)</dt>
+              <dd class="small-muted mb-0">
+                Los sistemas cloud controlan y optimizan el uso mediante medición (metering) según el tipo de servicio (almacenamiento, CPU, ancho de banda, usuarios activos), monitorizando y reportando consumo.
+                Esto aporta transparencia para proveedor y consumidor. :contentReference[oaicite:7]{index=7}
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modelos de servicio -->
+      <section class="mb-4">
+        <div class="card card-soft shadow-sm">
+          <div class="card-body">
+            <h2 class="h4 mb-3"><i class="bi bi-layers text-primary me-2" aria-hidden="true"></i>3) Modelos de servicio (IaaS / PaaS / SaaS) — traducción + DAW</h2>
+
+            <div class="row g-3">
+
+              <!-- SaaS -->
+              <div class="col-lg-4">
+                <div class="card card-soft h-100 shadow-sm">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <span class="badge rounded-pill badge-saas">SaaS</span>
+                      <span class="text-muted small"><span lang="en">Software as a Service</span></span>
+                    </div>
+
+                    <dl class="dict mb-0">
+                      <dt>Definición (traducción NIST)</dt>
+                      <dd class="small-muted">
+                        Capacidad ofrecida al consumidor: usar las aplicaciones del proveedor que se ejecutan sobre infraestructura cloud.
+                        Accesibles desde distintos dispositivos mediante un cliente ligero (p. ej., navegador web) o una interfaz de programa.
+                        El consumidor no gestiona ni controla la infraestructura subyacente (red, servidores, SO, almacenamiento) ni las capacidades internas de la aplicación,
+                        salvo configuraciones limitadas específicas del usuario. :contentReference[oaicite:8]{index=8}
+                      </dd>
+
+                      <dt>Ejemplos y relación con DAW 1º</dt>
+                      <dd class="small-muted mb-0">
+                        <ul class="mb-0">
+                          <li><strong>GitHub</strong>: repos, issues, PRs → trabajo colaborativo y trazabilidad del proyecto web.</li>
+                          <li><strong>GitHub Actions</strong>: CI/CD como servicio → automatizar tests y despliegues.</li>
+                        </ul>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PaaS -->
+              <div class="col-lg-4">
+                <div class="card card-soft h-100 shadow-sm">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <span class="badge rounded-pill badge-paas">PaaS</span>
+                      <span class="text-muted small"><span lang="en">Platform as a Service</span></span>
+                    </div>
+
+                    <dl class="dict mb-0">
+                      <dt>Definición (traducción NIST)</dt>
+                      <dd class="small-muted">
+                        Capacidad ofrecida al consumidor: desplegar en la infraestructura cloud aplicaciones creadas o adquiridas por el consumidor,
+                        usando lenguajes, bibliotecas, servicios y herramientas soportadas por el proveedor.
+                        El consumidor no gestiona ni controla la infraestructura subyacente (red, servidores, SO o almacenamiento),
+                        pero sí controla las aplicaciones desplegadas y, en ocasiones, la configuración del entorno de alojamiento. :contentReference[oaicite:9]{index=9}
+                      </dd>
+
+                      <dt>Ejemplos y relación con DAW 1º</dt>
+                      <dd class="small-muted mb-0">
+                        <ul class="mb-0">
+                          <li><strong>Vercel</strong>: despliegue de frontends (Next/React) con previews por PR.</li>
+                          <li><strong>Azure App Service</strong>: publicar una API web sin administrar el SO.</li>
+                        </ul>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+
+              <!-- IaaS -->
+              <div class="col-lg-4">
+                <div class="card card-soft h-100 shadow-sm">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <span class="badge rounded-pill badge-iaas">IaaS</span>
+                      <span class="text-muted small"><span lang="en">Infrastructure as a Service</span></span>
+                    </div>
+
+                    <dl class="dict mb-0">
+                      <dt>Definición (traducción NIST)</dt>
+                      <dd class="small-muted">
+                        Capacidad ofrecida al consumidor: aprovisionar procesamiento, almacenamiento, redes y otros recursos fundamentales,
+                        sobre los cuales el consumidor puede desplegar y ejecutar software arbitrario, incluyendo sistemas operativos y aplicaciones.
+                        El consumidor no gestiona ni controla la infraestructura cloud subyacente, pero sí controla el SO, el almacenamiento y las aplicaciones desplegadas,
+                        y posiblemente un control limitado de ciertos componentes de red (p. ej., cortafuegos del host). :contentReference[oaicite:10]{index=10}
+                      </dd>
+
+                      <dt>Ejemplos y relación con DAW 1º</dt>
+                      <dd class="small-muted mb-0">
+                        <ul class="mb-0">
+                          <li><strong>Amazon EC2</strong> / <strong>Azure VMs</strong>: montar un servidor web real (Nginx/Apache), HTTPS, logs y despliegue manual.</li>
+                          <li>Muy útil para entender “qué hay debajo” de PaaS (operación, parches, seguridad).</li>
+                        </ul>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="alert alert-light border mt-3 mb-0">
+              <strong>Clave DAW:</strong> SaaS = “uso una aplicación”; PaaS = “subo mi app y configuro”; IaaS = “administro el servidor + despliego”.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modelos de despliegue -->
+      <section class="mb-4">
+        <div class="card card-soft shadow-sm">
+          <div class="card-body">
+            <h2 class="h4 mb-3"><i class="bi bi-diagram-3 text-primary me-2" aria-hidden="true"></i>4) Modelos de despliegue — traducción</h2>
+
+            <dl class="dict mb-0">
+              <dt>Nube privada (<span lang="en">Private cloud</span>)</dt>
+              <dd class="small-muted">
+                Infraestructura cloud para uso exclusivo de una organización (con múltiples consumidores internos). Puede ser gestionada por la organización, por un tercero o combinaciones; puede estar dentro o fuera de las instalaciones. :contentReference[oaicite:11]{index=11}
+              </dd>
+
+              <dt>Nube comunitaria (<span lang="en">Community cloud</span>)</dt>
+              <dd class="small-muted">
+                Infraestructura cloud para uso exclusivo de una comunidad específica de organizaciones con preocupaciones compartidas (misión, requisitos de seguridad, políticas o cumplimiento). :contentReference[oaicite:12]{index=12}
+              </dd>
+
+              <dt>Nube pública (<span lang="en">Public cloud</span>)</dt>
+              <dd class="small-muted">
+                Infraestructura cloud disponible para el uso abierto del público general. Puede ser propiedad/operada por empresa, academia o administración pública; está en instalaciones del proveedor. :contentReference[oaicite:13]{index=13}
+              </dd>
+
+              <dt>Nube híbrida (<span lang="en">Hybrid cloud</span>)</dt>
+              <dd class="small-muted mb-0">
+                Composición de dos o más infraestructuras cloud distintas (privada, comunitaria o pública) que permanecen como entidades únicas,
+                pero se integran con tecnología estandarizada o propietaria que permite portabilidad de datos y aplicaciones (p. ej., balanceo entre nubes). :contentReference[oaicite:14]{index=14}
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- Referencia APA -->
+      <section>
+        <div class="card card-soft shadow-sm">
+          <div class="card-body">
+            <h2 class="h4 mb-3"><i class="bi bi-journal-text text-primary me-2" aria-hidden="true"></i>Referencia del estándar (APA 7)</h2>
+            <p class="mb-0">
+              Mell, P. M., &amp; Grance, T. (2011). <em>The NIST definition of cloud computing</em> (NIST Special Publication 800-145). National Institute of Standards and Technology.
+            </p>
+            <div class="small-muted mt-2">
+              Fuente base: NIST SP 800-145 (PDF aportado). :contentReference[oaicite:15]{index=15}
+            </div>
+          </div>
+        </div>
+      </section>
+<!-- =======================
+     NUEVO BLOQUE: Raspberry Pi + n8n + IA + Prácticas
+     (Pégalo dentro de <main> donde quieras, por ejemplo antes de "Referencias")
+======================= -->
+
+<section id="herramientas" class="mb-4">
+  <div class="card card-soft shadow-sm">
+    <div class="card-body">
+      <h2 class="h4 mb-3">
+        <i class="bi bi-tools text-primary me-2" aria-hidden="true"></i>
+        Integración con Raspberry Pi, n8n e Inteligencia Artificial (contexto DAW 1º)
+      </h2>
+
+      <div class="row g-3">
+
+        <!-- Raspberry Pi -->
+        <div class="col-lg-4">
+          <div class="p-3 bg-white border rounded-3 h-100">
+            <div class="fw-semibold mb-2">
+              <i class="bi bi-cpu-fill text-primary me-2" aria-hidden="true"></i>Raspberry Pi como laboratorio Cloud/Edge
+            </div>
+
+            <dl class="dict mb-0">
+              <dt>Uso principal</dt>
+              <dd class="small-muted">
+                Simular <strong>nube privada</strong> (on-prem) y/o <strong>edge/fog</strong> para servicios web reales
+                (API + BBDD + reverse proxy) con coste casi cero.
+              </dd>
+
+              <dt>Ejemplos DAW 1º</dt>
+              <dd class="small-muted mb-0">
+                <ul class="mb-0">
+                  <li><strong>IaaS “local”</strong>: Docker + Nginx + app Node/PHP + PostgreSQL en la Pi.</li>
+                  <li><strong>Edge</strong>: cachear contenido, servir estáticos localmente, o procesar eventos antes de enviarlos a la nube.</li>
+                  <li><strong>Fog (gateway)</strong>: la Pi como “pasarela” que agrega datos (sensores/logs) y los manda a cloud.</li>
+                </ul>
+              </dd>
+            </dl>
+
+            <div class="small text-muted mt-2">
+              Clave didáctica: comparar el “control total” (Pi/IaaS local) vs rapidez (PaaS) vs comodidad (SaaS).
+            </div>
+          </div>
+        </div>
+
+        <!-- n8n -->
+        <div class="col-lg-4">
+          <div class="p-3 bg-white border rounded-3 h-100">
+            <div class="fw-semibold mb-2">
+              <i class="bi bi-diagram-3-fill text-success me-2" aria-hidden="true"></i>n8n (automatización e integraciones)
+            </div>
+
+            <dl class="dict mb-0">
+              <dt>Qué es</dt>
+              <dd class="small-muted">
+                Herramienta de automatización tipo “workflows” (webhooks, APIs, tareas programadas) para integrar servicios.
+              </dd>
+
+              <dt>Clasificación (según despliegue)</dt>
+              <dd class="small-muted">
+                <ul class="mb-0">
+                  <li><strong>SaaS</strong>: si se usa un servicio gestionado en la nube.</li>
+                  <li><strong>IaaS / On-prem</strong>: si se auto-hospeda en una VM o en <strong>Raspberry Pi</strong>.</li>
+                </ul>
+              </dd>
+
+              <dt>Ejemplos DAW 1º</dt>
+              <dd class="small-muted mb-0">
+                <ul class="mb-0">
+                  <li>Webhook “nuevo PR” → crear tarjeta en tablero → avisar a chat → desplegar preview.</li>
+                  <li>Webhook “nuevo alumno/entrega” → generar informe → guardar en drive → notificar.</li>
+                  <li>Programar backups/exportaciones de BBDD y subir a storage.</li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+        </div>
+
+        <!-- IA -->
+        <div class="col-lg-4">
+          <div class="p-3 bg-white border rounded-3 h-100">
+            <div class="fw-semibold mb-2">
+              <i class="bi bi-stars text-warning me-2" aria-hidden="true"></i>Inteligencia Artificial en cloud (para DAW)
+            </div>
+
+            <dl class="dict mb-0">
+              <dt>Qué aporta</dt>
+              <dd class="small-muted">
+                IA como servicio para acelerar tareas del ciclo de vida: documentación, pruebas, soporte, análisis de logs,
+                generación de contenido y asistentes conversacionales.
+              </dd>
+
+              <dt>Encaje cloud</dt>
+              <dd class="small-muted">
+                <ul class="mb-0">
+                  <li><strong>SaaS</strong>: herramientas completas (chat, edición, diseño, soporte).</li>
+                  <li><strong>PaaS/API</strong>: integrar IA en tu app web (chatbot, clasificación, búsqueda semántica).</li>
+                  <li><strong>Edge</strong>: respuestas rápidas y filtrado antes de llegar a cloud (cuando aplique).</li>
+                </ul>
+              </dd>
+
+              <dt>Ejemplos DAW 1º</dt>
+              <dd class="small-muted mb-0">
+                <ul class="mb-0">
+                  <li>Generar borrador de README y documentación API (OpenAPI) y revisarlo críticamente.</li>
+                  <li>Proponer casos de prueba unitarios y de integración y validarlos con el proyecto real.</li>
+                  <li>Asistente FAQ para la web del proyecto (RAG: docs → respuestas).</li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="alert alert-light border mt-3 mb-0">
+        <strong>Idea potente para el módulo:</strong> “Arquitectura híbrida educativa”.
+        <span class="d-block small mt-1">
+          Raspberry Pi (fog/edge + laboratorio) + servicios PaaS/SaaS (despliegue rápido y colaboración) + IA (productividad).
+        </span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="practicas" class="mb-4">
+  <div class="card card-soft shadow-sm">
+    <div class="card-body">
+      <h2 class="h4 mb-3">
+        <i class="bi bi-journal-check text-primary me-2" aria-hidden="true"></i>
+        Prácticas evaluables (comparativa de servicios + propuesta de arquitectura)
+      </h2>
+
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="p-3 bg-white border rounded-3 h-100">
+            <div class="fw-semibold mb-2">
+              <i class="bi bi-list-check text-primary me-2" aria-hidden="true"></i>Mínimo requerido (por equipo)
+            </div>
+            <ul class="small mb-0">
+              <li><strong>3 servicios IaaS</strong> comparados (p. ej., AWS EC2, Azure VM, Google Compute, DigitalOcean, Linode…).</li>
+              <li><strong>5 servicios PaaS</strong> (p. ej., Vercel, Netlify, Railway, Render, Fly.io, Azure App Service…).</li>
+              <li><strong>4 servicios SaaS</strong> (p. ej., GitHub, GitLab, Jira, Slack, Notion, Figma…).</li>
+              <li><strong>2 servicios Edge</strong> (p. ej., Cloudflare Workers, AWS Lambda@Edge, Fastly Compute…).</li>
+              <li><strong>1 ejemplo Fog/Mist</strong>:
+                <ul class="mb-0">
+                  <li>Opción A: servicio IoT/gateway.</li>
+                  <li>Opción B: <strong>Raspberry Pi</strong> como gateway fog + explicación teórica y práctica.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="p-3 bg-white border rounded-3 h-100">
+            <div class="fw-semibold mb-2">
+              <i class="bi bi-git text-danger me-2" aria-hidden="true"></i>Workflow GitHub (obligatorio)
+            </div>
+            <ol class="small mb-0">
+              <li>Crear <strong>Issue</strong> para cada servicio a analizar.</li>
+              <li>Crear rama desde la Issue: <code>feature/comparativa-vercel</code></li>
+              <li>Documentar en <code>/docs/comparativas/vercel.md</code></li>
+              <li>Abrir <strong>Pull Request</strong> y solicitar revisión de otro compañero.</li>
+              <li>Merge tras aprobación (y checklist completo).</li>
+            </ol>
+
+            <div class="small text-muted mt-2">
+              Extra recomendado: automatizar con <strong>GitHub Actions</strong> (lint/tests) y, si procede, notificación con <strong>n8n</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="accordion mt-3" id="accPracticas">
+
+        <!-- Plantilla -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="hPlantilla">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#cPlantilla" aria-expanded="false" aria-controls="cPlantilla">
+              <i class="bi bi-file-earmark-code me-2" aria-hidden="true"></i>
+              Plantilla de análisis por servicio (copiar/pegar en Markdown)
+            </button>
+          </h3>
+          <div id="cPlantilla" class="accordion-collapse collapse" aria-labelledby="hPlantilla" data-bs-parent="#accPracticas">
+            <div class="accordion-body">
+              <div class="alert alert-secondary small mb-2">
+                Guardar cada ficha en <code>/docs/comparativas/[servicio].md</code>
+              </div>
+              <pre class="bg-dark text-light p-3 rounded-3 mb-0"><code>## Servicio: [nombre]
+**Responsable:** @usuario
+**Clasificación:** IaaS / PaaS / SaaS / Edge / Fog(Mist)
+
+### 1. Características técnicas
+- Qué gestiona el proveedor
+- Qué gestiona el equipo
+- Stack tecnológico soportado
+
+### 2. Funcionalidades cloud aplicables
+- [ ] Procesamiento de datos
+- [ ] Intercambio de información
+- [ ] Ejecución de aplicaciones
+- [ ] Almacenamiento
+- [ ] Edge/Fog computing
+
+### 3. Pricing (capa gratuita + estimación)
+| Concepto | Capa gratuita | Coste estimado (tráfico medio) |
+|----------|---------------|--------------------------------|
+| Compute  |               |                                |
+| Storage  |               |                                |
+| Network  |               |                                |
+
+### 4. Ventajas para el proyecto
+- [ ] Protección de datos (backups, redundancia)
+- [ ] Interoperabilidad (APIs, integraciones)
+- [ ] Movilidad (acceso remoto, multi-dispositivo)
+- [ ] Trabajo cooperativo (entornos compartidos)
+
+### 5. Evaluación
+**Pros:**
+-
+
+**Contras:**
+-
+
+**Recomendación:** ✅ Usar / ⚠️ Con condiciones / ❌ Descartar
+
+### 6. Enlaces
+- Documentación oficial:
+- Pricing:
+- Tutorial/Quick start:
+</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fase 2 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="hFase2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#cFase2" aria-expanded="false" aria-controls="cFase2">
+              <i class="bi bi-clipboard2-data me-2" aria-hidden="true"></i>
+              Fase 2 — Comparativa de servicios (Criterios a, b, c, d, e)
+            </button>
+          </h3>
+          <div id="cFase2" class="accordion-collapse collapse" aria-labelledby="hFase2" data-bs-parent="#accPracticas">
+            <div class="accordion-body">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="p-3 bg-white border rounded-3 h-100">
+                    <div class="fw-semibold mb-2"><i class="bi bi-check2-square text-primary me-2" aria-hidden="true"></i>Tareas mínimas</div>
+                    <ul class="small mb-0">
+                      <li>Completar fichas (plantilla) para cada servicio.</li>
+                      <li>Marcar funcionalidades cloud aplicables (checklist).</li>
+                      <li>Incluir un uso concreto en el proyecto web (frontend/API/BBDD/storage/CI/CD).</li>
+                      <li>Concluir con recomendación y justificación (pros/contras).</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-3 bg-white border rounded-3 h-100">
+                    <div class="fw-semibold mb-2"><i class="bi bi-lightbulb text-warning me-2" aria-hidden="true"></i>Bonus (Raspberry Pi / n8n / IA)</div>
+                    <ul class="small mb-0">
+                      <li>Comparar “PaaS vs Raspberry Pi” para el mismo servicio (p. ej., API en Railway vs API en Pi).</li>
+                      <li>Crear 1 workflow n8n: webhook → issue/PR → notificación → registro.</li>
+                      <li>Usar IA para: documentación, pruebas, o soporte FAQ (y explicar límites y validación humana).</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-light border mt-3 mb-0 small">
+                Consejo: en DAW 1º, lo importante es justificar correctamente <strong>quién gestiona qué</strong> y cómo impacta en el desarrollo (rapidez, control, coste, seguridad).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fase 3 -->
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="hFase3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#cFase3" aria-expanded="false" aria-controls="cFase3">
+              <i class="bi bi-diagram-3 me-2" aria-hidden="true"></i>
+              Fase 3 — Propuesta de arquitectura (2 sesiones)
+            </button>
+          </h3>
+          <div id="cFase3" class="accordion-collapse collapse" aria-labelledby="hFase3" data-bs-parent="#accPracticas">
+            <div class="accordion-body">
+              <div class="alert alert-primary small">
+                <strong>Objetivo:</strong> diseñar una arquitectura razonada para un proyecto web real (DAW): frontend + API + datos + despliegue + colaboración,
+                incorporando (si procede) edge/fog/mist y herramientas como n8n/IA.
+              </div>
+
+              <div class="p-3 bg-white border rounded-3">
+                <div class="fw-semibold mb-2"><i class="bi bi-folder2-open text-primary me-2" aria-hidden="true"></i>Estructura del entregable</div>
+                <pre class="bg-dark text-light p-3 rounded-3 mb-0"><code>/docs/
+├── arquitectura/
+│   ├── diagrama-arquitectura.png (o .svg)
+│   ├── arquitectura-propuesta.md
+│   ├── justificacion-servicios.md
+│   └── estimacion-costes.md
+</code></pre>
+              </div>
+
+              <div class="row g-3 mt-3">
+                <div class="col-md-6">
+                  <div class="p-3 bg-white border rounded-3 h-100">
+                    <div class="fw-semibold mb-2"><i class="bi bi-diagram-2 text-success me-2" aria-hidden="true"></i>Arquitectura sugerida (ejemplo)</div>
+                    <ul class="small mb-0">
+                      <li><strong>Frontend</strong> en PaaS (deploy desde Git).</li>
+                      <li><strong>API</strong> en PaaS o en IaaS (según control requerido).</li>
+                      <li><strong>BBDD</strong> gestionada (PaaS/DBaaS) o self-hosted (IaaS/Pi).</li>
+                      <li><strong>Edge</strong> para estáticos/caché (CDN/Workers).</li>
+                      <li><strong>Fog</strong> con Raspberry Pi como gateway opcional.</li>
+                      <li><strong>n8n</strong> para automatizar eventos (PRs, despliegue, notificaciones).</li>
+                      <li><strong>IA</strong> para documentación, testing y soporte (con validación humana).</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-3 bg-white border rounded-3 h-100">
+                    <div class="fw-semibold mb-2"><i class="bi bi-rulers text-danger me-2" aria-hidden="true"></i>Criterios que deben quedar evidentes</div>
+                    <ul class="small mb-0">
+                      <li><strong>a)</strong> niveles cloud identificados (IaaS/PaaS/SaaS).</li>
+                      <li><strong>b)</strong> funciones cloud aplicadas (procesamiento, intercambio, ejecución, almacenamiento).</li>
+                      <li><strong>c)</strong> edge explicado y justificado en el caso.</li>
+                      <li><strong>d)</strong> fog/mist definidos y ubicados (si se usan).</li>
+                      <li><strong>e)</strong> ventajas justificadas con ejemplos (protección, interoperabilidad, movilidad, cooperación).</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
