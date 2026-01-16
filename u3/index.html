@@ -78,7 +78,7 @@
       opacity: .92;
     }
 
-    /* === NUEVO: mini “cards” CSS para regla rápida IaaS/PaaS/SaaS (atractivo, sin tocar Bootstrap) === */
+    /* === mini “cards” CSS para regla rápida IaaS/PaaS/SaaS === */
     .svc-cards{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -274,13 +274,14 @@
       </button>
       <div id="nav" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#criterios">Criterios</a></li>
-          <li class="nav-item"><a class="nav-link" href="#video">Vídeo</a></li>
-          <li class="nav-item"><a class="nav-link" href="#diccionario">Diccionario evaluable</a></li>
-          <li class="nav-item"><a class="nav-link" href="#fog-ia">Fog + IA (marco legal)</a></li>
-          <li class="nav-item"><a class="nav-link" href="#ejemplos">Ejemplos reales</a></li>
-          <li class="nav-item"><a class="nav-link" href="#evidencias">Evidencias DAW</a></li>
-          <li class="nav-item"><a class="nav-link" href="#referencias">Referencias APA</a></li>
+          <li class="nav-item"><a class="nav-link" href="#criterios"><i class="bi bi-clipboard-check me-2" aria-hidden="true"></i>Criterios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#clave-evaluar"><i class="bi bi-info-circle me-2" aria-hidden="true"></i>Clave para evaluar</a></li>
+          <li class="nav-item"><a class="nav-link" href="#video"><i class="bi bi-play-btn me-2" aria-hidden="true"></i>Vídeo</a></li>
+          <li class="nav-item"><a class="nav-link" href="#diccionario"><i class="bi bi-book me-2" aria-hidden="true"></i>Diccionario evaluable</a></li>
+          <li class="nav-item"><a class="nav-link" href="#fog-ia"><i class="bi bi-cpu me-2" aria-hidden="true"></i>Fog + IA (marco legal)</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ejemplos"><i class="bi bi-globe2 me-2" aria-hidden="true"></i>Ejemplos reales</a></li>
+          <li class="nav-item"><a class="nav-link" href="#evidencias"><i class="bi bi-easel2 me-2" aria-hidden="true"></i>Evidencias DAW</a></li>
+          <li class="nav-item"><a class="nav-link" href="#referencias"><i class="bi bi-journal-text me-2" aria-hidden="true"></i>Referencias APA</a></li>
         </ul>
       </div>
     </div>
@@ -368,69 +369,7 @@
     <div class="container">
       <div class="row g-4">
 
-        <!-- LEFT NAV -->
-        <aside class="col-lg-3">
-          <div class="sticky-col">
-            <div class="card card-soft shadow-sm">
-              <div class="card-body">
-                <div class="fw-semibold"><i class="bi bi-list-check text-primary me-2" aria-hidden="true"></i>Secciones</div>
-                <hr class="my-2">
-                <div class="list-group list-group-flush">
-                  <a class="list-group-item list-group-item-action" href="#criterios"><i class="bi bi-clipboard-check me-2" aria-hidden="true"></i>Criterios (literal)</a>
-                  <a class="list-group-item list-group-item-action" href="#video"><i class="bi bi-play-btn me-2" aria-hidden="true"></i>Vídeo</a>
-                  <a class="list-group-item list-group-item-action" href="#diccionario"><i class="bi bi-book me-2" aria-hidden="true"></i>Diccionario evaluable</a>
-                  <a class="list-group-item list-group-item-action" href="#fog-ia"><i class="bi bi-cpu me-2" aria-hidden="true"></i>Fog + IA (marco legal)</a>
-                  <a class="list-group-item list-group-item-action" href="#ejemplos"><i class="bi bi-globe2 me-2" aria-hidden="true"></i>Ejemplos reales</a>
-                  <a class="list-group-item list-group-item-action" href="#evidencias"><i class="bi bi-easel2 me-2" aria-hidden="true"></i>Evidencias DAW</a>
-                  <a class="list-group-item list-group-item-action" href="#referencias"><i class="bi bi-journal-text me-2" aria-hidden="true"></i>Referencias APA</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="card card-soft shadow-sm mt-3">
-              <div class="card-body small">
-                <div class="fw-semibold mb-1"><i class="bi bi-info-circle text-primary me-2" aria-hidden="true"></i>Clave para evaluar</div>
-                <div class="small-muted">
-                  En cada concepto: <span class="kbd-like">Definición</span> + <span class="kbd-like">Ejemplo real</span> +
-                  <span class="kbd-like">Ejemplo DAW</span> + <span class="kbd-like">Indicadores</span>.
-                </div>
-
-                <!-- ✅ NUEVO (CSS atractivo): regla rápida -->
-                <div class="svc-cards" aria-label="Regla rápida IaaS PaaS SaaS">
-                  <div class="svc-card svc-card--saas">
-                    <div class="svc-head">
-                      <div class="svc-title"><i class="bi bi-app-indicator" aria-hidden="true"></i> SaaS</div>
-                      <span class="svc-badge">Software</span>
-                    </div>
-                    <p class="svc-body">Uso la aplicación ya hecha. Configuro y trabajo.</p>
-                    <div class="svc-quote">“uso la app”</div>
-                  </div>
-
-                  <div class="svc-card svc-card--paas">
-                    <div class="svc-head">
-                      <div class="svc-title"><i class="bi bi-boxes" aria-hidden="true"></i> PaaS</div>
-                      <span class="svc-badge">Plataforma</span>
-                    </div>
-                    <p class="svc-body">Subo mi código y la plataforma gestiona el runtime y el escalado.</p>
-                    <div class="svc-quote">“subo mi código y me olvido del servidor”</div>
-                  </div>
-
-                  <div class="svc-card svc-card--iaas">
-                    <div class="svc-head">
-                      <div class="svc-title"><i class="bi bi-hdd-network" aria-hidden="true"></i> IaaS</div>
-                      <span class="svc-badge">Infra</span>
-                    </div>
-                    <p class="svc-body">Tengo VMs/red/almacenamiento y administro el sistema.</p>
-                    <div class="svc-quote">“yo administro el servidor”</div>
-                  </div>
-                </div>
-                <!-- /regla rápida -->
-
-              </div>
-            </div>
-          </div>
-        </aside>
-
+ 
         <!-- CONTENT -->
         <section class="col-lg-9" aria-label="Contenido principal">
 
@@ -467,6 +406,53 @@
                   <div class="ms-3">iv. Trabajo cooperativo.</div>
                   <div class="mt-2">f) Uso de Cloud y la rentabilidad de la empresa.</div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ✅ NUEVA SECCIÓN: CLAVE PARA EVALUAR -->
+          <div id="clave-evaluar" class="card card-soft shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h4 mb-3"><i class="bi bi-info-circle text-primary me-2" aria-hidden="true"></i>Clave para evaluar</h2>
+
+              <div class="alert alert-info">
+                <strong>Regla del documento:</strong> En cada concepto debes encontrar (y saber reproducir):
+                <span class="kbd-like">Definición</span> + <span class="kbd-like">Ejemplo real</span> +
+                <span class="kbd-like">Ejemplo DAW</span> + <span class="kbd-like">Indicadores</span>.
+              </div>
+
+              <div class="svc-cards" aria-label="Regla rápida IaaS PaaS SaaS">
+                <div class="svc-card svc-card--saas">
+                  <div class="svc-head">
+                    <div class="svc-title"><i class="bi bi-app-indicator" aria-hidden="true"></i> SaaS</div>
+                    <span class="svc-badge">Software</span>
+                  </div>
+                  <p class="svc-body">Uso la aplicación ya hecha. Configuro y trabajo.</p>
+                  <div class="svc-quote">“uso la app”</div>
+                </div>
+
+                <div class="svc-card svc-card--paas">
+                  <div class="svc-head">
+                    <div class="svc-title"><i class="bi bi-boxes" aria-hidden="true"></i> PaaS</div>
+                    <span class="svc-badge">Plataforma</span>
+                  </div>
+                  <p class="svc-body">Subo mi código y la plataforma gestiona el runtime y el escalado.</p>
+                  <div class="svc-quote">“subo mi código y me olvido del servidor”</div>
+                </div>
+
+                <div class="svc-card svc-card--iaas">
+                  <div class="svc-head">
+                    <div class="svc-title"><i class="bi bi-hdd-network" aria-hidden="true"></i> IaaS</div>
+                    <span class="svc-badge">Infra</span>
+                  </div>
+                  <p class="svc-body">Tengo VMs/red/almacenamiento y administro el sistema.</p>
+                  <div class="svc-quote">“yo administro el servidor”</div>
+                </div>
+              </div>
+
+              <div class="small text-muted mt-2">
+                Nota didáctica: <strong>WordPress.com</strong> es SaaS (hosted). <strong>OpenCMS</strong> suele ser software que despliegas (PaaS/IaaS),
+                salvo que un proveedor te lo ofrezca como servicio gestionado.
               </div>
             </div>
           </div>
@@ -528,7 +514,7 @@
                     <dt>Ejemplo DAW</dt>
                     <dd>
                       Proyecto web típico:
-                      <span class="kbd-like">SaaS</span> (OpenCMS / WordPress.com),
+                      <span class="kbd-like">SaaS</span> (WordPress.com),
                       <span class="kbd-like">PaaS</span> (hosting de frontend/API),
                       y a veces <span class="kbd-like">IaaS</span> (VM para aprender administración y despliegue).
                     </dd>
@@ -857,10 +843,7 @@
                       <div class="small-muted mb-2">Aplicación lista para usar (configuras y utilizas).</div>
 
                       <div class="d-flex flex-column gap-2">
-                        <!-- ✅ CAMBIADO: GitHub eliminado como “servicio ejemplo” y sustituido por OpenCMS/WordPress (como servicio) -->
-                        <a class="chip" href="https://www.opencms.org/en/" target="_blank" rel="noopener"><i class="bi bi-window"></i> OpenCMS (sitio oficial)</a>
                         <a class="chip" href="https://wordpress.com/" target="_blank" rel="noopener"><i class="bi bi-wordpress"></i> WordPress.com</a>
-
                         <a class="chip" href="https://workspace.google.com/" target="_blank" rel="noopener"><i class="bi bi-google"></i> Google Workspace</a>
                         <a class="chip" href="https://www.microsoft.com/microsoft-365" target="_blank" rel="noopener"><i class="bi bi-microsoft"></i> Microsoft 365</a>
                         <a class="chip" href="https://slack.com/" target="_blank" rel="noopener"><i class="bi bi-chat-dots"></i> Slack</a>
@@ -878,7 +861,7 @@
                       <ul class="small mb-0">
                         <li><strong>WordPress.com</strong> (WordPress como servicio alojado).</li>
                         <li><strong>MoodleCloud</strong> (Moodle como servicio alojado).</li>
-                        <li><strong>OpenCMS</strong> como servicio <em>si</em> un proveedor lo ofrece alojado y gestionado.</li>
+                        <li><strong>OpenCMS</strong> solo sería SaaS si un proveedor lo ofrece alojado y gestionado (no “por defecto”).</li>
                       </ul>
 
                       <hr>
