@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RA4 · Vocabulario IA · DAW / DAM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Mulish:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:       #f9f7f2;
+      --surface:  #ffffff;
+      --surface2: #f3f1eb;
+      --ink:      #1a1814;
+      --mid:      #7c7870;
+      --faint:    #e8e4da;
+      --rule:     rgba(26,24,20,.09);
+
+      --a: #c0392b;   /* rojo — conceptos base */
+      --b: #1d6a3a;   /* verde — técnico */
+      --c: #1a4a8a;   /* azul marino — ética/legal */
+      --d: #7a4f00;   /* ámbar — sectores */
+      --e: #5b2a8a;   /* morado — lenguajes */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Mulish', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    /* ══ HEADER ══ */
+    .header {
+      background: var(--ink);
+      color: #fff;
+      padding: 3.5rem 3rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+    }
+
+    .header-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: .85rem;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+    }
+
+    .header h1 i {
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(255,255,255,.45);
+    }
+
+    .header-meta {
+      text-align: right;
+    }
+
+    .header-meta .count {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(255,255,255,.12);
+    }
+
+    .header-meta .count-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      margin-top: .25rem;
+    }
+
+    /* ══ CONTROLS ══ */
+    .controls {
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule);
+      padding: 1rem 3rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+      max-width: 340px;
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: .85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .35;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--faint);
+      border-radius: 3px;
+      padding: .6rem .9rem .6rem 2.4rem;
+      font-family: 'Mulish', sans-serif;
+      font-size: .88rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .search-box input::placeholder { color: var(--mid); }
+    .search-box input:focus { border-color: var(--ink); }
+
+    .cat-filters {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+
+    .cf {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: .32rem .75rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: opacity .18s, transform .15s;
+      border: 1.5px solid;
+      user-select: none;
+    }
+
+    .cf[data-cat="base"]    { color: var(--a); border-color: var(--a); }
+    .cf[data-cat="tecnico"] { color: var(--b); border-color: var(--b); }
+    .cf[data-cat="legal"]   { color: var(--c); border-color: var(--c); }
+    .cf[data-cat="sector"]  { color: var(--d); border-color: var(--d); }
+    .cf[data-cat="lang"]    { color: var(--e); border-color: var(--e); }
+    .cf[data-cat="all"]     { color: var(--ink); border-color: var(--ink); }
+
+    .cf.active  { opacity: 1; }
+    .cf.inactive{ opacity: .22; }
+    .cf:hover   { transform: scale(.96); }
+
+    .cf.active[data-cat="base"]    { background: color-mix(in srgb, var(--a) 10%, transparent); }
+    .cf.active[data-cat="tecnico"] { background: color-mix(in srgb, var(--b) 10%, transparent); }
+    .cf.active[data-cat="legal"]   { background: color-mix(in srgb, var(--c) 10%, transparent); }
+    .cf.active[data-cat="sector"]  { background: color-mix(in srgb, var(--d) 10%, transparent); }
+    .cf.active[data-cat="lang"]    { background: color-mix(in srgb, var(--e) 10%, transparent); }
+
+    .stats {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      color: var(--mid);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    .stats strong { color: var(--ink); }
+
+    /* ══ BOARD ══ */
+    .board {
+      padding: 2.5rem 3rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* ══ SECTION ══ */
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: .6rem;
+      border-bottom: 2px solid var(--faint);
+    }
+
+    .sec-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -.01em;
+    }
+
+    .sec-head .sec-n {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      color: var(--mid);
+    }
+
+    /* ══ CARD GRID ══ */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1px;
+      background: var(--faint);
+      border: 1px solid var(--faint);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* ══ VOCAB CARD ══ */
+    .vcard {
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      transition: background .15s;
+    }
+
+    .vcard.hidden { display: none; }
+
+    .vcard-header {
+      display: grid;
+      grid-template-columns: 5px 1fr auto;
+      align-items: stretch;
+      cursor: pointer;
+      min-height: 64px;
+      user-select: none;
+    }
+
+    .vcard-stripe {
+      background: var(--color);
+      opacity: .35;
+      transition: opacity .2s;
+    }
+
+    .vcard.open .vcard-stripe { opacity: 1; }
+
+    .vcard-title-wrap {
+      padding: .95rem 1rem .95rem .9rem;
+    }
+
+    .vcard-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: .97rem;
+      line-height: 1.25;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+
+    .vcard-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color);
+      opacity: .7;
+      margin-top: .25rem;
+    }
+
+    .vcard-toggle {
+      width: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid);
+      font-size: .85rem;
+      transition: transform .3s cubic-bezier(.34,1.56,.64,1), color .2s;
+      flex-shrink: 0;
+    }
+
+    .vcard.open .vcard-toggle {
+      transform: rotate(180deg);
+      color: var(--color);
+    }
+
+    /* body */
+    .vcard-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s cubic-bezier(.4,0,.2,1);
+    }
+
+    .vcard.open .vcard-body { max-height: 600px; }
+
+    .vcard-inner {
+      padding: .1rem 1rem 1.25rem 1.35rem;
+      border-top: 1px solid var(--faint);
+      display: flex;
+      flex-direction: column;
+      gap: .85rem;
+    }
+
+    .def {
+      font-size: .88rem;
+      line-height: 1.72;
+      font-weight: 400;
+      color: #3a3630;
+      border-left: 3px solid var(--color);
+      padding-left: .85rem;
+      opacity: .9;
+      padding-top: .7rem;
+    }
+
+    .def strong { font-weight: 700; color: var(--ink); }
+
+    .eg-block {
+      background: var(--surface2);
+      border-radius: 3px;
+      padding: .8rem 1rem;
+    }
+
+    .eg-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: .45rem;
+    }
+
+    .eg-block p,
+    .eg-block ul {
+      font-size: .83rem;
+      color: #5a5650;
+      line-height: 1.65;
+    }
+
+    .eg-block ul { padding-left: 1.1rem; }
+    .eg-block li { margin-bottom: .2rem; }
+
+    .ce-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+      align-items: center;
+    }
+
+    .ce-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-right: .2rem;
+    }
+
+    .ce-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      font-weight: 600;
+      padding: .18rem .55rem;
+      border-radius: 2px;
+      background: color-mix(in srgb, var(--color) 12%, transparent);
+      color: var(--color);
+      border: 1px solid color-mix(in srgb, var(--color) 25%, transparent);
+    }
+
+    /* no results */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--mid);
+    }
+
+    /* footer */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.3);
+      padding: 1.5rem 3rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    @media (max-width: 640px) {
+      .header { padding: 2rem 1.25rem; grid-template-columns: 1fr; }
+      .header-meta { display: none; }
+      .controls { padding: .85rem 1.25rem; }
+      .board { padding: 1.5rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div>
+    <div class="header-eyebrow">RA4 · Digitalización aplicada al sistema productivo · Grado Superior · DAW / DAM</div>
+    <h1>Vocabulario de<br><i>Inteligencia</i><br>Artificial</h1>
+  </div>
+  <div class="header-meta">
+    <div class="count">31</div>
+    <div class="count-label">Términos</div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-box">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><line x1="11" y1="11" x2="15" y2="15"/></svg>
+    <input type="text" id="searchInput" placeholder="Buscar término…" autocomplete="off" />
+  </div>
+  <div class="cat-filters">
+    <span class="cf active" data-cat="all">Todos</span>
+    <span class="cf active" data-cat="base">Base</span>
+    <span class="cf active" data-cat="tecnico">Técnico</span>
+    <span class="cf active" data-cat="legal">Ética · Legal</span>
+    <span class="cf active" data-cat="sector">Sectores</span>
+    <span class="cf active" data-cat="lang">Lenguajes</span>
+  </div>
+  <div class="stats"><strong id="visibleCount">31</strong> visibles</div>
+</div>
+
+<main class="board">
+
+  <!-- ─── CONCEPTOS BASE ─── -->
+  <section data-section="base">
+    <div class="sec-head">
+      <h2 style="color:var(--a)">Conceptos base</h2>
+      <span class="sec-n">8 términos</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="vcard" data-cat="base" data-term="inteligencia artificial ia" style="--color:var(--a)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Inteligencia Artificial</div>
+            <div class="vcard-cat">Conceptos base</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Conjunto de técnicas y sistemas capaces de realizar tareas que requieren capacidades cognitivas humanas: <strong>clasificar, predecir, recomendar, reconocer patrones, generar contenido o tomar decisiones</strong> de forma autónoma.</div>
+          <div class="eg-block">
+            <div class="eg-label">Ejemplos</div>
+            <ul>
+              <li>Asistentes virtuales (Siri, Alexa, Google Assistant)</li>
+              <li>Filtros anti-spam y detección de fraude bancario</li>
+              <li>Sistemas de recomendación (Netflix, Spotify)</li>
+              <li>IA generativa: texto, imagen y código (ChatGPT, Copilot)</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-c</span><span class="ce-badge">CE-f</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="base" data-term="ia débil narrow ai" style="--color:var(--a)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">IA Débil (Narrow AI)</div>
+            <div class="vcard-cat">Conceptos base</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">IA diseñada para realizar <strong>una tarea específica y acotada</strong>. No generaliza más allá de su dominio de entrenamiento. Es la única forma de IA existente hoy en todos los sistemas comerciales.</div>
+          <div class="eg-block">
+            <div class="eg-label">Ejemplos</div>
+            <ul>
+              <li>Detección de spam en correo electrónico</li>
+              <li>Reconocimiento facial en smartphones</li>
+              <li>Motor de recomendación de productos en e-commerce</li>
+              <li>Traducción automática (DeepL, Google Translate)</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-d</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="base" data-term="ia fuerte general agi" style="--color:var(--a)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">IA Fuerte (AGI)</div>
+            <div class="vcard-cat">Conceptos base</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Concepto hipotético de una IA con capacidades cognitivas generales <strong>comparables o superiores a las humanas</strong>. Capaz de aprender y razonar en cualquier dominio. No existe operativamente en la actualidad.</div>
+          <div class="eg-block">
+            <div class="eg-label">Contexto</div>
+            <p>Es un objetivo teórico de la investigación en IA que genera debate ético sobre riesgos existenciales. Los LLMs actuales (GPT-4, Gemini) son IA Débil muy capaz, no IA Fuerte.</p>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-c</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="base" data-term="ia simbólica reglas sistemas expertos" style="--color:var(--a)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">IA Simbólica</div>
+            <div class="vcard-cat">Conceptos base</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Enfoque de IA basado en <strong>representación explícita del conocimiento mediante reglas, lógica y símbolos</strong>. El razonamiento sigue cadenas de inferencia predefinidas por expertos humanos. Interpretable pero difícil de escalar.</div>
+          <div class="eg-block">
+            <div class="eg-label">Ejemplos</div>
+            <ul>
+              <li>Sistemas expertos de diagnóstico médico (MYCIN)</li>
+              <li>Motores de reglas de negocio en banca</li>
+              <li>Chatbots con flujos predefinidos basados en menús</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="base" data-term="ia subsimbólica machine learning redes neuronales deep learning" style="--color:var(--a)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">IA Subsimbólica</div>
+            <div class="vcard-cat">Conceptos base</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Enfoque basado en el <strong>aprendizaje automático a partir de datos</strong>, sin representar el conocimiento de forma explícita. Los modelos extraen patrones estadísticos. Incluye ML, Deep Learning y LLMs.</div>
+          <div class="eg-block">
+            <div class="eg-label">Ejemplos</div>
+            <ul>
+              <li>Redes neuronales convolucionales para visión artificial</li>
+              <li>Modelos de lenguaje: GPT, Llama, Mistral</li>
+              <li>Algoritmos de clustering para segmentación de usuarios</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-b</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="base" data-term="machine learning aprendizaje automático ml supervisado" style="--color:var(--a)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Machine Learning (ML)</div>
+            <div class="vcard-cat">Conceptos base</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Subcampo de la IA que permite a los sistemas <strong>aprender y mejorar automáticamente a partir de la experiencia</strong> sin ser programados explícitamente. Los modelos se entrenan con datos etiquetados o no etiquetados.</div>
+          <div class="eg-block">
+            <div class="eg-label">Tipos principales</div>
+            <ul>
+              <li><strong>Supervisado:</strong> aprende con etiquetas (clasificación, regresión)</li>
+              <li><strong>No supervisado:</strong> sin etiquetas (clustering, PCA)</li>
+              <li><strong>Por refuerzo:</strong> aprende por recompensas (robótica, videojuegos)</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-b</span><span class="ce-badge">CE-e</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="base" data-term="deep learning aprendizaje profundo redes neuronales capas" style="--color:var(--a)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Deep Learning</div>
+            <div class="vcard-cat">Conceptos base</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Subcampo del ML basado en <strong>redes neuronales artificiales con múltiples capas ocultas</strong>. Aprende representaciones jerárquicas de los datos. Requiere grandes volúmenes de datos y GPUs/TPUs.</div>
+          <div class="eg-block">
+            <div class="eg-label">Aplicaciones</div>
+            <ul>
+              <li>Reconocimiento de voz e imagen</li>
+              <li>Procesamiento del lenguaje natural (NLP)</li>
+              <li>Generación de texto, imagen y código (IA generativa)</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-c</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="base" data-term="ia generativa llm modelo lenguaje grande gpt chatgpt" style="--color:var(--a)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">IA Generativa / LLM</div>
+            <div class="vcard-cat">Conceptos base</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Modelos de IA capaces de <strong>generar contenido nuevo</strong> (texto, imagen, audio, código) a partir de un prompt. Los LLM (Large Language Models) como GPT-4 o Gemini se entrenan sobre enormes corpus textuales.</div>
+          <div class="eg-block">
+            <div class="eg-label">Relevancia para DAW/DAM</div>
+            <ul>
+              <li>GitHub Copilot: autocompletar y generar código</li>
+              <li>ChatGPT API: integrar conversación en apps</li>
+              <li>Generación automática de documentación y tests</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-c</span><span class="ce-badge">CE-f</span></div>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── TÉCNICO ─── -->
+  <section data-section="tecnico">
+    <div class="sec-head">
+      <h2 style="color:var(--b)">Técnico</h2>
+      <span class="sec-n">7 términos</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="vcard" data-cat="tecnico" data-term="big data datos masivos volumen variedad velocidad" style="--color:var(--b)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Big Data</div>
+            <div class="vcard-cat">Técnico</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Conjuntos de datos cuyo <strong>volumen, velocidad y variedad</strong> superan la capacidad de las herramientas tradicionales de procesamiento. La IA necesita Big Data para encontrar patrones de valor empresarial.</div>
+          <div class="eg-block">
+            <div class="eg-label">Las 5 V del Big Data</div>
+            <ul>
+              <li><strong>Volumen:</strong> terabytes o petabytes de datos</li>
+              <li><strong>Velocidad:</strong> generación y procesamiento en tiempo real</li>
+              <li><strong>Variedad:</strong> estructurados, semiestructurados, no estructurados</li>
+              <li><strong>Veracidad:</strong> calidad y fiabilidad del dato</li>
+              <li><strong>Valor:</strong> utilidad para la toma de decisiones</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-b</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="tecnico" data-term="minería de datos data mining patrones clasificación" style="--color:var(--b)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Minería de datos</div>
+            <div class="vcard-cat">Técnico</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Proceso de <strong>descubrimiento de patrones, correlaciones y anomalías</strong> en grandes conjuntos de datos usando técnicas estadísticas y de ML. Extrae conocimiento accionable para la empresa.</div>
+          <div class="eg-block">
+            <div class="eg-label">Técnicas principales</div>
+            <ul>
+              <li><strong>Clasificación:</strong> asignar categorías a nuevas instancias</li>
+              <li><strong>Regresión:</strong> predecir valores numéricos continuos</li>
+              <li><strong>Clustering:</strong> agrupar elementos similares sin etiquetas</li>
+              <li><strong>Asociación:</strong> "quien compra X también compra Y"</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-b</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="tecnico" data-term="modelo entrenamiento dataset conjunto datos ciclo vida" style="--color:var(--b)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Modelo / Entrenamiento</div>
+            <div class="vcard-cat">Técnico</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Un <strong>modelo de IA</strong> es una representación matemática aprendida a partir de datos. El <strong>entrenamiento</strong> es el proceso iterativo de ajuste de parámetros para minimizar el error entre predicciones y valores reales.</div>
+          <div class="eg-block">
+            <div class="eg-label">Ciclo de vida</div>
+            <ul>
+              <li>Recolección y limpieza de datos</li>
+              <li>División: train / validation / test</li>
+              <li>Entrenamiento e iteración de hiperparámetros</li>
+              <li>Evaluación con métricas (accuracy, F1, RMSE…)</li>
+              <li>Despliegue en producción (API, SDK, edge)</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-b</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="tecnico" data-term="api sdk integración servicio ia nube openai azure google" style="--color:var(--b)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">API de IA / SDK</div>
+            <div class="vcard-cat">Técnico</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Mecanismo mediante el cual una aplicación <strong>consume capacidades de IA de terceros</strong> sin necesidad de entrenar modelos propios. Permite integrar NLP, visión, voz o generación de contenido con pocas líneas de código.</div>
+          <div class="eg-block">
+            <div class="eg-label">Servicios principales</div>
+            <ul>
+              <li>OpenAI API: chat, embeddings, visión, generación</li>
+              <li>Google Cloud AI: Vision API, Natural Language, Translate</li>
+              <li>Azure Cognitive Services: Face, Speech, Text Analytics</li>
+              <li>TensorFlow.js: modelos en el navegador (relevante DAW)</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-f</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="tecnico" data-term="sesgo bias dato entrenamiento discriminación injusto" style="--color:var(--b)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Sesgo (Bias)</div>
+            <div class="vcard-cat">Técnico</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Error sistemático en un modelo causado por <strong>datos de entrenamiento no representativos</strong> o prejuicios históricos codificados en los datos. Un modelo sesgado puede producir decisiones injustas o discriminatorias.</div>
+          <div class="eg-block">
+            <div class="eg-label">Ejemplos reales</div>
+            <ul>
+              <li>Sistemas de selección de CV que penalizan a mujeres</li>
+              <li>Reconocimiento facial con peores resultados en piel oscura</li>
+              <li>Algoritmos de crédito que discriminan por código postal</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-c</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="tecnico" data-term="automatización rpa proceso robótico ipa inteligente" style="--color:var(--b)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Automatización de procesos (RPA + IA)</div>
+            <div class="vcard-cat">Técnico</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">La <strong>automatización de procesos robóticos (RPA)</strong> ejecuta tareas repetitivas mediante robots de software. Combinada con IA (IPA), puede tomar decisiones, interpretar documentos y adaptarse a variaciones.</div>
+          <div class="eg-block">
+            <div class="eg-label">Casos de uso</div>
+            <ul>
+              <li>Procesamiento automático de facturas con OCR + IA</li>
+              <li>Respuesta automática a incidencias de soporte</li>
+              <li>Clasificación y enrutamiento de correos en empresas</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-d</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="tecnico" data-term="tdh tecnologías digitales habilitadoras cloud iot edge computación" style="--color:var(--b)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">TDH — Tecnologías Digitales Habilitadoras</div>
+            <div class="vcard-cat">Técnico</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Tecnologías estratégicas que actúan como base para la transformación digital. La IA <strong>se integra y se potencia</strong> al combinarse con ellas.</div>
+          <div class="eg-block">
+            <div class="eg-label">Relación con la IA</div>
+            <ul>
+              <li><strong>Cloud computing:</strong> entrena y despliega modelos (AWS, Azure, GCP)</li>
+              <li><strong>IoT:</strong> fuente masiva de datos en tiempo real</li>
+              <li><strong>Edge computing:</strong> inferencia local sin latencia</li>
+              <li><strong>Ciberseguridad:</strong> detección de amenazas con IA</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-d</span></div>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── ÉTICA Y LEGAL ─── -->
+  <section data-section="legal">
+    <div class="sec-head">
+      <h2 style="color:var(--c)">Ética y legal</h2>
+      <span class="sec-n">5 términos</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="vcard" data-cat="legal" data-term="ai act reglamento europeo ia riesgo regulación 2024" style="--color:var(--c)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">AI Act — Reglamento Europeo de IA</div>
+            <div class="vcard-cat">Ética · Legal</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Primera regulación integral de la IA a nivel mundial, aprobada por la UE en 2024. Clasifica los sistemas de IA según su <strong>nivel de riesgo</strong> y establece obligaciones proporcionales.</div>
+          <div class="eg-block">
+            <div class="eg-label">Clasificación de riesgos</div>
+            <ul>
+              <li><strong>Inaceptable:</strong> prohibido (puntuación social, reconocimiento facial masivo)</li>
+              <li><strong>Alto:</strong> requisitos estrictos (empleo, educación, justicia)</li>
+              <li><strong>Limitado:</strong> obligaciones de transparencia (chatbots, deepfakes)</li>
+              <li><strong>Mínimo:</strong> sin restricciones específicas (filtros de spam)</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-c</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="legal" data-term="rgpd lopd protección datos personales privacidad minimización" style="--color:var(--c)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">RGPD / LOPDGDD</div>
+            <div class="vcard-cat">Ética · Legal</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">El <strong>Reglamento General de Protección de Datos</strong> (UE) y la Ley Orgánica española regulan la recogida y tratamiento de datos personales. Los sistemas de IA deben cumplir principios de licitud, transparencia y seguridad.</div>
+          <div class="eg-block">
+            <div class="eg-label">Principios aplicados a la IA</div>
+            <ul>
+              <li><strong>Minimización:</strong> solo los datos estrictamente necesarios</li>
+              <li><strong>Transparencia:</strong> informar sobre decisiones automatizadas</li>
+              <li><strong>Derecho de oposición:</strong> rechazar decisiones automáticas</li>
+              <li><strong>Privacidad por diseño:</strong> protección desde el diseño del sistema</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-b</span><span class="ce-badge">CE-c</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="legal" data-term="derechos autor copyright propiedad intelectual entrenamiento" style="--color:var(--c)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Derechos de autor e IA</div>
+            <div class="vcard-cat">Ética · Legal</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">El uso de contenidos protegidos para <strong>entrenar modelos o generar contenido derivado</strong> plantea conflictos legales abiertos. Hay que analizar licencias, autoría y los límites de la normativa de propiedad intelectual.</div>
+          <div class="eg-block">
+            <div class="eg-label">Casos relevantes</div>
+            <ul>
+              <li>Demandas de artistas contra generadores de imagen (Midjourney)</li>
+              <li>New York Times vs. OpenAI por uso de artículos en entrenamiento</li>
+              <li>Autoría de obras generadas por IA: ¿quién es el titular?</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-c</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="legal" data-term="ética principios explicabilidad transparencia supervisión humana xai" style="--color:var(--c)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Principios éticos de la IA</div>
+            <div class="vcard-cat">Ética · Legal</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Marco de valores que deben guiar el diseño, desarrollo y despliegue de sistemas de IA responsables. Los profesionales tienen <strong>responsabilidad directa</strong> sobre los sistemas que crean o integran.</div>
+          <div class="eg-block">
+            <div class="eg-label">Principios fundamentales</div>
+            <ul>
+              <li><strong>Explicabilidad (XAI):</strong> el modelo debe justificar sus decisiones</li>
+              <li><strong>No discriminación:</strong> ausencia de sesgos que perjudiquen colectivos</li>
+              <li><strong>Supervisión humana:</strong> control sobre decisiones automatizadas relevantes</li>
+              <li><strong>Privacidad:</strong> protección de datos personales implicados</li>
+              <li><strong>Sostenibilidad:</strong> impacto ambiental del entrenamiento de modelos</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-c</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="legal" data-term="decisión automatizada algoritmo impacto crédito justicia" style="--color:var(--c)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Decisión automatizada</div>
+            <div class="vcard-cat">Ética · Legal</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Resolución tomada <strong>sin intervención humana significativa</strong> por un sistema de IA. El RGPD y el AI Act regulan específicamente las decisiones automatizadas que afecten a derechos o intereses legítimos de las personas.</div>
+          <div class="eg-block">
+            <div class="eg-label">Ejemplos de alto impacto</div>
+            <ul>
+              <li>Concesión o denegación automática de un crédito</li>
+              <li>Filtrado de candidatos en procesos de selección</li>
+              <li>Diagnóstico médico sin revisión clínica</li>
+              <li>Puntuación de riesgo en sistemas de justicia penal</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-a</span><span class="ce-badge">CE-c</span></div>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── SECTORES ─── -->
+  <section data-section="sector">
+    <div class="sec-head">
+      <h2 style="color:var(--d)">Sectores y aplicación</h2>
+      <span class="sec-n">6 términos</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="vcard" data-cat="sector" data-term="sistema recomendación motor recomendador ecommerce netflix colaborativo" style="--color:var(--d)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Sistema de recomendación</div>
+            <div class="vcard-cat">Sectores · Aplicación</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Sistema de IA que <strong>predice la preferencia de un usuario</strong> sobre ítems (productos, películas, canciones) y los sugiere de forma personalizada. Una de las aplicaciones más directamente integrables en DAW/DAM.</div>
+          <div class="eg-block">
+            <div class="eg-label">Enfoques</div>
+            <ul>
+              <li><strong>Filtrado colaborativo:</strong> usuarios similares tienen gustos similares</li>
+              <li><strong>Basado en contenido:</strong> ítems similares a los que ya gustaron</li>
+              <li><strong>Híbrido:</strong> combina ambos enfoques (Netflix, Spotify)</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-d</span><span class="ce-badge">CE-f</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="sector" data-term="chatbot asistente virtual nlp procesamiento lenguaje natural conversación" style="--color:var(--d)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Chatbot / Asistente virtual</div>
+            <div class="vcard-cat">Sectores · Aplicación</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Sistema de IA que simula una conversación con el usuario mediante <strong>procesamiento del lenguaje natural (NLP)</strong>. Desde chatbots simples con reglas hasta asistentes avanzados con LLMs.</div>
+          <div class="eg-block">
+            <div class="eg-label">Integración en DAW/DAM</div>
+            <ul>
+              <li>Widget de soporte en sitios web (OpenAI API + React)</li>
+              <li>Asistente de navegación en apps móviles</li>
+              <li>Chatbot de ventas integrado en e-commerce</li>
+              <li>FAQ inteligente con búsqueda semántica</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-d</span><span class="ce-badge">CE-f</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="sector" data-term="visión artificial computer vision imagen reconocimiento cnn" style="--color:var(--d)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Visión artificial</div>
+            <div class="vcard-cat">Sectores · Aplicación</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Campo de la IA que permite a los sistemas <strong>interpretar información visual</strong> (imágenes y vídeo) usando redes neuronales convolucionales (CNN) entrenadas con grandes datasets etiquetados.</div>
+          <div class="eg-block">
+            <div class="eg-label">Aplicaciones por sector</div>
+            <ul>
+              <li><strong>Sanidad:</strong> detección de tumores en radiografías</li>
+              <li><strong>Industria:</strong> control de calidad visual en producción</li>
+              <li><strong>DAM:</strong> reconocimiento de objetos en apps móviles (Google ML Kit)</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-d</span><span class="ce-badge">CE-f</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="sector" data-term="mantenimiento predictivo industria 4.0 sensores iot anomalía fallo" style="--color:var(--d)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Mantenimiento predictivo</div>
+            <div class="vcard-cat">Sectores · Aplicación</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Aplicación de IA en industria para <strong>predecir fallos en maquinaria</strong> antes de que ocurran, analizando datos de sensores IoT en tiempo real. Reduce tiempos de parada y costes de reparación.</div>
+          <div class="eg-block">
+            <div class="eg-label">Funcionamiento</div>
+            <ul>
+              <li>Sensores recogen temperatura, vibración, presión</li>
+              <li>El modelo identifica patrones previos a fallos históricos</li>
+              <li>Alerta anticipada permite programar mantenimiento preventivo</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-d</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="sector" data-term="detección fraude scoring crédito finanzas banca transacción" style="--color:var(--d)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Detección de fraude y scoring</div>
+            <div class="vcard-cat">Sectores · Aplicación</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Uso de ML en el sector financiero para <strong>identificar transacciones fraudulentas en tiempo real</strong> o evaluar la solvencia de un cliente. Procesa millones de operaciones simultáneas con latencia de milisegundos.</div>
+          <div class="eg-block">
+            <div class="eg-label">Impacto empresarial</div>
+            <ul>
+              <li>Reducción de pérdidas por fraude en tarjetas de crédito</li>
+              <li>Scoring automático: decisión de crédito en segundos</li>
+              <li>Detección de blanqueo de dinero por patrones de comportamiento</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-b</span><span class="ce-badge">CE-d</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="sector" data-term="analítica educativa personalización aprendizaje tutor virtual moodle" style="--color:var(--d)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Analítica educativa y aprendizaje adaptativo</div>
+            <div class="vcard-cat">Sectores · Aplicación</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Aplicación de la IA al sector educativo para <strong>personalizar el itinerario de aprendizaje</strong> de cada estudiante, detectar dificultades tempranamente y proporcionar retroalimentación automática.</div>
+          <div class="eg-block">
+            <div class="eg-label">Casos de uso</div>
+            <ul>
+              <li>Plataformas adaptativas: Khan Academy, Duolingo</li>
+              <li>Tutores virtuales que detectan lagunas conceptuales</li>
+              <li>Análisis de engagement en Moodle</li>
+              <li>Corrección automática de ejercicios de código</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-d</span><span class="ce-badge">CE-f</span></div>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── LENGUAJES ─── -->
+  <section data-section="lang">
+    <div class="sec-head">
+      <h2 style="color:var(--e)">Lenguajes y ecosistemas</h2>
+      <span class="sec-n">5 términos</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="vcard" data-cat="lang" data-term="python lenguaje programación ia tensorflow pytorch scikit hugging face" style="--color:var(--e)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Python — Ecosistema IA</div>
+            <div class="vcard-cat">Lenguajes</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Lenguaje dominante en IA y ciencia de datos. Su sintaxis clara y su <strong>ecosistema de librerías especializadas</strong> lo convierten en el estándar de facto para investigación, prototipado y producción de modelos.</div>
+          <div class="eg-block">
+            <div class="eg-label">Librerías clave</div>
+            <ul>
+              <li><strong>NumPy / Pandas:</strong> manipulación de datos y arrays numéricos</li>
+              <li><strong>Scikit-learn:</strong> ML clásico (clasificación, regresión, clustering)</li>
+              <li><strong>TensorFlow / Keras:</strong> deep learning de Google</li>
+              <li><strong>PyTorch:</strong> deep learning de Meta, muy usado en investigación</li>
+              <li><strong>Hugging Face Transformers:</strong> LLMs, NLP, visión</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-e</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="lang" data-term="javascript tensorflowjs nodejs ia navegador daw brainjs transformers" style="--color:var(--e)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">JavaScript — IA en el navegador</div>
+            <div class="vcard-cat">Lenguajes</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Relevante para <strong>DAW</strong>: permite ejecutar modelos de IA directamente en el cliente sin enviar datos al servidor. TensorFlow.js permite portar modelos Python o entrenar modelos ligeros en el navegador.</div>
+          <div class="eg-block">
+            <div class="eg-label">Librerías</div>
+            <ul>
+              <li><strong>TensorFlow.js:</strong> visión y texto en el navegador</li>
+              <li><strong>Transformers.js:</strong> modelos Hugging Face en cliente</li>
+              <li><strong>LangChain.js:</strong> cadenas de prompts con LLMs en apps web</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-e</span><span class="ce-badge">CE-f</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="lang" data-term="r lenguaje estadística análisis datos visualización ggplot" style="--color:var(--e)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">R — Estadística y análisis</div>
+            <div class="vcard-cat">Lenguajes</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Lenguaje especializado en <strong>estadística, análisis exploratorio y visualización</strong>. Muy usado en investigación, bioinformática y finanzas donde el rigor estadístico es fundamental.</div>
+          <div class="eg-block">
+            <div class="eg-label">Paquetes destacados</div>
+            <ul>
+              <li><strong>tidyverse:</strong> manipulación y transformación de datos</li>
+              <li><strong>ggplot2:</strong> visualización de datos de alta calidad</li>
+              <li><strong>tidymodels / caret:</strong> ML con enfoque estadístico</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-e</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="lang" data-term="java weka deeplearning4j spark mllib empresarial" style="--color:var(--e)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Java — IA en sistemas empresariales</div>
+            <div class="vcard-cat">Lenguajes</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def">Usado en entornos empresariales de gran escala. Permite <strong>integrar capacidades de ML en sistemas Java existentes</strong> sin migrar toda la infraestructura.</div>
+          <div class="eg-block">
+            <div class="eg-label">Librerías</div>
+            <ul>
+              <li><strong>Weka:</strong> suite clásica de ML con interfaz gráfica y API</li>
+              <li><strong>Deeplearning4j:</strong> deep learning en JVM con Hadoop/Spark</li>
+              <li><strong>Apache Spark MLlib:</strong> ML distribuido para Big Data</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-e</span></div>
+        </div></div>
+      </div>
+
+      <div class="vcard" data-cat="lang" data-term="julia c cpp rendimiento alto computación científica embebido libtorch" style="--color:var(--e)">
+        <div class="vcard-header" onclick="toggle(this)">
+          <div class="vcard-stripe"></div>
+          <div class="vcard-title-wrap">
+            <div class="vcard-title">Julia y C/C++ — Alto rendimiento</div>
+            <div class="vcard-cat">Lenguajes</div>
+          </div>
+          <div class="vcard-toggle">▾</div>
+        </div>
+        <div class="vcard-body"><div class="vcard-inner">
+          <div class="def"><strong>Julia</strong> combina la facilidad de Python con el rendimiento de C, ideal para computación científica. <strong>C/C++</strong> es la base de las librerías de alto rendimiento y se usa para inferencia en edge y sistemas embebidos.</div>
+          <div class="eg-block">
+            <div class="eg-label">Cuándo se usan</div>
+            <ul>
+              <li>Julia: investigación científica, modelos financieros de alta precisión</li>
+              <li>C/C++: núcleo de TensorFlow, PyTorch y OpenCV</li>
+              <li>C++ con libtorch: despliegue de modelos PyTorch en producción embebida</li>
+            </ul>
+          </div>
+          <div class="ce-row"><span class="ce-label">Criterios</span><span class="ce-badge">CE-e</span></div>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="no-results" id="noResults">No se encontraron términos para esta búsqueda.</div>
+
+</main>
+
+<footer>
+  <span>RA4 · Vocabulario IA · DAW / DAM</span>
+  <span>31 términos · 5 categorías</span>
+</footer>
+
+<script>
+  // ── TOGGLE ──
+  function toggle(header) {
+    const card = header.closest('.vcard');
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.vcard.open').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+
+  // ── FILTER STATE ──
+  let active = new Set(['base','tecnico','legal','sector','lang']);
+
+  document.querySelectorAll('.cf').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      if (cat === 'all') {
+        if (active.size === 5) {
+          active.clear();
+        } else {
+          active = new Set(['base','tecnico','legal','sector','lang']);
+        }
+      } else {
+        active.has(cat) ? active.delete(cat) : active.add(cat);
+      }
+      syncPills();
+      applyFilters();
+    });
+  });
+
+  function syncPills() {
+    document.querySelectorAll('.cf').forEach(btn => {
+      const cat = btn.dataset.cat;
+      if (cat === 'all') {
+        btn.className = 'cf ' + (active.size === 5 ? 'active' : 'inactive');
+      } else {
+        btn.className = 'cf ' + (active.has(cat) ? 'active' : 'inactive');
+      }
+    });
+  }
+
+  // ── SEARCH ──
+  document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+  function applyFilters() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.vcard');
+    let vis = 0;
+
+    cards.forEach(c => {
+      const catOk = active.has(c.dataset.cat);
+      const termOk = !q || c.dataset.term.includes(q) || c.textContent.toLowerCase().includes(q);
+      const show = catOk && termOk;
+      c.classList.toggle('hidden', !show);
+      if (!show) c.classList.remove('open');
+      if (show) vis++;
+    });
+
+    // Section visibility
+    document.querySelectorAll('.board > section').forEach(sec => {
+      const any = [...sec.querySelectorAll('.vcard')].some(c => !c.classList.contains('hidden'));
+      sec.style.display = any ? '' : 'none';
+    });
+
+    document.getElementById('visibleCount').textContent = vis;
+    document.getElementById('noResults').style.display = vis === 0 ? 'block' : 'none';
+  }
+
+  applyFilters();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RA4 · Inteligencia Artificial aplicada al sector · DAW / DAM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0a0b0f;
+      --paper: #f5f3ee;
+      --cream: #ede9e0;
+      --accent: #e63325;
+      --accent2: #1a4fff;
+      --accent3: #00b87c;
+      --mid: #6b6660;
+      --rule: rgba(10,11,15,.1);
+      --card-bg: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--ink);
+      color: #fff;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 480px;
+    }
+
+    .header-left {
+      padding: 4rem 3rem 4rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-right {
+      background: var(--accent);
+      padding: 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-right::before {
+      content: "IA";
+      position: absolute;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18rem;
+      color: rgba(255,255,255,.08);
+      bottom: -3rem;
+      right: -2rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .module-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.7);
+      padding: .35rem .8rem;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .header h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -.02em;
+    }
+
+    .header h1 span {
+      color: var(--accent);
+    }
+
+    .header-desc {
+      color: rgba(255,255,255,.65);
+      font-weight: 300;
+      max-width: 480px;
+      font-size: 1.05rem;
+    }
+
+    .header-right h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .finalidad-item {
+      display: flex;
+      gap: .85rem;
+      margin-bottom: .85rem;
+      color: rgba(255,255,255,.88);
+      font-size: .95rem;
+      position: relative;
+    }
+
+    .finalidad-item::before {
+      content: "→";
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+      color: rgba(255,255,255,.5);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.75rem;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      padding: .3rem .65rem;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 2px;
+      color: rgba(255,255,255,.6);
+      text-transform: uppercase;
+    }
+
+    /* ── NAV STRIP ── */
+    .nav-strip {
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      padding: .8rem 2rem;
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .nav-strip a {
+      font-family: 'Syne', sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--mid);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: .25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+
+    .nav-strip a:hover {
+      color: var(--ink);
+      border-color: var(--accent);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ── SECTION LABELS ── */
+    .sec-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.7rem;
+      letter-spacing: -.02em;
+      margin-bottom: 1.75rem;
+    }
+
+    section { margin-bottom: 4rem; }
+
+    /* ── OBJETIVO ── */
+    .objetivo-block {
+      display: grid;
+      grid-template-columns: 6px 1fr;
+      gap: 0 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+      padding: 2rem 2rem 2rem 0;
+    }
+
+    .objetivo-stripe {
+      background: var(--accent);
+    }
+
+    .objetivo-text {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .objetivo-text strong {
+      font-weight: 600;
+    }
+
+    /* ── CE GRID ── */
+    .ce-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--card-bg);
+    }
+
+    .ce-item {
+      padding: 1.5rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    .ce-item:nth-child(3n) { border-right: none; }
+    .ce-item:nth-last-child(-n+3) { border-bottom: none; }
+
+    .ce-letter {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.5rem;
+      color: var(--cream);
+      position: absolute;
+      top: .75rem;
+      right: 1rem;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .ce-item h5 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      margin-bottom: .6rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .ce-item h5::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .25em;
+      width: 4px;
+      height: 1em;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .ce-item p {
+      font-size: .88rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ── CONTENIDOS ACCORDION ── */
+    .contenido-row {
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--card-bg);
+      margin-bottom: .5rem;
+    }
+
+    .contenido-header {
+      display: grid;
+      grid-template-columns: 48px 1fr 24px;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: background .15s;
+      user-select: none;
+    }
+
+    .contenido-header:hover { background: #fafafa; }
+
+    .contenido-letter {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .contenido-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .97rem;
+    }
+
+    .contenido-arrow {
+      font-size: 1.1rem;
+      color: var(--mid);
+      transition: transform .25s;
+    }
+
+    .contenido-row.open .contenido-arrow { transform: rotate(180deg); }
+
+    .contenido-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .contenido-row.open .contenido-body { max-height: 600px; }
+
+    .contenido-inner {
+      padding: 0 1.25rem 1.25rem 4rem;
+      font-size: .93rem;
+      color: #3a3835;
+      line-height: 1.7;
+      border-top: 1px solid var(--rule);
+      padding-top: 1rem;
+    }
+
+    .contenido-inner ul {
+      padding-left: 1.25rem;
+      margin-top: .5rem;
+    }
+
+    .contenido-inner li { margin-bottom: .3rem; }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--rule);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .tl-item::before {
+      content: "";
+      position: absolute;
+      left: -1.85rem;
+      top: .45rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--paper);
+    }
+
+    .tl-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: .08em;
+      margin-bottom: .25rem;
+    }
+
+    .tl-head {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: .35rem;
+    }
+
+    .tl-desc {
+      font-size: .9rem;
+      color: var(--mid);
+    }
+
+    /* ── SECTORES ── */
+    .sector-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+    }
+
+    .sector-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.25rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .sector-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    }
+
+    .sector-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: .9rem;
+    }
+
+    .sector-card h5 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      margin-bottom: .4rem;
+    }
+
+    .sector-card p {
+      font-size: .83rem;
+      color: var(--mid);
+      line-height: 1.55;
+    }
+
+    /* ── TABLA ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+
+    .data-table thead tr {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .data-table thead th {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .82rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .85rem 1.25rem;
+      text-align: left;
+    }
+
+    .data-table tbody tr:nth-child(even) { background: #fafaf8; }
+
+    .data-table tbody td {
+      padding: .85rem 1.25rem;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+
+    .data-table tbody td:first-child {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    .data-table .impact {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      color: var(--accent3);
+    }
+
+    /* ── ETICA ── */
+    .ethic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+    }
+
+    .ethic-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-top: 4px solid var(--accent3);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+
+    .ethic-card h5 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .97rem;
+      margin-bottom: .6rem;
+    }
+
+    .ethic-card p {
+      font-size: .85rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ── LENGUAJES ── */
+    .langs-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: .75rem;
+    }
+
+    .lang-card {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 4px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .lang-card .lang-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 1rem;
+      display: block;
+      margin-bottom: .35rem;
+    }
+
+    .lang-card .lang-use {
+      font-size: .75rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.4;
+    }
+
+    .lang-card.primary { background: var(--accent2); }
+    .lang-card.secondary { background: #2a2a3e; }
+
+    /* ── DAW/DAM ── */
+    .titulos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .titulo-block {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 2rem;
+    }
+
+    .titulo-block h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--rule);
+    }
+
+    .titulo-block h4 span {
+      font-size: .75rem;
+      font-weight: 400;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--mid);
+      display: block;
+      margin-top: .2rem;
+    }
+
+    .use-item {
+      display: flex;
+      gap: .75rem;
+      margin-bottom: .75rem;
+      font-size: .9rem;
+      align-items: flex-start;
+    }
+
+    .use-bullet {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+
+    .daw .use-bullet { background: var(--accent2); }
+    .dam .use-bullet { background: var(--accent); }
+
+    /* ── METODOLOGIA ── */
+    .meto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .meto-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+
+    .meto-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.5rem;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: .75rem;
+    }
+
+    .meto-card h5 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .97rem;
+      margin-bottom: .5rem;
+    }
+
+    .meto-card p {
+      font-size: .86rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ── EVALUACION ── */
+    .eval-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+    }
+
+    .eval-item {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--accent2);
+      border-radius: 0 4px 4px 0;
+      padding: 1rem 1.25rem;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .eval-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--accent2);
+      flex-shrink: 0;
+    }
+
+    /* ── FUENTES ── */
+    .fuentes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .fuentes-list li a {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .85rem 1.25rem;
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: .9rem;
+      transition: background .15s, border-color .2s;
+    }
+
+    .fuentes-list li a:hover {
+      background: var(--cream);
+      border-color: var(--accent);
+    }
+
+    .fuentes-list li a::before {
+      content: "↗";
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      font-size: .85rem;
+      flex-shrink: 0;
+    }
+
+    /* ── IDEA CLAVE ── */
+    .idea-clave {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 4px;
+      padding: 2.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .idea-clave::after {
+      content: """;
+      position: absolute;
+      font-family: 'Syne', sans-serif;
+      font-size: 20rem;
+      font-weight: 800;
+      color: rgba(255,255,255,.04);
+      top: -4rem;
+      left: 1rem;
+      line-height: 1;
+    }
+
+    .idea-clave h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .idea-clave p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      max-width: 760px;
+      color: rgba(255,255,255,.8);
+    }
+
+    .idea-clave strong { color: #fff; font-weight: 600; }
+
+    .idea-check-list {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+
+    .idea-check {
+      border: 1px solid rgba(255,255,255,.2);
+      padding: .4rem .85rem;
+      border-radius: 2px;
+      font-size: .85rem;
+      color: rgba(255,255,255,.7);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.4);
+      padding: 2rem;
+      font-size: .82rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .sector-grid { grid-template-columns: repeat(2, 1fr); }
+      .langs-grid { grid-template-columns: repeat(3, 1fr); }
+      .ethic-grid { grid-template-columns: repeat(2, 1fr); }
+      .meto-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .header-grid { grid-template-columns: 1fr; }
+      .header-left { padding: 2.5rem 1.5rem; }
+      .header-right { padding: 2rem 1.5rem; }
+      .ce-grid { grid-template-columns: 1fr; }
+      .ce-item { border-right: none; }
+      .ce-item:nth-last-child(-n+3) { border-bottom: 1px solid var(--rule); }
+      .ce-item:last-child { border-bottom: none; }
+      .titulos-grid { grid-template-columns: 1fr; }
+      .eval-list { grid-template-columns: 1fr; }
+      .langs-grid { grid-template-columns: repeat(2, 1fr); }
+      .meto-grid { grid-template-columns: 1fr; }
+      main { padding: 2rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-grid">
+      <div class="header-left">
+        <span class="module-tag">Digitalización · Grado Superior · FP</span>
+        <h1>Resultado de Aprendizaje&nbsp;4<br><span>Inteligencia Artificial</span><br>aplicada al sector</h1>
+        <p class="header-desc">
+          Propuesta didáctica para DAW y DAM sobre aplicaciones reales de la IA,
+          su impacto en los procesos y sus implicaciones técnicas, legales y éticas.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Automatización</span>
+          <span class="tag">Big Data</span>
+          <span class="tag">Minería</span>
+          <span class="tag">Ética</span>
+          <span class="tag">AI Act</span>
+          <span class="tag">RGPD</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <h2>Finalidad formativa</h2>
+        <div class="finalidad-item">Comprende cómo la IA transforma el desarrollo de software y la automatización de procesos.</div>
+        <div class="finalidad-item">Identifica aplicaciones reales en entornos profesionales de DAW y DAM.</div>
+        <div class="finalidad-item">Valora su impacto desde perspectiva técnica, económica, legal y social.</div>
+        <div class="finalidad-item">Integra soluciones con IA de forma responsable en aplicaciones web y multiplataforma.</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV STRIP -->
+  <nav class="nav-strip">
+    <a href="#objetivo">Objetivo</a>
+    <a href="#criterios">Criterios de evaluación</a>
+    <a href="#contenidos">Contenidos</a>
+    <a href="#evolucion">Evolución</a>
+    <a href="#sectores">Sectores</a>
+    <a href="#lenguajes">Lenguajes</a>
+    <a href="#titulos">DAW / DAM</a>
+    <a href="#tabla">IA y rentabilidad</a>
+    <a href="#etica">Ética y regulación</a>
+    <a href="#metodologia">Metodología</a>
+    <a href="#evaluacion">Evaluación</a>
+    <a href="#fuentes">Fuentes</a>
+  </nav>
+
+  <main>
+
+    <!-- OBJETIVO -->
+    <section id="objetivo">
+      <div class="sec-label">RA4</div>
+      <div class="sec-title">Objetivo del aprendizaje</div>
+      <div class="objetivo-block">
+        <div class="objetivo-stripe"></div>
+        <p class="objetivo-text">
+          El alumnado debe <strong>identificar aplicaciones de la Inteligencia Artificial en el sector del título</strong>,
+          describiendo las mejoras implícitas en su implementación: optimización de procesos, automatización de tareas,
+          análisis de datos, mejora de la productividad, personalización de servicios y apoyo a la toma de decisiones
+          en contextos profesionales de <strong>Desarrollo de Aplicaciones Web</strong>
+          y <strong>Desarrollo de Aplicaciones Multiplataforma</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- CRITERIOS DE EVALUACIÓN -->
+    <section id="criterios">
+      <div class="sec-label">Criterios de evaluación</div>
+      <div class="sec-title">RA4 — Criterios de evaluación</div>
+      <div class="ce-grid">
+        <div class="ce-item">
+          <span class="ce-letter">a</span>
+          <h5>Automatización y optimización</h5>
+          <p>Identifica la importancia de la IA en la automatización de procesos, la reducción de tiempos, la detección de patrones y la mejora de la eficiencia operativa.</p>
+        </div>
+        <div class="ce-item">
+          <span class="ce-letter">b</span>
+          <h5>IA, Big Data y rentabilidad</h5>
+          <p>Relaciona la IA con la recogida masiva de datos, su análisis y su uso para generar valor, reducir costes y mejorar la toma de decisiones empresariales.</p>
+        </div>
+        <div class="ce-item">
+          <span class="ce-letter">c</span>
+          <h5>Importancia presente y futura</h5>
+          <p>Valora el papel actual de la IA y su proyección futura en la transformación digital, el empleo, la productividad y la innovación.</p>
+        </div>
+        <div class="ce-item">
+          <span class="ce-letter">d</span>
+          <h5>Sectores con mayor implantación</h5>
+          <p>Reconoce sectores en los que la IA ya tiene implantación relevante: industria, salud, banca, comercio, ciberseguridad, logística, educación o entretenimiento.</p>
+        </div>
+        <div class="ce-item">
+          <span class="ce-letter">e</span>
+          <h5>Lenguajes de programación</h5>
+          <p>Identifica los lenguajes y ecosistemas más usados en IA y ciencia de datos, comprendiendo su papel en el desarrollo, entrenamiento e integración de soluciones inteligentes.</p>
+        </div>
+        <div class="ce-item">
+          <span class="ce-letter">f</span>
+          <h5>Influencia en el sector del título</h5>
+          <p>Describe cómo la IA impacta directamente en DAW y DAM: asistentes inteligentes, chatbots, recomendadores, análisis predictivo, generación de contenido y testing asistido.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENIDOS -->
+    <section id="contenidos">
+      <div class="sec-label">Contenidos</div>
+      <div class="sec-title">Desarrollo de contenidos</div>
+
+      <div id="contenidos-list">
+
+        <div class="contenido-row open">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">a</span>
+            <span class="contenido-title">Inteligencia Artificial. Ejemplos de aplicación</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              La IA es el conjunto de técnicas y sistemas capaces de realizar tareas que, tradicionalmente, requieren capacidades humanas: clasificar, predecir, recomendar, reconocer patrones, generar contenido o tomar decisiones.
+              <ul>
+                <li>Asistentes virtuales (Siri, Alexa, Google Assistant)</li>
+                <li>Filtros anti-spam y detección de fraude</li>
+                <li>Sistemas de recomendación (Netflix, Spotify, Amazon)</li>
+                <li>Visión artificial y traductores automáticos</li>
+                <li>IA generativa: texto, imagen, código (ChatGPT, GitHub Copilot)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">b</span>
+            <span class="contenido-title">Tipos de IA</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              <ul>
+                <li><strong>IA Débil:</strong> especializada en tareas concretas y acotadas (detección de spam, traducción automática).</li>
+                <li><strong>IA Fuerte:</strong> hipotética IA con capacidades generales comparables a la inteligencia humana (no existe aún de forma operativa).</li>
+                <li><strong>IA Simbólica:</strong> basada en reglas, lógica y representación explícita del conocimiento (sistemas expertos, árboles de decisión).</li>
+                <li><strong>IA Subsimbólica:</strong> basada en aprendizaje automático, redes neuronales y extracción de patrones desde datos (deep learning, LLMs).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">c</span>
+            <span class="contenido-title">Evolución de la IA</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              Desde los primeros sistemas basados en reglas, pasando por los sistemas expertos y el auge del aprendizaje automático y el deep learning, hasta la expansión actual de la IA generativa integrada en herramientas de uso cotidiano. Cada etapa ha ampliado las capacidades, la escala y el impacto social de la tecnología.
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">d</span>
+            <span class="contenido-title">La IA y los datos. Protección de datos</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              La IA necesita datos para entrenar, validar y mejorar sus modelos. A mayor cantidad y calidad de datos, mejor puede ser el rendimiento del sistema. Esto exige atender a la <strong>protección de datos personales</strong>, la minimización de datos, la calidad del dato y la transparencia en su uso. Marco regulatorio: RGPD / LOPDGDD.
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">e</span>
+            <span class="contenido-title">Relación de la IA con los sectores productivos</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              La IA tiene aplicaciones relevantes en sanidad, finanzas, comercio electrónico, transporte, industria 4.0, educación, agricultura, administración pública, ciberseguridad y desarrollo de software. En todos estos ámbitos mejora la eficiencia, reduce costes y habilita nuevas capacidades.
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">f</span>
+            <span class="contenido-title">IA y minería de datos</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              La minería de datos permite descubrir patrones útiles a partir de grandes conjuntos de información. La IA aprovecha ese conocimiento para realizar predicciones, clasificaciones, segmentaciones o recomendaciones con valor para la empresa. El ciclo de vida del dato comprende: recolección → almacenamiento → preprocesado → modelado → evaluación → despliegue.
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">g</span>
+            <span class="contenido-title">Lenguajes de programación en IA</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              Python es el lenguaje más extendido por su ecosistema de librerías (NumPy, Pandas, Scikit-learn, TensorFlow, PyTorch, Hugging Face). También destacan R para estadística, Java para sistemas empresariales, Julia para computación científica y C/C++ para sistemas de alto rendimiento. JavaScript (TensorFlow.js) permite llevar modelos al navegador, relevante para DAW.
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">h</span>
+            <span class="contenido-title">La IA y el título (DAW/DAM)</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              En DAW y DAM, la IA puede integrarse en aplicaciones mediante motores de recomendación, chatbots, asistentes de ayuda, clasificación automática de contenidos, análisis de usuarios, búsqueda inteligente, testing asistido y generación de documentación o código. La integración se realiza mayoritariamente a través de APIs de terceros (OpenAI, Google AI, Azure AI).
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">i</span>
+            <span class="contenido-title">Relación entre TDH y la IA</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              La IA se relaciona con otras Tecnologías Digitales Habilitadoras: cloud computing (infraestructura para entrenar modelos), IoT (fuente masiva de datos en tiempo real), ciberseguridad (detección de amenazas), edge computing (inferencia local), analítica avanzada y automatización de procesos (RPA + IA = IPA).
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">j</span>
+            <span class="contenido-title">Regulación de la IA. Protección de datos. Derechos de autor</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              La implantación de IA debe respetar el marco normativo vigente: <strong>AI Act europeo</strong> (clasificación de riesgos), <strong>RGPD/LOPDGDD</strong> (datos personales), derechos de autor sobre contenidos usados en entrenamiento, transparencia y responsabilidad algorítmica. No todo uso técnicamente posible es legal o éticamente aceptable.
+            </div>
+          </div>
+        </div>
+
+        <div class="contenido-row">
+          <div class="contenido-header" onclick="toggle(this)">
+            <span class="contenido-letter">k</span>
+            <span class="contenido-title">Principios éticos de la IA en la actividad profesional</span>
+            <span class="contenido-arrow">▾</span>
+          </div>
+          <div class="contenido-body">
+            <div class="contenido-inner">
+              La IA debe analizarse desde la justicia, la no discriminación, la privacidad, la explicabilidad, la supervisión humana, la accesibilidad y el impacto social. Los modelos pueden heredar sesgos de los datos de entrenamiento. Es necesario evaluar impactos injustos sobre personas o colectivos, especialmente en ámbitos educativo, laboral y cultural.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EVOLUCIÓN -->
+    <section id="evolucion">
+      <div class="sec-label">Contenido c</div>
+      <div class="sec-title">Evolución histórica de la IA</div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-year">1950 – 1970</div>
+            <div class="tl-head">Etapa fundacional</div>
+            <div class="tl-desc">Test de Turing, primeras investigaciones sobre lógica, algoritmos y simulación del razonamiento. Nace el término "Artificial Intelligence" (McCarthy, 1956).</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1970 – 1990</div>
+            <div class="tl-head">Sistemas expertos</div>
+            <div class="tl-desc">Desarrollo de soluciones basadas en reglas para diagnosticar o recomendar acciones. Auge y posterior "invierno de la IA" por las limitaciones de escalabilidad.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1990 – 2010</div>
+            <div class="tl-head">Machine Learning</div>
+            <div class="tl-desc">La IA comienza a aprender patrones a partir de datos en lugar de depender de reglas explícitas. SVM, árboles de decisión, Random Forest, Naive Bayes.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2010 – actualidad</div>
+            <div class="tl-head">Deep Learning e IA Generativa</div>
+            <div class="tl-desc">Redes neuronales avanzadas, procesamiento de lenguaje natural, visión artificial y modelos generativos integrados en aplicaciones cotidianas (GPT, Stable Diffusion, Gemini).</div>
+          </div>
+        </div>
+
+        <div class="idea-clave">
+          <h3>Idea clave para DAW / DAM</h3>
+          <p>
+            El objetivo no es que el alumnado se convierta en investigador en IA,
+            sino que comprenda cómo <strong>integrarla de forma responsable</strong>
+            en aplicaciones y servicios reales.
+          </p>
+          <div class="idea-check-list">
+            <span class="idea-check">¿Cuándo aporta valor?</span>
+            <span class="idea-check">¿Qué datos necesita?</span>
+            <span class="idea-check">¿Qué riesgos implica?</span>
+            <span class="idea-check">¿Cómo se integra?</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTORES -->
+    <section id="sectores">
+      <div class="sec-label">Contenido e · Criterio d</div>
+      <div class="sec-title">Sectores con implantación relevante de IA</div>
+      <div class="sector-grid">
+        <div class="sector-card">
+          <div class="sector-icon">🏥</div>
+          <h5>Sanidad</h5>
+          <p>Diagnóstico asistido, análisis de imágenes médicas, apoyo clínico y predicción de riesgos.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">🏦</div>
+          <h5>Finanzas</h5>
+          <p>Detección de fraude, scoring crediticio, análisis de riesgo y automatización de atención al cliente.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">🛒</div>
+          <h5>Comercio digital</h5>
+          <p>Recomendadores, análisis de comportamiento, segmentación y personalización de la experiencia de compra.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">🔐</div>
+          <h5>Ciberseguridad</h5>
+          <p>Detección de anomalías, análisis de amenazas, filtrado de eventos y respuesta automatizada a incidentes.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">⚙️</div>
+          <h5>Industria 4.0</h5>
+          <p>Mantenimiento predictivo, visión artificial, automatización avanzada y optimización de cadenas de producción.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">🚚</div>
+          <h5>Logística</h5>
+          <p>Optimización de rutas, predicción de demanda, gestión de almacenes y trazabilidad inteligente.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">📚</div>
+          <h5>Educación</h5>
+          <p>Personalización del aprendizaje, analítica educativa, tutores virtuales y apoyo a la evaluación.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">💻</div>
+          <h5>Desarrollo software</h5>
+          <p>Asistentes de programación, testing asistido, análisis de logs, generación de código y soporte inteligente.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LENGUAJES -->
+    <section id="lenguajes">
+      <div class="sec-label">Contenido g · Criterio e</div>
+      <div class="sec-title">Lenguajes de programación en IA</div>
+      <div class="langs-grid">
+        <div class="lang-card primary">
+          <span class="lang-name">Python</span>
+          <span class="lang-use">TensorFlow · PyTorch · Scikit-learn · Pandas · Hugging Face</span>
+        </div>
+        <div class="lang-card secondary">
+          <span class="lang-name">R</span>
+          <span class="lang-use">Estadística avanzada · caret · ggplot2 · tidyverse</span>
+        </div>
+        <div class="lang-card secondary">
+          <span class="lang-name">JavaScript</span>
+          <span class="lang-use">TensorFlow.js · Brain.js · IA en navegador · relevante en DAW</span>
+        </div>
+        <div class="lang-card secondary">
+          <span class="lang-name">Java</span>
+          <span class="lang-use">Weka · Deeplearning4j · sistemas empresariales</span>
+        </div>
+        <div class="lang-card secondary">
+          <span class="lang-name">Julia</span>
+          <span class="lang-use">Computación científica de alto rendimiento · Flux.jl</span>
+        </div>
+        <div class="lang-card secondary">
+          <span class="lang-name">C / C++</span>
+          <span class="lang-use">Rendimiento máximo · inferencia edge · librerías base (libtorch)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAW / DAM -->
+    <section id="titulos">
+      <div class="sec-label">Contenido h · Criterio f</div>
+      <div class="sec-title">Aplicación específica en DAW y DAM</div>
+      <div class="titulos-grid">
+        <div class="titulo-block daw">
+          <h4>DAW<span>Desarrollo de Aplicaciones Web</span></h4>
+          <div class="use-item"><span class="use-bullet">1</span><span>Chatbots integrados en sitios web y servicios de atención al cliente.</span></div>
+          <div class="use-item"><span class="use-bullet">2</span><span>Sistemas de recomendación en comercio electrónico.</span></div>
+          <div class="use-item"><span class="use-bullet">3</span><span>Búsqueda semántica y clasificación automática de contenidos.</span></div>
+          <div class="use-item"><span class="use-bullet">4</span><span>Personalización de interfaces según comportamiento del usuario.</span></div>
+          <div class="use-item"><span class="use-bullet">5</span><span>Analítica predictiva para mejorar conversión y experiencia de uso.</span></div>
+          <div class="use-item"><span class="use-bullet">6</span><span>TensorFlow.js para modelos de IA directamente en el navegador.</span></div>
+        </div>
+        <div class="titulo-block dam">
+          <h4>DAM<span>Desarrollo de Aplicaciones Multiplataforma</span></h4>
+          <div class="use-item"><span class="use-bullet">1</span><span>Asistentes inteligentes en apps móviles y de escritorio.</span></div>
+          <div class="use-item"><span class="use-bullet">2</span><span>Reconocimiento de voz, texto o imagen en aplicaciones multiplataforma.</span></div>
+          <div class="use-item"><span class="use-bullet">3</span><span>Automatización de tareas repetitivas y soporte a usuarios.</span></div>
+          <div class="use-item"><span class="use-bullet">4</span><span>Predicción de comportamientos, incidencias o consumos.</span></div>
+          <div class="use-item"><span class="use-bullet">5</span><span>Integración de servicios IA mediante APIs y SDKs externos.</span></div>
+          <div class="use-item"><span class="use-bullet">6</span><span>Testing asistido por IA: generación de casos, detección de bugs.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLA IA / RENTABILIDAD -->
+    <section id="tabla">
+      <div class="sec-label">Contenido b · f · Criterio b</div>
+      <div class="sec-title">Relación entre IA, datos y rentabilidad</div>
+      <div style="background:var(--card-bg); border:1px solid var(--rule); border-radius:4px; overflow:hidden;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Elemento</th>
+              <th>Función</th>
+              <th>Impacto empresarial</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Datos</td>
+              <td>Base para entrenar y alimentar sistemas inteligentes.</td>
+              <td class="impact">Mejora del conocimiento del negocio</td>
+            </tr>
+            <tr>
+              <td>Big Data</td>
+              <td>Gestión de grandes volúmenes y variedad de información.</td>
+              <td class="impact">Escalabilidad analítica y mayor capacidad predictiva</td>
+            </tr>
+            <tr>
+              <td>Minería de datos</td>
+              <td>Descubrimiento de patrones y relaciones ocultas.</td>
+              <td class="impact">Detección de oportunidades y reducción de riesgos</td>
+            </tr>
+            <tr>
+              <td>IA</td>
+              <td>Automatización, predicción, clasificación y recomendación.</td>
+              <td class="impact">Aumento de productividad, personalización y eficiencia</td>
+            </tr>
+            <tr>
+              <td>Toma de decisiones</td>
+              <td>Apoyo basado en evidencia y análisis en tiempo real.</td>
+              <td class="impact">Mayor rentabilidad y ventaja competitiva</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ÉTICA -->
+    <section id="etica">
+      <div class="sec-label">Contenido j · k · Criterio a</div>
+      <div class="sec-title">Regulación, protección de datos y ética profesional</div>
+      <div class="ethic-grid">
+        <div class="ethic-card">
+          <h5>Protección de datos</h5>
+          <p>La recogida y tratamiento de datos debe ser lícita, transparente, proporcional y segura, especialmente cuando existen datos personales o decisiones automatizadas. Marco: RGPD / LOPDGDD.</p>
+        </div>
+        <div class="ethic-card">
+          <h5>Derechos de autor</h5>
+          <p>El uso de contenidos para entrenamiento, generación o reutilización exige analizar licencias, autoría, trazabilidad y los límites legales de explotación que establece el AI Act.</p>
+        </div>
+        <div class="ethic-card">
+          <h5>Supervisión humana</h5>
+          <p>Las decisiones relevantes no deben quedar completamente delegadas en sistemas automáticos sin control humano suficiente. Especialmente crítico en salud, finanzas y justicia.</p>
+        </div>
+        <div class="ethic-card">
+          <h5>No discriminación</h5>
+          <p>Los modelos pueden heredar sesgos de los datos. Es necesario evaluar impactos injustos sobre personas o colectivos antes del despliegue en producción.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- METODOLOGÍA -->
+    <section id="metodologia">
+      <div class="sec-label">Orientaciones didácticas</div>
+      <div class="sec-title">Metodología de enseñanza-aprendizaje</div>
+      <div class="meto-grid">
+        <div class="meto-card">
+          <div class="meto-num">01</div>
+          <h5>Aprendizaje basado en problemas</h5>
+          <p>Conectar los conceptos con casos reales del sector del desarrollo de aplicaciones: análisis de herramientas ya presentes en el entorno profesional.</p>
+        </div>
+        <div class="meto-card">
+          <div class="meto-num">02</div>
+          <h5>Debate ético y legal</h5>
+          <p>Reflexión crítica sobre impacto social, legal y ético. Análisis de casos reales de sesgo, privacidad y uso indebido de la IA en aplicaciones.</p>
+        </div>
+        <div class="meto-card">
+          <div class="meto-num">03</div>
+          <h5>Práctica de integración</h5>
+          <p>Pequeñas prácticas de integración de servicios IA mediante APIs (OpenAI, Google AI, Azure AI). Análisis de respuestas y gestión de errores.</p>
+        </div>
+        <div class="meto-card">
+          <div class="meto-num">04</div>
+          <h5>Actividad: mapa de sectores</h5>
+          <p>El alumnado elabora un mapa visual de sectores con aplicaciones reales de IA, identificando herramientas, datos y beneficios concretos.</p>
+        </div>
+        <div class="meto-card">
+          <div class="meto-num">05</div>
+          <h5>Actividad: análisis de app</h5>
+          <p>Análisis crítico de una app web o móvil que use IA: qué datos usa, qué modelo aplica, qué impacto tiene y qué riesgos presenta.</p>
+        </div>
+        <div class="meto-card">
+          <div class="meto-num">06</div>
+          <h5>Actividad: propuesta de mejora</h5>
+          <p>Propuesta razonada de mejora con IA para una empresa ficticia del sector: justificación técnica, económica, legal y ética.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVALUACIÓN -->
+    <section id="evaluacion">
+      <div class="sec-label">Instrumentos</div>
+      <div class="sec-title">Evidencias e instrumentos de evaluación</div>
+      <div class="eval-list">
+        <div class="eval-item">
+          <span class="eval-num">EVA-01</span>
+          <span>Cuestionario individual sobre conceptos, tipos de IA y normativa vigente.</span>
+        </div>
+        <div class="eval-item">
+          <span class="eval-num">EVA-02</span>
+          <span>Infografía o presentación sobre la IA aplicada al sector del título.</span>
+        </div>
+        <div class="eval-item">
+          <span class="eval-num">EVA-03</span>
+          <span>Informe breve de análisis crítico de una herramienta de IA real.</span>
+        </div>
+        <div class="eval-item">
+          <span class="eval-num">EVA-04</span>
+          <span>Debate argumentado sobre ética, empleo y automatización (rúbrica de participación).</span>
+        </div>
+        <div class="eval-item">
+          <span class="eval-num">EVA-05</span>
+          <span>Práctica guiada de integración o análisis de una API de IA en una aplicación web/multiplataforma.</span>
+        </div>
+        <div class="eval-item">
+          <span class="eval-num">EVA-06</span>
+          <span>Propuesta escrita de mejora con IA para una empresa del sector, con análisis legal y ético.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUENTES -->
+    <section id="fuentes">
+      <div class="sec-label">Referencias</div>
+      <div class="sec-title">Fuentes oficiales recomendadas</div>
+      <ul class="fuentes-list">
+        <li>
+          <a href="https://www.boe.es/buscar/doc.php?id=BOE-A-2023-16889" target="_blank" rel="noopener">
+            BOE · Real Decreto 659/2023 · Marco normativo del título
+          </a>
+        </li>
+        <li>
+          <a href="https://descargas.intef.es/cedec/proyectoedia/FP/digitalizacion/contenidos/operacion_ia/_gua_didctica_.html" target="_blank" rel="noopener">
+            INTEF / CEDEC · Operación 4. Inteligencia Artificial · Guía didáctica
+          </a>
+        </li>
+        <li>
+          <a href="https://eur-lex.europa.eu/legal-content/ES/ALL/?uri=OJ%3AL_202401689" target="_blank" rel="noopener">
+            EUR-Lex · Reglamento Europeo de Inteligencia Artificial (AI Act) 2024
+          </a>
+        </li>
+        <li>
+          <a href="https://www.aepd.es/" target="_blank" rel="noopener">
+            AEPD · Agencia Española de Protección de Datos · Guías y recursos IA
+          </a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>RA4 · Inteligencia Artificial aplicada al sector · DAW / DAM</span>
+    <span>Digitalización aplicada al sistema productivo · Grado Superior · FP</span>
+  </footer>
+
+  <script>
+    function toggle(header) {
+      const row = header.closest('.contenido-row');
+      const isOpen = row.classList.contains('open');
+      document.querySelectorAll('.contenido-row.open').forEach(r => r.classList.remove('open'));
+      if (!isOpen) row.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>
